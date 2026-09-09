@@ -5,7 +5,8 @@
   "scripts": {
     "server": "nodemon server.js",
     "client": "live-server frontend --port=3000",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
