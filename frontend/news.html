@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="vi" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Capital Circle - Tất cả bài viết & Phân tích chuyên sâu</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <!-- Google Fonts: Plus Jakarta Sans, Playfair Display & Caveat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./js/config.js"></script>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body class="bg-[#f8fafc] text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+    <!-- ==================== HEADER / NAVBAR ==================== -->
+    <header class="bg-[#0b101d] border-b border-slate-800/80 sticky top-0 z-40 shadow-lg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <!-- Logo & Brand Name -->
+          <a href="./index.html" class="flex items-center space-x-3 group">
+            <div
+              class="w-11 h-11 rounded-full border border-slate-700/80 flex items-center justify-center relative bg-gradient-to-b from-slate-900 to-slate-950 shadow-inner group-hover:border-amber-400/60 transition"
+            >
+              <svg
+                class="w-7 h-7 text-amber-400"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-opacity="0.9" />
+                <path d="M12 2.5 A9.5 9.5 0 0 1 21.5 12" stroke="#d4af37" stroke-width="2" />
+                <line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" />
+                <circle cx="12" cy="12" r="3" stroke="#f1c40f" stroke-width="1.2" />
+              </svg>
+            </div>
+            <div>
+              <div
+                class="text-base sm:text-lg font-extrabold tracking-wider text-white uppercase leading-none"
+              >
+                CAPITAL CIRCLE
+              </div>
+              <div
+                class="text-[9px] tracking-[0.25em] font-medium text-slate-400 uppercase mt-1"
+              >
+                KIẾN THỨC • TƯ DUY • GIÁ TRỊ DÀI HẠN
+              </div>
+            </div>
+          </a>
+
+          <!-- Navigation Links Desktop -->
+          <nav class="hidden lg:flex items-center space-x-7 text-sm font-medium">
+            <a
+              href="./index.html"
+              class="text-slate-300 hover:text-white transition"
+              >Trang chủ</a
+            >
+            <a
+              href="./news.html"
+              class="text-white py-1 relative border-b-2 border-white transition font-semibold"
+              >Bài viết</a
+            >
+            <a
+              href="./index.html#market-ticker"
+              class="text-slate-300 hover:text-white transition"
+              >Thị trường</a
+            >
+            <a
+              href="./index.html#featured-article"
+              class="text-slate-300 hover:text-white transition"
+              >Kiến thức</a
+            >
+            <a
+              href="./index.html#quick-tools"
+              class="text-slate-300 hover:text-white transition"
+              >Công cụ</a
+            >
+            <a
+              href="./index.html#about-section"
+              class="text-slate-300 hover:text-white transition"
+              >Về Capital Circle</a
+            >
+          </nav>
+
+          <!-- Right Action Buttons -->
+          <div class="hidden sm:flex items-center space-x-4">
+            <button
+              onclick="openSearchModal()"
+              class="w-9 h-9 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition"
+              title="Tìm kiếm"
+            >
+              <i class="fa-solid fa-magnifying-glass text-xs"></i>
+            </button>
+
+            <div id="logBtn" class="flex items-center">
+              <a
+                href="./auth.html"
+                class="px-5 py-2 rounded-full bg-slate-900 border border-slate-700 text-white text-xs font-semibold hover:bg-slate-800 transition"
+              >
+                Đăng nhập
+              </a>
+            </div>
+          </div>
+
+          <!-- Mobile Hamburger Button -->
+          <div class="lg:hidden flex items-center space-x-2">
+            <button
+              id="mobile-menu-btn"
+              class="p-2 rounded-lg text-slate-300 hover:text-white focus:outline-none"
+            >
+              <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Dropdown -->
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden bg-[#0e1626] border-b border-slate-800 px-5 pt-3 pb-5 space-y-3"
+      >
+        <a href="./index.html" class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
+          >Trang chủ</a
+        >
+        <a
+          href="./news.html"
+          class="block py-1 text-sm font-semibold text-white"
+          >Bài viết</a
+        >
+        <a
+          href="./index.html#market-ticker"
+          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
+          >Thị trường</a
+        >
+        <a
+          href="./index.html#about-section"
+          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
+          >Về Capital Circle</a
+        >
+        <div id="logBtnMobile" class="pt-2 border-t border-slate-800">
+          <a
+            href="./auth.html"
+            class="block text-center py-2 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs"
+            >Đăng nhập Quản trị</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- BANNER HERO -->
+    <section class="bg-[#0b101d] text-white py-12 border-b border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center space-x-2 text-xs text-amber-500 font-bold uppercase tracking-wider mb-2">
+          <span>CAPITAL CIRCLE</span>
+          <span>•</span>
+          <span>KHO LƯU TRỮ KIẾN THỨC</span>
+        </div>
+        <h1 class="font-editorial text-3xl sm:text-4xl font-bold tracking-tight text-white">
+          Tất cả bài viết & Phân tích thị trường
+        </h1>
+        <p class="text-slate-400 text-sm mt-2 max-w-2xl">
+          Nơi tổng hợp các bài viết chuyên sâu về tư duy đầu tư dài hạn, phân tích kinh tế vĩ mô, chu kỳ tài sản và quản trị rủi ro.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION ARTICLES LIST -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full flex-grow">
+      <div class="Articles_Grid_Cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Injected via NewsPage/api.js -->
+        <div class="col-span-full py-12 text-center text-slate-400">
+          <i class="fa-solid fa-spinner fa-spin text-2xl mb-2 text-amber-500"></i>
+          <p class="text-sm">Đang tải danh sách bài viết...</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#070c18] border-t border-slate-800 text-slate-400 py-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="flex items-center space-x-3">
+            <div class="w-9 h-9 rounded-full border border-slate-700 bg-slate-900 flex items-center justify-center text-amber-400 text-sm font-bold">
+              CC
+            </div>
+            <div>
+              <div class="text-sm font-extrabold tracking-wider text-white uppercase">
+                CAPITAL CIRCLE
+              </div>
+              <div class="text-[9px] tracking-[0.2em] text-slate-500 uppercase">
+                KIẾN THỨC • TƯ DUY • GIÁ TRỊ DÀI HẠN
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap justify-center gap-6 text-xs text-slate-400">
+            <a href="./index.html" class="hover:text-white transition">Trang chủ</a>
+            <a href="./news.html" class="hover:text-white transition">Bài viết</a>
+            <a href="./index.html#quick-tools" class="hover:text-white transition">Công cụ</a>
+            <a href="./index.html#about-section" class="hover:text-white transition">Giới thiệu</a>
+          </div>
+
+          <div class="flex items-center space-x-4 text-sm text-slate-400">
+            <a href="#" class="hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="hover:text-white transition"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" class="hover:text-white transition"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" class="hover:text-white transition"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+          <p>© 2026 Capital Circle. All rights reserved.</p>
+          <p class="italic">Đầu tư là một hành trình học hỏi không ngừng.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ARTICLE MODAL READER -->
+    <div
+      id="article-modal"
+      class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar p-6 sm:p-8 relative shadow-2xl border border-slate-100"
+      >
+        <button
+          onclick="closeModal('article-modal')"
+          class="absolute top-4 right-4 w-9 h-9 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center text-slate-600 hover:text-slate-900 transition"
+        >
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+        <div id="modal-content"></div>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div
+      id="toast"
+      class="fixed bottom-5 right-5 z-50 hidden bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center space-x-3 border border-slate-700"
+    >
+      <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+      <span id="toast-message" class="text-xs font-semibold">Thao tác thành công!</span>
+    </div>
+
+    <script src="./js/components/modal.js"></script>
+    <script src="./js/NewsPage/api.js"></script>
+    <script src="./js/HomePage/main.js"></script>
+  </body>
+</html>

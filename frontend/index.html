@@ -1,0 +1,1406 @@
+<!doctype html>
+<html lang="vi" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Capital Circle - Kiến Thức • Tư Duy • Giá Trị Dài Hạn</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <!-- Google Fonts: Plus Jakarta Sans, Playfair Display & Caveat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./js/config.js"></script>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body
+    class="bg-[#f8fafc] text-slate-800 antialiased min-h-screen flex flex-col justify-between"
+  >
+    <!-- ==================== HEADER / NAVBAR ==================== -->
+    <header
+      class="bg-[#0b101d] border-b border-slate-800/80 sticky top-0 z-40 shadow-lg"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <!-- Logo & Brand Name -->
+          <a href="./index.html" class="flex items-center space-x-3 group">
+            <!-- Stylized Circular Monogram SVG -->
+            <div
+              class="w-11 h-11 rounded-full border border-slate-700/80 flex items-center justify-center relative bg-gradient-to-b from-slate-900 to-slate-950 shadow-inner group-hover:border-amber-400/60 transition"
+            >
+              <svg
+                class="w-7 h-7 text-amber-400"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="9.5"
+                  stroke="currentColor"
+                  stroke-opacity="0.9"
+                />
+                <path
+                  d="M12 2.5 A9.5 9.5 0 0 1 21.5 12"
+                  stroke="#d4af37"
+                  stroke-width="2"
+                />
+                <line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="3"
+                  stroke="#f1c40f"
+                  stroke-width="1.2"
+                />
+              </svg>
+            </div>
+            <div>
+              <div
+                class="text-base sm:text-lg font-extrabold tracking-wider text-white uppercase leading-none flex items-center"
+              >
+                CAPITAL CIRCLE
+              </div>
+              <div
+                class="text-[9px] tracking-[0.25em] font-medium text-slate-400 uppercase mt-1"
+              >
+                KIẾN THỨC • TƯ DUY • GIÁ TRỊ DÀI HẠN
+              </div>
+            </div>
+          </a>
+
+          <!-- Navigation Links Desktop -->
+          <nav
+            class="hidden lg:flex items-center space-x-7 text-sm font-medium"
+          >
+            <a
+              href="./index.html"
+              class="text-white py-1 relative border-b-2 border-white transition"
+              >Trang chủ</a
+            >
+            <a
+              href="#latest-articles"
+              class="text-slate-300 hover:text-white transition"
+              >Bài viết</a
+            >
+            <a
+              href="#market-ticker"
+              class="text-slate-300 hover:text-white transition"
+              >Thị trường</a
+            >
+            <a
+              href="#featured-article"
+              class="text-slate-300 hover:text-white transition"
+              >Kiến thức</a
+            >
+            <a
+              href="#quick-tools"
+              class="text-slate-300 hover:text-white transition"
+              >Công cụ</a
+            >
+            <a
+              href="./about.html"
+              class="text-slate-300 hover:text-white transition"
+              >Về Capital Circle</a
+            >
+          </nav>
+
+          <!-- Right Action Buttons -->
+          <div class="hidden sm:flex items-center space-x-4">
+            <!-- Search Button -->
+            <button
+              onclick="openSearchModal()"
+              class="w-9 h-9 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition"
+              title="Tìm kiếm"
+            >
+              <i class="fa-solid fa-magnifying-glass text-xs"></i>
+            </button>
+
+            <!-- Follow / Auth Button -->
+            <div id="logBtn" class="flex items-center">
+              <a
+                href="#newsletter-widget"
+                class="px-5 py-2 rounded-full bg-slate-900 border border-slate-700 text-white text-xs font-semibold hover:bg-slate-800 transition"
+              >
+                Theo dõi
+              </a>
+            </div>
+          </div>
+
+          <!-- Mobile Hamburger Button -->
+          <div class="lg:hidden flex items-center space-x-2">
+            <button
+              onclick="openSearchModal()"
+              class="p-2 text-slate-300 hover:text-white"
+            >
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <button
+              id="mobile-menu-btn"
+              class="p-2 rounded-lg text-slate-300 hover:text-white focus:outline-none"
+            >
+              <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Dropdown -->
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden bg-[#0e1626] border-b border-slate-800 px-5 pt-3 pb-5 space-y-3"
+      >
+        <a
+          href="./index.html"
+          class="block py-1 text-sm font-semibold text-white"
+          >Trang chủ</a
+        >
+        <a
+          href="#latest-articles"
+          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
+          >Bài viết</a
+        >
+        <a
+          href="#market-ticker"
+          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
+          >Thị trường</a
+        >
+        <a
+          href="#featured-article"
+          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
+          >Kiến thức</a
+        >
+        <a
+          href="#quick-tools"
+          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
+          >Công cụ</a
+        >
+        <a
+          href="./about.html"
+          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
+          >Về Capital Circle</a
+        >
+        <div id="logBtnMobile" class="pt-2 border-t border-slate-800">
+          <a
+            href="./auth.html"
+            class="block text-center py-2 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs"
+            >Đăng nhập Quản trị</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- ==================== HERO SLIDESHOW SECTION ==================== -->
+    <section
+      id="hero-slideshow"
+      class="relative bg-[#0b101d] text-white overflow-hidden min-h-[480px] sm:min-h-[520px] lg:min-h-[550px] flex items-center group"
+    >
+      <!-- Gradient Overlays (Shared across all slides for consistent dark aesthetic & text legibility) -->
+      <div
+        class="absolute inset-0 z-10 pointer-events-none bg-gradient-to-r from-[#0b101d]/95 via-[#0b101d]/75 to-[#0b101d]/40"
+      ></div>
+      <div
+        class="absolute inset-0 z-10 pointer-events-none bg-gradient-to-t from-[#0b101d] via-transparent to-transparent"
+      ></div>
+
+      <!-- Slide 1: Original user view (Alpine climber & golden sunrise) -->
+      <div class="hero-slide active" data-slide-index="0">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=85"
+            alt="Capital Circle Background 1"
+            class="hero-bg-img w-full h-full object-cover object-center opacity-75"
+          />
+        </div>
+        <!-- Content -->
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10 w-full"
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-8 space-y-5">
+              <h1
+                class="hero-anim-1 font-editorial text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.12]"
+              >
+                Đầu tư tốt hơn<br />mỗi ngày
+              </h1>
+              <p
+                class="hero-anim-2 text-slate-300 text-sm sm:text-base font-light max-w-xl leading-relaxed"
+              >
+                &ldquo;Hành trình vững vàng tài chính bắt đầu từ việc hiểu đúng
+                và kiên trì học hỏi.&rdquo;
+              </p>
+              <div class="hero-anim-3 pt-3">
+                <a
+                  href="./article.html?slug=ky-luat-la-loi-the-lon-nhat-cua-nha-dau-tu-ca-nhan"
+                  class="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-white text-slate-950 font-semibold text-sm hover:bg-slate-100 transition shadow-2xl hover:translate-x-0.5 transform duration-150"
+                >
+                  <span>Đọc bài mới nhất</span>
+                  <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+              </div>
+            </div>
+            <div class="lg:col-span-4 flex justify-start lg:justify-end">
+              <div
+                class="hero-anim-script font-script text-5xl sm:text-6xl lg:text-7xl text-slate-200/90 leading-[1.05] select-none drop-shadow-2xl transform lg:-rotate-6"
+              >
+                Good<br />Investing<br />Brighter<br />Life
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Mountain peaks & golden mist (Kỷ luật & Giá trị dài hạn) -->
+      <div class="hero-slide" data-slide-index="1">
+        <div class="absolute inset-0 z-0 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2000&q=85"
+            alt="Capital Circle Background 2"
+            class="hero-bg-img w-full h-full object-cover object-center opacity-75"
+          />
+        </div>
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10 w-full"
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-8 space-y-5">
+              <h1
+                class="hero-anim-1 font-editorial text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.12]"
+              >
+                Kỷ luật &<br />Giá trị dài hạn
+              </h1>
+              <p
+                class="hero-anim-2 text-slate-300 text-sm sm:text-base font-light max-w-xl leading-relaxed"
+              >
+                &ldquo;Thành công bền vững không đến từ việc đoán thị trường, mà
+                đến từ sự kiên định với hệ thống nguyên tắc.&rdquo;
+              </p>
+              <div class="hero-anim-3 pt-3">
+                <a
+                  href="./article.html?slug=ky-luat-la-loi-the-lon-nhat-cua-nha-dau-tu-ca-nhan"
+                  class="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-white text-slate-950 font-semibold text-sm hover:bg-slate-100 transition shadow-2xl hover:translate-x-0.5 transform duration-150"
+                >
+                  <span>Khám phá bài học kỷ luật</span>
+                  <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+              </div>
+            </div>
+            <div class="lg:col-span-4 flex justify-start lg:justify-end">
+              <div
+                class="hero-anim-script font-script text-5xl sm:text-6xl lg:text-7xl text-amber-300/90 leading-[1.05] select-none drop-shadow-2xl transform lg:-rotate-6"
+              >
+                Stay<br />Patient<br />Build<br />Wealth
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Twilight mountain ridges (Tư duy độc lập) -->
+      <div class="hero-slide" data-slide-index="2">
+        <div class="absolute inset-0 z-0 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=2000&q=85"
+            alt="Capital Circle Background 3"
+            class="hero-bg-img w-full h-full object-cover object-center opacity-75"
+          />
+        </div>
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10 w-full"
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-8 space-y-5">
+              <h1
+                class="hero-anim-1 font-editorial text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.12]"
+              >
+                Tư duy độc lập<br />giữa thị trường
+              </h1>
+              <p
+                class="hero-anim-2 text-slate-300 text-sm sm:text-base font-light max-w-xl leading-relaxed"
+              >
+                &ldquo;Hãy sợ hãi khi người khác tham lam, và luôn giữ cái đầu
+                lạnh khi đám đông phấn khích tột độ.&rdquo;
+              </p>
+              <div class="hero-anim-3 pt-3">
+                <a
+                  href="./article.html?slug=10-nguyen-tac-dau-tu-cua-warren-buffett"
+                  class="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-white text-slate-950 font-semibold text-sm hover:bg-slate-100 transition shadow-2xl hover:translate-x-0.5 transform duration-150"
+                >
+                  <span>10 nguyên tắc Warren Buffett</span>
+                  <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+              </div>
+            </div>
+            <div class="lg:col-span-4 flex justify-start lg:justify-end">
+              <div
+                class="hero-anim-script font-script text-5xl sm:text-6xl lg:text-7xl text-sky-300/90 leading-[1.05] select-none drop-shadow-2xl transform lg:-rotate-6"
+              >
+                Think<br />Deep<br />Invest<br />Smart
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: Sunrise mountain summit (Quản trị rủi ro) -->
+      <div class="hero-slide" data-slide-index="3">
+        <div class="absolute inset-0 z-0 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=2000&q=85"
+            alt="Capital Circle Background 4"
+            class="hero-bg-img w-full h-full object-cover object-center opacity-75"
+          />
+        </div>
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10 w-full"
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-8 space-y-5">
+              <h1
+                class="hero-anim-1 font-editorial text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.12]"
+              >
+                Quản trị rủi ro<br />trước lợi nhuận
+              </h1>
+              <p
+                class="hero-anim-2 text-slate-300 text-sm sm:text-base font-light max-w-xl leading-relaxed"
+              >
+                &ldquo;Quy tắc số 1 là không bao giờ để mất vốn. Bảo toàn năng
+                lực đầu tư chính là gốc rễ của lãi kép.&rdquo;
+              </p>
+              <div class="hero-anim-3 pt-3">
+                <a
+                  href="./article.html?slug=quan-tri-rui-ro-bai-hoc-khong-bao-gio-cu"
+                  class="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-white text-slate-950 font-semibold text-sm hover:bg-slate-100 transition shadow-2xl hover:translate-x-0.5 transform duration-150"
+                >
+                  <span>Bài học quản trị rủi ro</span>
+                  <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+              </div>
+            </div>
+            <div class="lg:col-span-4 flex justify-start lg:justify-end">
+              <div
+                class="hero-anim-script font-script text-5xl sm:text-6xl lg:text-7xl text-emerald-300/90 leading-[1.05] select-none drop-shadow-2xl transform lg:-rotate-6"
+              >
+                Protect<br />Capital<br />Compound<br />Forever
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Arrow Controls -->
+      <button
+        onclick="prevHeroSlide()"
+        aria-label="Slide trước"
+        class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-950/50 hover:bg-slate-900/90 text-white/75 hover:text-white border border-slate-700/60 backdrop-blur-md flex items-center justify-center transition opacity-70 group-hover:opacity-100 shadow-xl focus:outline-none"
+      >
+        <i class="fa-solid fa-chevron-left text-sm sm:text-base"></i>
+      </button>
+
+      <button
+        onclick="nextHeroSlide()"
+        aria-label="Slide tiếp theo"
+        class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-950/50 hover:bg-slate-900/90 text-white/75 hover:text-white border border-slate-700/60 backdrop-blur-md flex items-center justify-center transition opacity-70 group-hover:opacity-100 shadow-xl focus:outline-none"
+      >
+        <i class="fa-solid fa-chevron-right text-sm sm:text-base"></i>
+      </button>
+
+      <!-- Pagination Indicators & Slide Counter -->
+      <div
+        class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center space-x-3 bg-slate-950/50 backdrop-blur-md px-4 py-1.5 rounded-full border border-slate-800/80"
+      >
+        <div class="flex items-center space-x-2" id="heroIndicatorsContainer">
+          <button
+            onclick="goToHeroSlide(0)"
+            class="indicator-pill w-7 h-2 rounded-full bg-amber-400"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            onclick="goToHeroSlide(1)"
+            class="indicator-pill w-2 h-2 rounded-full bg-white/40 hover:bg-white/75"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            onclick="goToHeroSlide(2)"
+            class="indicator-pill w-2 h-2 rounded-full bg-white/40 hover:bg-white/75"
+            aria-label="Slide 3"
+          ></button>
+          <button
+            onclick="goToHeroSlide(3)"
+            class="indicator-pill w-2 h-2 rounded-full bg-white/40 hover:bg-white/75"
+            aria-label="Slide 4"
+          ></button>
+        </div>
+        <span
+          class="text-[10px] text-slate-400 font-mono tracking-widest pl-1 border-l border-slate-700"
+          id="heroSlideCounter"
+        >
+          01/04
+        </span>
+      </div>
+    </section>
+
+    <!-- ==================== MARKET TICKER BAR ==================== -->
+    <section
+      id="market-ticker"
+      class="bg-[#0b1120] border-y border-slate-800/90 text-white"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+        <!-- Ticker Category Tabs & Live Status -->
+        <div
+          class="flex flex-wrap items-center justify-between gap-3 mb-3 border-b border-slate-800/80 pb-2.5 text-xs"
+        >
+          <!-- Tabs -->
+          <div
+            class="flex items-center space-x-1 sm:space-x-2 overflow-x-auto custom-scrollbar py-0.5"
+            id="tickerTabs"
+          >
+            <button
+              onclick="filterTicker('all')"
+              class="ticker-tab-btn active px-3 py-1 rounded-full bg-slate-800 text-white font-semibold transition"
+            >
+              Thị trường
+            </button>
+            <button
+              onclick="filterTicker('crypto')"
+              class="ticker-tab-btn px-3 py-1 rounded-full text-slate-400 hover:text-white transition"
+            >
+              Crypto
+            </button>
+            <button
+              onclick="filterTicker('stocks')"
+              class="ticker-tab-btn px-3 py-1 rounded-full text-slate-400 hover:text-white transition"
+            >
+              Chứng khoán
+            </button>
+            <button
+              onclick="filterTicker('gold')"
+              class="ticker-tab-btn px-3 py-1 rounded-full text-slate-400 hover:text-white transition"
+            >
+              Vàng
+            </button>
+            <button
+              onclick="filterTicker('commodities')"
+              class="ticker-tab-btn px-3 py-1 rounded-full text-slate-400 hover:text-white transition"
+            >
+              Hàng hóa
+            </button>
+            <button
+              onclick="filterTicker('forex')"
+              class="ticker-tab-btn px-3 py-1 rounded-full text-slate-400 hover:text-white transition"
+            >
+              Tỷ giá
+            </button>
+            <button
+              onclick="filterTicker('rates')"
+              class="ticker-tab-btn px-3 py-1 rounded-full text-slate-400 hover:text-white transition"
+            >
+              Lãi suất
+            </button>
+          </div>
+
+          <!-- Live Timestamp & Indicator -->
+          <div
+            class="flex items-center space-x-3 text-xs text-slate-400 shrink-0"
+          >
+            <span id="tickerLastUpdated">Cập nhật: 08/09/2026 11:25</span>
+            <span
+              class="inline-flex items-center gap-1.5 text-emerald-400 font-medium"
+            >
+              <span
+                class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"
+              ></span>
+              Trực tuyến
+            </span>
+          </div>
+        </div>
+
+        <!-- Ticker Cards Grid (6 assets matching the screenshot) -->
+        <div
+          id="tickerContainer"
+          class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3"
+        >
+          <!-- Card 1: Bitcoin -->
+          <div
+            class="bg-slate-900/80 border border-slate-800 rounded-xl p-3 shadow-sm hover:border-slate-700 transition"
+          >
+            <div class="flex items-center space-x-2">
+              <span
+                class="w-5 h-5 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-[10px] font-bold"
+                >₿</span
+              >
+              <span class="text-xs text-slate-300 font-medium"
+                >Bitcoin (BTC)</span
+              >
+            </div>
+            <div class="mt-1.5 flex items-baseline justify-between">
+              <span class="text-base font-bold text-white"
+                >111,250
+                <span class="text-[10px] text-slate-400 font-normal"
+                  >USD</span
+                ></span
+              >
+            </div>
+            <div class="mt-1 flex items-center justify-between text-xs">
+              <span
+                class="text-emerald-400 font-semibold flex items-center text-[11px]"
+              >
+                <i class="fa-solid fa-caret-up me-1"></i>+2.35%
+              </span>
+              <!-- Sparkline SVG -->
+              <svg
+                class="w-16 h-5 stroke-emerald-400 fill-none"
+                viewBox="0 0 64 20"
+              >
+                <path
+                  d="M0 16 Q 16 14, 28 8 T 48 10 T 64 3"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Card 2: Ethereum -->
+          <div
+            class="bg-slate-900/80 border border-slate-800 rounded-xl p-3 shadow-sm hover:border-slate-700 transition"
+          >
+            <div class="flex items-center space-x-2">
+              <span
+                class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-[10px] font-bold"
+                >Ξ</span
+              >
+              <span class="text-xs text-slate-300 font-medium"
+                >Ethereum (ETH)</span
+              >
+            </div>
+            <div class="mt-1.5 flex items-baseline justify-between">
+              <span class="text-base font-bold text-white"
+                >4,328
+                <span class="text-[10px] text-slate-400 font-normal"
+                  >USD</span
+                ></span
+              >
+            </div>
+            <div class="mt-1 flex items-center justify-between text-xs">
+              <span
+                class="text-emerald-400 font-semibold flex items-center text-[11px]"
+              >
+                <i class="fa-solid fa-caret-up me-1"></i>+3.12%
+              </span>
+              <svg
+                class="w-16 h-5 stroke-emerald-400 fill-none"
+                viewBox="0 0 64 20"
+              >
+                <path
+                  d="M0 17 Q 20 15, 32 9 T 50 11 T 64 2"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Card 3: VN-Index -->
+          <div
+            class="bg-slate-900/80 border border-slate-800 rounded-xl p-3 shadow-sm hover:border-slate-700 transition"
+          >
+            <div class="flex items-center space-x-2">
+              <span
+                class="w-5 h-5 rounded-full bg-red-500/20 text-red-500 flex items-center justify-center text-[10px]"
+                >★</span
+              >
+              <span class="text-xs text-slate-300 font-medium">VN-Index</span>
+            </div>
+            <div class="mt-1.5 flex items-baseline justify-between">
+              <span class="text-base font-bold text-white">1,682.45</span>
+            </div>
+            <div class="mt-1 flex items-center justify-between text-xs">
+              <span
+                class="text-emerald-400 font-semibold flex items-center text-[11px]"
+              >
+                <i class="fa-solid fa-caret-up me-1"></i>+0.84%
+              </span>
+              <svg
+                class="w-16 h-5 stroke-emerald-400 fill-none"
+                viewBox="0 0 64 20"
+              >
+                <path
+                  d="M0 15 Q 18 13, 30 7 T 52 9 T 64 4"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Card 4: HNX-Index -->
+          <div
+            class="bg-slate-900/80 border border-slate-800 rounded-xl p-3 shadow-sm hover:border-slate-700 transition"
+          >
+            <div class="flex items-center space-x-2">
+              <span
+                class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px] font-bold"
+                >H</span
+              >
+              <span class="text-xs text-slate-300 font-medium">HNX-Index</span>
+            </div>
+            <div class="mt-1.5 flex items-baseline justify-between">
+              <span class="text-base font-bold text-white">280.37</span>
+            </div>
+            <div class="mt-1 flex items-center justify-between text-xs">
+              <span
+                class="text-emerald-400 font-semibold flex items-center text-[11px]"
+              >
+                <i class="fa-solid fa-caret-up me-1"></i>+0.62%
+              </span>
+              <svg
+                class="w-16 h-5 stroke-emerald-400 fill-none"
+                viewBox="0 0 64 20"
+              >
+                <path
+                  d="M0 14 Q 22 12, 34 8 T 54 10 T 64 5"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Card 5: Giá vàng (SJC) -->
+          <div
+            class="bg-slate-900/80 border border-slate-800 rounded-xl p-3 shadow-sm hover:border-slate-700 transition"
+          >
+            <div class="flex items-center space-x-2">
+              <span
+                class="w-5 h-5 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-[10px]"
+                ><i class="fa-solid fa-coins"></i
+              ></span>
+              <span class="text-xs text-slate-300 font-medium truncate"
+                >Giá vàng (SJC)</span
+              >
+            </div>
+            <div class="mt-1.5 flex items-baseline justify-between">
+              <span
+                class="text-sm sm:text-base font-bold text-white tracking-tight"
+                >135,800,000
+                <span class="text-[9px] text-slate-400 font-normal"
+                  >VND</span
+                ></span
+              >
+            </div>
+            <div class="mt-1 flex items-center justify-between text-xs">
+              <span
+                class="text-rose-400 font-semibold flex items-center text-[11px]"
+              >
+                <i class="fa-solid fa-caret-down me-1"></i>-0.37%
+              </span>
+              <svg
+                class="w-16 h-5 stroke-rose-400 fill-none"
+                viewBox="0 0 64 20"
+              >
+                <path
+                  d="M0 5 Q 16 8, 30 13 T 48 11 T 64 16"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Card 6: USD/VND -->
+          <div
+            class="bg-slate-900/80 border border-slate-800 rounded-xl p-3 shadow-sm hover:border-slate-700 transition"
+          >
+            <div class="flex items-center space-x-2">
+              <span
+                class="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-[10px] font-bold"
+                >$</span
+              >
+              <span class="text-xs text-slate-300 font-medium">USD/VND</span>
+            </div>
+            <div class="mt-1.5 flex items-baseline justify-between">
+              <span class="text-base font-bold text-white">24,620</span>
+            </div>
+            <div class="mt-1 flex items-center justify-between text-xs">
+              <span
+                class="text-emerald-400 font-semibold flex items-center text-[11px]"
+              >
+                <i class="fa-solid fa-caret-up me-1"></i>+0.05%
+              </span>
+              <svg
+                class="w-16 h-5 stroke-emerald-400 fill-none"
+                viewBox="0 0 64 20"
+              >
+                <path
+                  d="M0 12 Q 20 12, 35 11 T 50 10 T 64 9"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== MAIN CONTENT (TWO COLUMNS) ==================== -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full flex-grow">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- ================= LEFT COLUMN (~68%) ================= -->
+        <div class="lg:col-span-8 space-y-10">
+          <!-- 1. BÀI VIẾT NỔI BẬT (FEATURED ARTICLE CARD) -->
+          <section id="featured-article">
+            <a
+              id="featuredArticleCard"
+              href="./article.html?slug=ky-luat-la-loi-the-lon-nhat-cua-nha-dau-tu-ca-nhan"
+              class="block bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md transition overflow-hidden group cursor-pointer"
+            >
+              <!-- Image Container with Pill Badge -->
+              <div
+                class="relative h-64 sm:h-80 md:h-96 w-full overflow-hidden bg-slate-900"
+              >
+                <img
+                  id="featImgHeader"
+                  src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1200&q=80"
+                  alt="Kỷ luật là lợi thế lớn nhất của nhà đầu tư cá nhân"
+                  class="w-full h-full object-cover group-hover:scale-[1.02] transition duration-700 ease-out"
+                />
+                <!-- Dark pill badge 'BÀI VIẾT NỔI BẬT' -->
+                <div class="absolute top-4 left-4 z-10">
+                  <span
+                    class="px-3.5 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-slate-700/60 text-white text-[11px] font-bold tracking-wider uppercase shadow-md"
+                  >
+                    BÀI VIẾT NỔI BẬT
+                  </span>
+                </div>
+              </div>
+
+              <!-- Article Content -->
+              <div class="p-6 sm:p-8 space-y-3.5">
+                <h2
+                  id="featTitleHeader"
+                  class="font-editorial text-2xl sm:text-3xl font-bold text-slate-900 leading-snug group-hover:text-amber-700 transition"
+                >
+                  Kỷ luật là lợi thế lớn nhất của nhà đầu tư cá nhân
+                </h2>
+                <p
+                  id="featExcerptHeader"
+                  class="text-slate-600 text-sm sm:text-base leading-relaxed line-clamp-3 font-normal"
+                >
+                  Trong một thế giới đầy biến động, không phải ai dự đoán đúng
+                  thị trường mới thành công, mà là người kiên trì với nguyên tắc
+                  của mình.
+                </p>
+
+                <!-- Meta Footer -->
+                <div
+                  class="pt-3 flex items-center space-x-3 text-xs text-slate-500 font-medium"
+                >
+                  <div
+                    class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-700 flex items-center justify-center font-bold text-[10px]"
+                  >
+                    C
+                  </div>
+                  <span
+                    id="featAuthorHeader"
+                    class="text-slate-800 font-semibold"
+                    >Capital Circle</span
+                  >
+                  <span>•</span>
+                  <span id="featDateHeader">07 Tháng 9, 2026</span>
+                  <span>•</span>
+                  <span
+                    ><i class="fa-regular fa-clock me-1"></i> 8 phút đọc</span
+                  >
+                </div>
+              </div>
+            </a>
+          </section>
+
+          <!-- 2. BÀI VIẾT MỚI NHẤT (LATEST 6 ARTICLES GRID) -->
+          <section id="latest-articles" class="space-y-5">
+            <!-- Section Header -->
+            <div
+              class="flex items-center justify-between border-b border-slate-200 pb-3"
+            >
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900">
+                Bài viết mới nhất
+              </h3>
+              <a
+                href="./news.html"
+                class="text-xs font-semibold text-slate-600 hover:text-amber-600 transition flex items-center gap-1"
+              >
+                <span>Xem tất cả</span>
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </a>
+            </div>
+
+            <!-- 6 Articles Grid (2 Rows x 3 Columns) -->
+            <div
+              id="latestArticlesGrid"
+              class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5"
+            >
+              <!-- Injected dynamically via js/HomePage/api.js with fallback to mock 6 articles -->
+            </div>
+          </section>
+        </div>
+
+        <!-- ================= RIGHT COLUMN (~32% SIDEBAR) ================= -->
+        <aside class="lg:col-span-4 space-y-6">
+          <!-- WIDGET 1: Giới thiệu & hiểu về Capital Circle -->
+          <div
+            id="about-section"
+            class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-4"
+          >
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2.5">
+                <div
+                  class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center"
+                >
+                  <i class="fa-solid fa-book-open text-sm"></i>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900">
+                  Giới thiệu & hiểu về Capital Circle
+                </h4>
+              </div>
+              <a
+                href="./about.html"
+                class="text-slate-400 hover:text-slate-600 transition text-xs font-semibold flex items-center gap-1"
+              >
+                <span>Đọc thêm</span>
+                <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+              </a>
+            </div>
+
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Capital Circle là nơi tôi ghi lại hành trình học tập cá nhân, chia
+              sẻ kiến thức và góc nhìn về tài chính, đầu tư. Đây không phải là
+              nền tảng tư vấn tài chính hay lời mời gọi đầu tư.
+            </p>
+
+            <!-- Graphic illustration -->
+            <div class="rounded-xl overflow-hidden h-24 relative shadow-inner">
+              <img
+                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+                alt="Capital Circle Mountain"
+                class="w-full h-full object-cover"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"
+              ></div>
+            </div>
+
+            <!-- 4 Navigation Buttons -->
+            <div class="grid grid-cols-2 gap-2 pt-1 text-xs">
+              <a
+                href="#latest-articles"
+                class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-100 hover:border-slate-300 hover:bg-slate-50 transition text-slate-700 font-medium"
+              >
+                <i class="fa-solid fa-graduation-cap text-amber-600"></i>
+                <span class="text-[11px]">Kiến thức đầu tư</span>
+              </a>
+              <a
+                href="#market-ticker"
+                class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-100 hover:border-slate-300 hover:bg-slate-50 transition text-slate-700 font-medium"
+              >
+                <i class="fa-solid fa-chart-line text-blue-600"></i>
+                <span class="text-[11px]">Phân tích thị trường</span>
+              </a>
+              <a
+                href="#featured-article"
+                class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-100 hover:border-slate-300 hover:bg-slate-50 transition text-slate-700 font-medium"
+              >
+                <i class="fa-regular fa-comment-dots text-purple-600"></i>
+                <span class="text-[11px]">Câu chuyện thực tế</span>
+              </a>
+              <a
+                href="#quick-tools"
+                class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-100 hover:border-slate-300 hover:bg-slate-50 transition text-slate-700 font-medium"
+              >
+                <i class="fa-solid fa-screwdriver-wrench text-emerald-600"></i>
+                <span class="text-[11px]">Công cụ hữu ích</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- WIDGET 2: Cộng đồng nhà đầu tư tỉnh táo -->
+          <div
+            class="bg-[#0e1626] text-white rounded-2xl p-6 relative overflow-hidden shadow-sm space-y-4"
+          >
+            <div class="relative z-10 space-y-3">
+              <h4 class="text-lg font-bold leading-snug">
+                Cùng nhau xây dựng<br />cộng đồng nhà đầu tư tỉnh táo
+              </h4>
+              <div>
+                <a
+                  href="#newsletter-widget"
+                  class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white text-slate-950 font-bold text-xs hover:bg-slate-100 transition shadow"
+                >
+                  <span>Tham gia ngay</span>
+                  <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Community Avatar Graphic in Background -->
+            <div
+              class="absolute right-3 -bottom-1 opacity-20 text-6xl text-slate-400 pointer-events-none"
+            >
+              <i class="fa-solid fa-users"></i>
+            </div>
+          </div>
+
+          <!-- WIDGET 3: Bài viết được quan tâm (Trending) -->
+          <div
+            class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-4"
+          >
+            <h4
+              class="font-bold text-base text-slate-900 flex items-center space-x-2"
+            >
+              <span class="text-rose-500">🔥</span>
+              <span>Bài viết được quan tâm</span>
+            </h4>
+
+            <div class="divide-y divide-slate-100 space-y-2">
+              <!-- Item 1 -->
+              <a
+                href="./article.html?slug=10-nguyen-tac-dau-tu-cua-warren-buffett"
+                class="pt-2 flex items-start space-x-3 group cursor-pointer block"
+              >
+                <span
+                  class="w-6 h-6 rounded-full bg-slate-100 text-slate-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-amber-500 group-hover:text-white transition"
+                >
+                  1
+                </span>
+                <div>
+                  <h5
+                    class="text-xs font-bold text-slate-800 group-hover:text-amber-600 transition leading-snug"
+                  >
+                    10 nguyên tắc đầu tư của Warren Buffett
+                  </h5>
+                  <p class="text-[11px] text-slate-400 mt-0.5">
+                    12.5k lượt đọc
+                  </p>
+                </div>
+              </a>
+
+              <!-- Item 2 -->
+              <a
+                href="./article.html?slug=stablecoin-va-co-hoi-cho-viet-nam"
+                class="pt-2.5 flex items-start space-x-3 group cursor-pointer block"
+              >
+                <span
+                  class="w-6 h-6 rounded-full bg-slate-100 text-slate-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-amber-500 group-hover:text-white transition"
+                >
+                  2
+                </span>
+                <div>
+                  <h5
+                    class="text-xs font-bold text-slate-800 group-hover:text-amber-600 transition leading-snug"
+                  >
+                    Stablecoin và cơ hội cho Việt Nam
+                  </h5>
+                  <p class="text-[11px] text-slate-400 mt-0.5">8.3k lượt đọc</p>
+                </div>
+              </a>
+
+              <!-- Item 3 -->
+              <a
+                href="./article.html?slug=so-sanh-vang-chung-khoan-va-bitcoin"
+                class="pt-2.5 flex items-start space-x-3 group cursor-pointer block"
+              >
+                <span
+                  class="w-6 h-6 rounded-full bg-slate-100 text-slate-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-amber-500 group-hover:text-white transition"
+                >
+                  3
+                </span>
+                <div>
+                  <h5
+                    class="text-xs font-bold text-slate-800 group-hover:text-amber-600 transition leading-snug"
+                  >
+                    So sánh vàng, chứng khoán và Bitcoin
+                  </h5>
+                  <p class="text-[11px] text-slate-400 mt-0.5">7.1k lượt đọc</p>
+                </div>
+              </a>
+
+              <!-- Item 4 -->
+              <a
+                href="./article.html?slug=lam-sao-de-bat-dau-dau-tu-voi-10-trieu"
+                class="pt-2.5 flex items-start space-x-3 group cursor-pointer block"
+              >
+                <span
+                  class="w-6 h-6 rounded-full bg-slate-100 text-slate-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-amber-500 group-hover:text-white transition"
+                >
+                  4
+                </span>
+                <div>
+                  <h5
+                    class="text-xs font-bold text-slate-800 group-hover:text-amber-600 transition leading-snug"
+                  >
+                    Làm sao để bắt đầu đầu tư với 10 triệu?
+                  </h5>
+                  <p class="text-[11px] text-slate-400 mt-0.5">6.8k lượt đọc</p>
+                </div>
+              </a>
+
+              <!-- Item 5 -->
+              <a
+                href="./article.html?slug=tu-duy-dai-han-trong-mot-the-gioi-ngan-han"
+                class="pt-2.5 flex items-start space-x-3 group cursor-pointer block"
+              >
+                <span
+                  class="w-6 h-6 rounded-full bg-slate-100 text-slate-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-amber-500 group-hover:text-white transition"
+                >
+                  5
+                </span>
+                <div>
+                  <h5
+                    class="text-xs font-bold text-slate-800 group-hover:text-amber-600 transition leading-snug"
+                  >
+                    Tư duy dài hạn trong một thế giới ngắn hạn
+                  </h5>
+                  <p class="text-[11px] text-slate-400 mt-0.5">5.9k lượt đọc</p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- WIDGET 4: Nhận bài viết mới qua email (Newsletter) -->
+          <div
+            id="newsletter-widget"
+            class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-3.5"
+          >
+            <div class="flex items-center space-x-2.5">
+              <div
+                class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center"
+              >
+                <i class="fa-regular fa-envelope text-sm"></i>
+              </div>
+              <h4 class="font-bold text-sm text-slate-900">
+                Nhận bài viết mới qua email
+              </h4>
+            </div>
+
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Đăng ký để không bỏ lỡ những phân tích và bài viết mới nhất từ
+              Capital Circle.
+            </p>
+
+            <form
+              onsubmit="handleNewsletterSubmit(event)"
+              class="space-y-2.5 pt-1"
+            >
+              <input
+                type="email"
+                id="newsletterEmail"
+                required
+                placeholder="Nhập email của bạn"
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-slate-900 outline-none transition bg-slate-50/50"
+              />
+              <button
+                type="submit"
+                id="newsletterBtn"
+                class="w-full py-2.5 bg-slate-950 hover:bg-slate-800 text-white font-semibold rounded-xl text-xs transition shadow-sm"
+              >
+                Đăng ký
+              </button>
+            </form>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <!-- ==================== QUICK TOOLS (CÔNG CỤ NHANH) ==================== -->
+    <section
+      id="quick-tools"
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full"
+    >
+      <h3 class="text-xl font-bold text-slate-900 mb-4">Công cụ nhanh</h3>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <!-- 6 Tools Grid (Left lg:col-span-8) -->
+        <div
+          class="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3"
+        >
+          <!-- Tool 1 -->
+          <div
+            onclick="showToolNotice('Biểu đồ giá')"
+            class="bg-white rounded-xl border border-slate-200/90 p-4 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md hover:border-slate-300 transition cursor-pointer group"
+          >
+            <div
+              class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-lg mb-2 group-hover:scale-110 transition"
+            >
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <span class="text-xs font-semibold text-slate-700"
+              >Biểu đồ giá</span
+            >
+          </div>
+
+          <!-- Tool 2 -->
+          <div
+            onclick="showToolNotice('Lịch kinh tế')"
+            class="bg-white rounded-xl border border-slate-200/90 p-4 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md hover:border-slate-300 transition cursor-pointer group"
+          >
+            <div
+              class="w-10 h-10 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-lg mb-2 group-hover:scale-110 transition"
+            >
+              <i class="fa-regular fa-calendar-days"></i>
+            </div>
+            <span class="text-xs font-semibold text-slate-700"
+              >Lịch kinh tế</span
+            >
+          </div>
+
+          <!-- Tool 3 -->
+          <div
+            onclick="showToolNotice('Quy đổi tiền tệ')"
+            class="bg-white rounded-xl border border-slate-200/90 p-4 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md hover:border-slate-300 transition cursor-pointer group"
+          >
+            <div
+              class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg mb-2 group-hover:scale-110 transition"
+            >
+              <i class="fa-solid fa-arrow-right-arrow-left"></i>
+            </div>
+            <span class="text-xs font-semibold text-slate-700"
+              >Quy đổi tiền tệ</span
+            >
+          </div>
+
+          <!-- Tool 4 -->
+          <div
+            onclick="showToolNotice('Lãi suất Fed')"
+            class="bg-white rounded-xl border border-slate-200/90 p-4 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md hover:border-slate-300 transition cursor-pointer group"
+          >
+            <div
+              class="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-lg mb-2 group-hover:scale-110 transition"
+            >
+              <i class="fa-solid fa-chart-simple"></i>
+            </div>
+            <span class="text-xs font-semibold text-slate-700"
+              >Lãi suất Fed</span
+            >
+          </div>
+
+          <!-- Tool 5 -->
+          <div
+            onclick="showToolNotice('Sàng lọc cổ phiếu')"
+            class="bg-white rounded-xl border border-slate-200/90 p-4 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md hover:border-slate-300 transition cursor-pointer group"
+          >
+            <div
+              class="w-10 h-10 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-lg mb-2 group-hover:scale-110 transition"
+            >
+              <i class="fa-solid fa-filter"></i>
+            </div>
+            <span class="text-xs font-semibold text-slate-700"
+              >Sàng lọc cổ phiếu</span
+            >
+          </div>
+
+          <!-- Tool 6 -->
+          <div
+            onclick="showToolNotice('So sánh tài sản')"
+            class="bg-white rounded-xl border border-slate-200/90 p-4 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md hover:border-slate-300 transition cursor-pointer group"
+          >
+            <div
+              class="w-10 h-10 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center text-lg mb-2 group-hover:scale-110 transition"
+            >
+              <i class="fa-solid fa-table-cells-large"></i>
+            </div>
+            <span class="text-xs font-semibold text-slate-700"
+              >So sánh tài sản</span
+            >
+          </div>
+        </div>
+
+        <!-- Right Inspirational Card (lg:col-span-4) -->
+        <div
+          class="lg:col-span-4 bg-[#0a1120] text-white rounded-xl p-6 relative overflow-hidden flex flex-col justify-between shadow-sm"
+        >
+          <div class="absolute inset-0 opacity-20">
+            <img
+              src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80"
+              alt="Mountain background"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="relative z-10">
+            <h4
+              class="font-editorial text-lg sm:text-xl font-bold leading-snug"
+            >
+              &ldquo;Kiến thức hôm nay là giá trị ngày mai.&rdquo;
+            </h4>
+          </div>
+          <div
+            class="relative z-10 pt-4 text-xs tracking-widest text-slate-400 font-semibold uppercase flex items-center gap-2"
+          >
+            <span>CAPITAL CIRCLE</span>
+            <div class="h-px w-12 bg-slate-600"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-[#070c18] border-t border-slate-800 text-slate-400 py-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <!-- Main Footer Row -->
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-6"
+        >
+          <!-- Left: Brand Logo & Slogan -->
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-9 h-9 rounded-full border border-slate-700 bg-slate-900 flex items-center justify-center text-amber-400 text-sm font-bold"
+            >
+              CC
+            </div>
+            <div>
+              <div
+                class="text-sm font-extrabold tracking-wider text-white uppercase"
+              >
+                CAPITAL CIRCLE
+              </div>
+              <div class="text-[9px] tracking-[0.2em] text-slate-500 uppercase">
+                KIẾN THỨC • TƯ DUY • GIÁ TRỊ DÀI HẠN
+              </div>
+            </div>
+          </div>
+
+          <!-- Middle: Navigation Links -->
+          <div
+            class="flex flex-wrap justify-center gap-6 text-xs text-slate-400"
+          >
+            <a href="#about-section" class="hover:text-white transition"
+              >Giới thiệu</a
+            >
+            <a href="#newsletter-widget" class="hover:text-white transition"
+              >Liên hệ</a
+            >
+            <a href="#about-section" class="hover:text-white transition"
+              >Điều khoản</a
+            >
+            <a href="#about-section" class="hover:text-white transition"
+              >Chính sách</a
+            >
+          </div>
+
+          <!-- Right: Social Media Icons -->
+          <div class="flex items-center space-x-4 text-sm text-slate-400">
+            <a href="#" class="hover:text-white transition"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a href="#" class="hover:text-white transition"
+              ><i class="fa-brands fa-youtube"></i
+            ></a>
+            <a href="#" class="hover:text-white transition"
+              ><i class="fa-brands fa-tiktok"></i
+            ></a>
+            <a href="#" class="hover:text-white transition"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+          </div>
+        </div>
+
+        <!-- Copyright Note -->
+        <div
+          class="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2"
+        >
+          <p>© 2026 Capital Circle. All rights reserved.</p>
+          <p class="italic">Đầu tư là một hành trình học hỏi không ngừng.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ==================== SEARCH MODAL ==================== -->
+    <div
+      id="search-modal"
+      class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-start justify-center pt-20 p-4"
+    >
+      <div
+        class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4"
+      >
+        <div
+          class="flex items-center justify-between border-b border-slate-200 pb-3"
+        >
+          <div class="flex items-center space-x-2 text-slate-800 font-bold">
+            <i class="fa-solid fa-magnifying-glass text-amber-500"></i>
+            <span>Tìm kiếm bài viết trên Capital Circle</span>
+          </div>
+          <button
+            onclick="closeSearchModal()"
+            class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <input
+          type="text"
+          id="globalSearchInput"
+          oninput="handleGlobalSearch(event)"
+          placeholder="Nhập từ khóa tìm kiếm (Ví dụ: Kỷ luật, Bitcoin, Vàng, Warren Buffett...)"
+          class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-slate-900 outline-none"
+        />
+        <div
+          id="searchResultsContainer"
+          class="max-h-[350px] overflow-y-auto space-y-2 pt-1 text-sm text-slate-600"
+        >
+          <p class="text-xs text-slate-400 italic">
+            Nhập từ khóa để bắt đầu tìm kiếm...
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== ARTICLE MODAL READER ==================== -->
+    <div
+      id="article-modal"
+      class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar p-6 sm:p-8 relative shadow-2xl border border-slate-100"
+      >
+        <button
+          onclick="closeModal('article-modal')"
+          class="absolute top-4 right-4 w-9 h-9 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center text-slate-600 hover:text-slate-900 transition"
+        >
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+        <div id="modal-content">
+          <!-- Content inserted dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TOAST NOTIFICATION CONTAINER ==================== -->
+    <div
+      id="toast"
+      class="fixed bottom-5 right-5 z-50 hidden bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center space-x-3 border border-slate-700"
+    >
+      <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+      <span id="toast-message" class="text-xs font-semibold"
+        >Thao tác thành công!</span
+      >
+    </div>
+
+    <!-- Scripts -->
+    <script src="./js/components/modal.js"></script>
+    <script src="./js/HomePage/api.js"></script>
+    <script src="./js/HomePage/main.js"></script>
+  </body>
+</html>

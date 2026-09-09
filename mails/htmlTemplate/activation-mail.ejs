@@ -1,0 +1,327 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>ELearning Activation Email</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css">
+      /* Base */
+      body {
+        margin: 0;
+        padding: 0;
+        min-width: 100%;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        background-color: #fafafa;
+        color: #222222;
+      }
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+      h1 {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.25;
+        margin-top: 0;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+      p {
+        margin-top: 0;
+        margin-bottom: 24px;
+      }
+      table td {
+        vertical-align: top;
+      }
+      /* Layout */
+      .email-wrapper {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .email-header {
+        background-color: #0070f3;
+        padding: 24px;
+        color: #ffffff;
+      }
+      .email-body {
+        padding: 24px;
+        background-color: #ffffff;
+      }
+      .email-footer {
+        background-color: #f6f6f6;
+        padding: 24px;
+      }
+      /* Buttons */
+      .button {
+        display: inline-block;
+        background-color: #0070f3;
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: 700;
+        text-align: center;
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-wrapper">
+      <div class="email-header">
+        <h1>Chào mừng bạn đến với CLB BlueInvest</h1>
+      </div>
+      <div class="email-body">
+        <p>Xin chào <%= user.name %>,</p>
+        <p>
+          Cảm ơn bạn đã đăng ký trên hệ thống này. Để có trải nghiệm CLB trong 1
+          ngày, vui lòng nhập mã dưới đây:
+        </p>
+        <h2><%= activationCode %></h2>
+        <p>
+          Vui lòng nhập mã này trong khi xin tham gia nhóm ZALO Tăng Đoàn của
+          CLB.
+        </p>
+        <p>
+          Link ZALO:
+          <a href="https://zalo.me/g/rimlxy175">https://zalo.me/g/rimlxy175</a>
+        </p>
+        <p>
+          Nếu bạn không muốn tham gia trải nghiệm CLB BlueInvest hãy bỏ qua tin
+          nhắn này.
+        </p>
+      </div>
+      <div class="email-footer">
+        <p>
+          Nếu có bất kỳ câu hỏi nào, xin hãy liên lạc với chúng tôi:
+          <a href="mailto:nqhuy298.01@gamil.com">nqhuy298.01@gamil.com</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <title>Mã kích hoạt trải nghiệm - CLB BlueInvest</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css">
+      /* Base Style */
+      body {
+        margin: 0;
+        padding: 0;
+        min-width: 100%;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        font-size: 15px;
+        line-height: 1.6;
+        background-color: #f4f6f9;
+        color: #333333;
+      }
+      a {
+        color: #0068ff;
+        text-decoration: none;
+      }
+      p {
+        margin-top: 0;
+        margin-bottom: 16px;
+      }
+      /* Layout Container */
+      .email-wrapper {
+        max-width: 600px;
+        margin: 30px auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      }
+      /* Header Section */
+      .email-header {
+        background: linear-gradient(
+          135deg,
+          #0f2027 0%,
+          #203a43 50%,
+          #2c5364 100%
+        );
+        padding: 40px 30px;
+        text-align: center;
+        color: #ffffff;
+      }
+      .brand-badge {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #00d2ff;
+        margin-bottom: 8px;
+      }
+      .email-header h1 {
+        font-size: 24px;
+        font-weight: 700;
+        margin: 0;
+        line-height: 1.3;
+        color: #ffffff;
+      }
+      /* Body Section */
+      .email-body {
+        padding: 36px 32px;
+      }
+      .greeting {
+        font-size: 18px;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 12px;
+      }
+      .intro-text {
+        color: #4b5563;
+        font-size: 15px;
+      }
+      /* Activation Code Display */
+      .code-container {
+        background: #f8fafc;
+        border: 2px dashed #0284c7;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        margin: 28px 0;
+      }
+      .code-label {
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #64748b;
+        margin-bottom: 8px;
+      }
+      .code-value {
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: 6px;
+        color: #0f2027;
+        font-family: "Courier New", Courier, monospace;
+      }
+      /* Instructions Box */
+      .instruction-box {
+        background-color: #f0f9ff;
+        border-left: 4px solid #0284c7;
+        padding: 16px 20px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 24px;
+        font-size: 14px;
+        color: #0369a1;
+      }
+      /* Action Button */
+      .btn-container {
+        text-align: center;
+        margin: 28px 0;
+      }
+      .zalo-button {
+        display: inline-block;
+        background: linear-gradient(135deg, #0068ff 0%, #0052cc 100%);
+        color: #ffffff !important;
+        font-size: 15px;
+        font-weight: 600;
+        text-align: center;
+        text-decoration: none;
+        padding: 14px 32px;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0, 104, 255, 0.25);
+      }
+      /* Note Text */
+      .ignore-note {
+        font-size: 13px;
+        color: #94a3b8;
+        text-align: center;
+        margin-top: 24px;
+        font-style: italic;
+      }
+      /* Footer Section */
+      .email-footer {
+        background-color: #f8fafc;
+        border-top: 1px solid #f1f5f9;
+        padding: 24px 32px;
+        text-align: center;
+        font-size: 13px;
+        color: #64748b;
+      }
+      .footer-contact {
+        margin-top: 8px;
+      }
+      .footer-contact a {
+        color: #0284c7;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-wrapper">
+      <!-- Header -->
+      <div class="email-header">
+        <div class="brand-badge">Trải Nghiệm Độc Quyền</div>
+        <h1>Chào Mừng Bạn Đến Với CLB BlueInvest</h1>
+      </div>
+
+      <!-- Body -->
+      <div class="email-body">
+        <div class="greeting">Xin chào <%= user.name %>,</div>
+        <p class="intro-text">
+          Cảm ơn bạn đã quan tâm và đăng ký tham gia chương trình **Trải nghiệm
+          1 ngày** cùng **CLB BlueInvest**. Chúng tôi rất vui mừng được chào đón
+          bạn cùng khám phá môi trường đầu tư chuyên nghiệp!
+        </p>
+
+        <!-- Activation Code -->
+        <div class="code-container">
+          <div class="code-label">Mã xác thực trải nghiệm của bạn</div>
+          <div class="code-value"><%= activationCode %></div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instruction-box">
+          <strong>Hướng dẫn tham gia:</strong> Vui lòng sao chép mã trên và dán
+          vào phần <em>"Lời nhắn xin vào nhóm"</em> khi tham gia cộng đồng Zalo
+          của CLB.
+        </div>
+
+        <!-- Button CTA -->
+        <div class="btn-container">
+          <a
+            href="https://zalo.me/g/rimlxy175"
+            class="zalo-button"
+            target="_blank"
+          >
+            Tham Gia Nhóm Zalo Tăng Đoàn
+          </a>
+        </div>
+
+        <p class="ignore-note">
+          Nếu bạn không có nhu cầu trải nghiệm CLB BlueInvest vào lúc này, vui
+          lòng bỏ qua email này.
+        </p>
+      </div>
+
+      <!-- Footer -->
+      <div class="email-footer">
+        <p style="margin: 0">Bạn cần hỗ trợ thêm thông tin?</p>
+        <div class="footer-contact">
+          Liên hệ ngay với chúng tôi qua:
+          <a href="mailto:nqhuy298.01@gmail.com">nqhuy298.01@gmail.com</a>
+        </div>
+        <p
+          style="
+            margin-top: 16px;
+            margin-bottom: 0;
+            font-size: 12px;
+            color: #94a3b8;
+          "
+        >
+          © CLB BlueInvest. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

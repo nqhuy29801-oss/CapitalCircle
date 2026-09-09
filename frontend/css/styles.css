@@ -1,0 +1,223 @@
+body {
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+.font-editorial {
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+.font-script {
+  font-family: "Caveat", cursive, sans-serif;
+}
+.gold-gradient-text {
+  background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #aa7c11 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.gold-border-glow {
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+.pulse-green {
+  animation: pulse-green-anim 2s infinite;
+}
+@keyframes pulse-green-anim {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+/* Rich HTML news styling */
+.rich-news-content {
+  color: #334155;
+  line-height: 1.8;
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+.rich-news-content p {
+  margin-bottom: 1.1rem;
+}
+.rich-news-content h1,
+.rich-news-content h2,
+.rich-news-content h3,
+.rich-news-content h4 {
+  color: #0f172a;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+}
+.rich-news-content h1 { font-size: 1.5rem; }
+.rich-news-content h2 { font-size: 1.3rem; }
+.rich-news-content h3 { font-size: 1.15rem; }
+.rich-news-content h4 { font-size: 1.05rem; }
+.rich-news-content a {
+  color: #d97706;
+  text-decoration: underline;
+  transition: color 0.15s;
+}
+.rich-news-content a:hover {
+  color: #b45309;
+}
+.rich-news-content strong,
+.rich-news-content b {
+  font-weight: 700;
+  color: #0f172a;
+}
+.rich-news-content em,
+.rich-news-content i {
+  font-style: italic;
+}
+.rich-news-content ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.1rem;
+}
+.rich-news-content ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1.1rem;
+}
+.rich-news-content li {
+  margin-bottom: 0.35rem;
+}
+.rich-news-content blockquote {
+  border-left: 4px solid #d97706;
+  padding: 0.75rem 1rem;
+  margin: 1.25rem 0;
+  font-style: italic;
+  color: #475569;
+  background-color: #fffbeb;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+.rich-news-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin: 1.25rem auto;
+  display: block;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.rich-news-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font-size: 0.875rem;
+}
+.rich-news-content table th,
+.rich-news-content table td {
+  border: 1px solid #e2e8f0;
+  padding: 0.6rem 0.75rem;
+}
+.rich-news-content table th {
+  background-color: #f8fafc;
+  font-weight: 600;
+  color: #1e293b;
+}
+.rich-news-content code {
+  background-color: #f1f5f9;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  font-family: monospace;
+  font-size: 0.875em;
+  color: #b45309;
+}
+.rich-news-content pre {
+  background-color: #0f172a;
+  color: #f8fafc;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+.rich-news-content pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+/* ==================== HERO SLIDESHOW STYLES ==================== */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.9s;
+  pointer-events: none;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 10;
+}
+
+.hero-slide .hero-bg-img {
+  transition: transform 7s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: scale(1);
+}
+
+.hero-slide.active .hero-bg-img {
+  transform: scale(1.06);
+}
+
+.hero-slide.active .hero-anim-1 {
+  animation: heroTextFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+.hero-slide.active .hero-anim-2 {
+  animation: heroTextFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+.hero-slide.active .hero-anim-3 {
+  animation: heroTextFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+}
+
+.hero-slide.active .hero-anim-script {
+  animation: heroScriptFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+}
+
+@keyframes heroTextFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroScriptFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) rotate(-4deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(-6deg);
+  }
+}
+
+.indicator-pill {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
