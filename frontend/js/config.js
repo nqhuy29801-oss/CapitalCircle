@@ -19,12 +19,25 @@ tailwind.config = {
   },
 };
 
+// const isLocal =
+//   window.location.hostname === "localhost" ||
+//   window.location.hostname === "127.0.0.1" ||
+//   !window.location.hostname;
+// const apiHost = isLocal ? "localhost" : 'https://capitalcircle-on-render.onrender.com';
+// const apiUrl = `http://${apiHost}:8000/api/v1`;
+
 const isLocal =
   window.location.hostname === "localhost" ||
   window.location.hostname === "127.0.0.1" ||
   !window.location.hostname;
-const apiHost = isLocal ? "localhost" : window.location.hostname;
-const apiUrl = `http://${apiHost}:8000/api/v1`;
+
+// Khai báo trọn vẹn URL gốc (Base URL)
+const apiBase = isLocal
+  ? "http://localhost:8000"
+  : "https://capitalcircle-on-render.onrender.com";
+
+// Tái sử dụng để tạo đường dẫn API hoàn chỉnh
+const apiUrl = `${apiBase}/api/v1`;
 
 const AUTH_STORAGE_KEY = "authStore";
 
@@ -97,7 +110,8 @@ function formatVietnameseDate(timestamp, format = "date") {
 
 /** Chuyển đổi và format nội dung bài viết HTML an toàn & mượt mà */
 function renderNewsHtmlContent(content) {
-  if (!content) return "<p class='text-slate-400 italic'>Chưa có nội dung bài viết.</p>";
+  if (!content)
+    return "<p class='text-slate-400 italic'>Chưa có nội dung bài viết.</p>";
   const hasHtml = /<[a-z][\s\S]*>/i.test(content);
   if (hasHtml) {
     return content;
