@@ -246,7 +246,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
         <!-- ================= ARTICLE MAIN CONTENT (~68%) ================= -->
         <article
-          class="col-span-12 space-y-8 bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-10 shadow-sm"
+          class="lg:col-span-8 space-y-8 bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-10 shadow-sm"
         >
           <!-- Article Header -->
           <div class="space-y-4 border-b border-slate-100 pb-6">
@@ -467,6 +467,121 @@
         </article>
 
         <!-- ================= RIGHT SIDEBAR (~32%) ================= -->
+        <aside class="lg:col-span-4 space-y-6">
+          <!-- Widget 1: Giới thiệu Capital Circle -->
+          <div
+            class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-4"
+          >
+            <div class="flex items-center space-x-2.5">
+              <div
+                class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center"
+              >
+                <i class="fa-solid fa-book-open text-sm"></i>
+              </div>
+              <h4 class="font-bold text-sm text-slate-900">
+                Về Capital Circle
+              </h4>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Hành trình học tập và tích lũy kiến thức tài chính bền vững. Không
+              phải lời khuyên đầu tư hay tư vấn mua bán.
+            </p>
+            <div class="grid grid-cols-2 gap-2 pt-1 text-xs">
+              <a
+                href="./index.html#market-ticker"
+                class="flex items-center space-x-2 p-2 rounded-xl border border-slate-100 hover:bg-slate-50 transition text-slate-700"
+              >
+                <i class="fa-solid fa-chart-line text-blue-600"></i>
+                <span class="text-[11px] font-medium">Thị trường</span>
+              </a>
+              <a
+                href="./tools.html"
+                class="flex items-center space-x-2 p-2 rounded-xl border border-slate-100 hover:bg-slate-50 transition text-slate-700"
+              >
+                <i class="fa-solid fa-screwdriver-wrench text-emerald-600"></i>
+                <span class="text-[11px] font-medium">Công cụ</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Widget 2: Bài viết được quan tâm (Trending) -->
+          <div
+            class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-4"
+          >
+            <h4
+              class="font-bold text-sm text-slate-900 flex items-center space-x-2"
+            >
+              <span class="text-rose-500">🔥</span>
+              <span>Bài viết được quan tâm</span>
+            </h4>
+            <div id="sidebarTrendingList" class="space-y-2">
+              <!-- Injected dynamically -->
+            </div>
+          </div>
+
+          <!-- Widget 3: Newsletter Box -->
+          <div
+            class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-3.5"
+          >
+            <div class="flex items-center space-x-2.5">
+              <div
+                class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center"
+              >
+                <i class="fa-regular fa-envelope text-sm"></i>
+              </div>
+              <h4 class="font-bold text-sm text-slate-900">
+                Nhận bài viết mới qua email
+              </h4>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Đăng ký để nhận các phân tích giá trị từ Capital Circle trực tiếp
+              trong hộp thư của bạn.
+            </p>
+            <form
+              onsubmit="handleNewsletterSubmit(event)"
+              class="space-y-2.5 pt-1"
+            >
+              <input
+                type="email"
+                id="newsletterEmail"
+                required
+                placeholder="Nhập email của bạn"
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-slate-900 outline-none transition bg-slate-50/50"
+              />
+              <button
+                type="submit"
+                id="newsletterBtn"
+                class="w-full py-2.5 bg-slate-950 hover:bg-slate-800 text-white font-semibold rounded-xl text-xs transition shadow-sm"
+              >
+                Đăng ký
+              </button>
+            </form>
+          </div>
+
+          <!-- Widget 4: Quick Quote Banner -->
+          <div
+            class="bg-[#0a1120] text-white rounded-2xl p-6 relative overflow-hidden flex flex-col justify-between shadow-sm min-h-[160px]"
+          >
+            <div class="absolute inset-0 opacity-15">
+              <img
+                src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80"
+                alt="Mountain background"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="relative z-10">
+              <h5 class="font-editorial text-base font-bold leading-snug">
+                &ldquo;Kiến thức hôm nay là giá trị ngày mai.&rdquo;
+              </h5>
+            </div>
+            <div
+              class="relative z-10 pt-4 text-[10px] tracking-widest text-slate-400 font-semibold uppercase flex items-center gap-2"
+            >
+              <span>CAPITAL CIRCLE</span>
+              <div class="h-px w-8 bg-slate-600"></div>
+            </div>
+          </div>
+        </aside>
       </div>
     </main>
 
@@ -590,6 +705,7 @@
     </div>
 
     <!-- Scripts -->
+    <script src="./js/components/modal.js"></script>
     <script src="./js/HomePage/main.js"></script>
     <script src="./js/ArticlePage/api.js"></script>
   </body>

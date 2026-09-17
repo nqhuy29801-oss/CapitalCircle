@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Về Capital Circle - Nơi Dòng Vốn Gặp Gỡ Tri Thức</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -21,9 +22,13 @@
     <script src="./js/config.js"></script>
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
-  <body class="bg-[#f8fafc] text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+  <body
+    class="bg-[#f8fafc] text-slate-800 antialiased min-h-screen flex flex-col justify-between"
+  >
     <!-- ==================== HEADER / NAVBAR ==================== -->
-    <header class="bg-[#0b101d] border-b border-slate-800/80 sticky top-0 z-40 shadow-lg">
+    <header
+      class="bg-[#0b101d] border-b border-slate-800/80 sticky top-0 z-40 shadow-lg"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20">
           <!-- Logo & Brand Name -->
@@ -40,10 +45,26 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-opacity="0.9" />
-                <path d="M12 2.5 A9.5 9.5 0 0 1 21.5 12" stroke="#d4af37" stroke-width="2" />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="9.5"
+                  stroke="currentColor"
+                  stroke-opacity="0.9"
+                />
+                <path
+                  d="M12 2.5 A9.5 9.5 0 0 1 21.5 12"
+                  stroke="#d4af37"
+                  stroke-width="2"
+                />
                 <line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" />
-                <circle cx="12" cy="12" r="3" stroke="#f1c40f" stroke-width="1.2" />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="3"
+                  stroke="#f1c40f"
+                  stroke-width="1.2"
+                />
               </svg>
             </div>
             <div>
@@ -61,13 +82,39 @@
           </a>
 
           <!-- Navigation Links Desktop -->
-          <nav class="hidden lg:flex items-center space-x-7 text-sm font-medium">
-            <a href="./index.html" class="text-slate-300 hover:text-white transition">Trang chủ</a>
-            <a href="./index.html#latest-articles" class="text-slate-300 hover:text-white transition">Bài viết</a>
-            <a href="./index.html#market-ticker" class="text-slate-300 hover:text-white transition">Thị trường</a>
-            <a href="./index.html#featured-article" class="text-slate-300 hover:text-white transition">Kiến thức</a>
-            <a href="./index.html#quick-tools" class="text-slate-300 hover:text-white transition">Công cụ</a>
-            <a href="./about.html" class="text-white py-1 relative border-b-2 border-white transition">Về Capital Circle</a>
+          <nav
+            class="hidden lg:flex items-center space-x-7 text-sm font-medium"
+          >
+            <a
+              href="./index.html"
+              class="text-slate-300 hover:text-white transition"
+              >Trang chủ</a
+            >
+            <a
+              href="./index.html#latest-articles"
+              class="text-slate-300 hover:text-white transition"
+              >Bài viết</a
+            >
+            <a
+              href="./index.html#market-ticker"
+              class="text-slate-300 hover:text-white transition"
+              >Thị trường</a
+            >
+            <a
+              href="./index.html#featured-article"
+              class="text-slate-300 hover:text-white transition"
+              >Kiến thức</a
+            >
+            <a
+              href="./tools.html"
+              class="text-slate-300 hover:text-white transition"
+              >Công cụ</a
+            >
+            <a
+              href="./about.html"
+              class="text-white py-1 relative border-b-2 border-white transition"
+              >Về Capital Circle</a
+            >
           </nav>
 
           <!-- Right Action Buttons -->
@@ -92,7 +139,10 @@
 
           <!-- Mobile Hamburger Button -->
           <div class="lg:hidden flex items-center space-x-2">
-            <button onclick="openSearchModal()" class="p-2 text-slate-300 hover:text-white">
+            <button
+              onclick="openSearchModal()"
+              class="p-2 text-slate-300 hover:text-white"
+            >
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
             <button
@@ -110,12 +160,36 @@
         id="mobile-menu"
         class="hidden lg:hidden bg-[#0e1626] border-b border-slate-800 px-5 pt-3 pb-5 space-y-3"
       >
-        <a href="./index.html" class="block py-1 text-sm font-medium text-slate-300 hover:text-white">Trang chủ</a>
-        <a href="./index.html#latest-articles" class="block py-1 text-sm font-medium text-slate-300 hover:text-white">Bài viết</a>
-        <a href="./index.html#market-ticker" class="block py-1 text-sm font-medium text-slate-300 hover:text-white">Thị trường</a>
-        <a href="./index.html#featured-article" class="block py-1 text-sm font-medium text-slate-300 hover:text-white">Kiến thức</a>
-        <a href="./index.html#quick-tools" class="block py-1 text-sm font-medium text-slate-300 hover:text-white">Công cụ</a>
-        <a href="./about.html" class="block py-1 text-sm font-semibold text-white">Về Capital Circle</a>
+        <a
+          href="./index.html"
+          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
+          >Trang chủ</a
+        >
+        <a
+          href="./index.html#latest-articles"
+          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
+          >Bài viết</a
+        >
+        <a
+          href="./index.html#market-ticker"
+          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
+          >Thị trường</a
+        >
+        <a
+          href="./index.html#featured-article"
+          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
+          >Kiến thức</a
+        >
+        <a
+          href="./tools.html"
+          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
+          >Công cụ</a
+        >
+        <a
+          href="./about.html"
+          class="block py-1 text-sm font-semibold text-white"
+          >Về Capital Circle</a
+        >
         <div id="logBtnMobile" class="pt-2 border-t border-slate-800">
           <a
             href="./auth.html"
@@ -127,7 +201,9 @@
     </header>
 
     <!-- ==================== HERO HEADER SECTION ==================== -->
-    <section class="relative bg-[#0b101d] text-white py-16 sm:py-24 overflow-hidden border-b border-slate-800">
+    <section
+      class="relative bg-[#0b101d] text-white py-16 sm:py-24 overflow-hidden border-b border-slate-800"
+    >
       <div class="absolute inset-0 z-0 opacity-20">
         <img
           src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=2000&q=85"
@@ -135,151 +211,292 @@
           class="w-full h-full object-cover"
         />
       </div>
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold tracking-widest uppercase">
+      <div
+        class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4"
+      >
+        <div
+          class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold tracking-widest uppercase"
+        >
           <i class="fa-solid fa-compass text-xs"></i> GIỚI THIỆU BLOG
         </div>
-        <h1 class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+        <h1
+          class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight"
+        >
           Nơi Dòng Vốn Gặp Gỡ Tri Thức
         </h1>
         <p class="font-script text-2xl sm:text-3xl text-amber-300/90 pt-2">
-          &ldquo;Có những hành trình không nhất thiết phải đi thật nhanh, nhưng nhất định phải đi đủ lâu.&rdquo;
+          &ldquo;Có những hành trình không nhất thiết phải đi thật nhanh, nhưng
+          nhất định phải đi đủ lâu.&rdquo;
         </p>
       </div>
     </section>
 
     <!-- ==================== MAIN CONTENT ==================== -->
-    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 flex-grow">
+    <main
+      class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 flex-grow"
+    >
       <!-- Badge Logo Graphic Card -->
-      <div class="bg-slate-900 rounded-3xl p-6 sm:p-10 border border-slate-800 text-center shadow-xl mb-12 relative overflow-hidden group">
+      <div
+        class="bg-slate-900 rounded-3xl p-6 sm:p-10 border border-slate-800 text-center shadow-xl mb-12 relative overflow-hidden group"
+      >
         <div class="relative z-10 flex flex-col items-center">
-          <div class="w-32 h-32 sm:w-40 sm:h-40 rounded-full border-2 border-amber-400/40 p-2 mb-4 bg-gradient-to-b from-slate-950 to-slate-900 shadow-2xl flex items-center justify-center">
-            <svg class="w-24 h-24 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-              <circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-opacity="0.9" />
-              <path d="M12 2.5 A9.5 9.5 0 0 1 21.5 12" stroke="#d4af37" stroke-width="2" />
+          <div
+            class="w-32 h-32 sm:w-40 sm:h-40 rounded-full border-2 border-amber-400/40 p-2 mb-4 bg-gradient-to-b from-slate-950 to-slate-900 shadow-2xl flex items-center justify-center"
+          >
+            <svg
+              class="w-24 h-24 text-amber-400"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.2"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="9.5"
+                stroke="currentColor"
+                stroke-opacity="0.9"
+              />
+              <path
+                d="M12 2.5 A9.5 9.5 0 0 1 21.5 12"
+                stroke="#d4af37"
+                stroke-width="2"
+              />
               <line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" />
-              <circle cx="12" cy="12" r="3" stroke="#f1c40f" stroke-width="1.2" />
+              <circle
+                cx="12"
+                cy="12"
+                r="3"
+                stroke="#f1c40f"
+                stroke-width="1.2"
+              />
             </svg>
           </div>
-          <h2 class="text-2xl font-extrabold text-white tracking-wider uppercase">CAPITAL CIRCLE</h2>
-          <p class="text-xs tracking-[0.25em] text-amber-400 uppercase mt-1">NƠI DÒNG VỐN GẶP GỠ TRI THỨC</p>
+          <h2
+            class="text-2xl font-extrabold text-white tracking-wider uppercase"
+          >
+            CAPITAL CIRCLE
+          </h2>
+          <p class="text-xs tracking-[0.25em] text-amber-400 uppercase mt-1">
+            NƠI DÒNG VỐN GẶP GỠ TRI THỨC
+          </p>
         </div>
-        <div class="absolute inset-0 bg-gradient-to-r from-amber-500/5 via-transparent to-blue-500/5 pointer-events-none"></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-amber-500/5 via-transparent to-blue-500/5 pointer-events-none"
+        ></div>
       </div>
 
       <!-- Essay Article Content -->
-      <article class="prose prose-slate max-w-none space-y-8 text-base leading-relaxed text-slate-700">
-        
+      <article
+        class="prose prose-slate max-w-none space-y-8 text-base leading-relaxed text-slate-700"
+      >
         <!-- Section 1 -->
-        <div class="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-4">
+        <div
+          class="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-4"
+        >
           <p class="text-lg text-slate-800 font-medium leading-relaxed">
-            Capital Circle được tạo ra trước hết để tôi ghi lại hành trình học tập của chính mình. Những điều tôi đọc, những điều tôi quan sát, những kiến thức tôi tìm hiểu về kinh tế, tài chính, đầu tư và cách dòng vốn vận động trong cuộc sống.
+            Capital Circle được tạo ra trước hết để tôi ghi lại hành trình học
+            tập của chính mình. Những điều tôi đọc, những điều tôi quan sát,
+            những kiến thức tôi tìm hiểu về kinh tế, tài chính, đầu tư và cách
+            dòng vốn vận động trong cuộc sống.
           </p>
           <p>
-            Tôi muốn lưu giữ những điều đó ở đây.Không phải để chứng minh rằng tôi biết nhiều. Càng không phải để trở thành người đưa ra lời khuyên đầu tư cho bất kỳ ai.
+            Tôi muốn lưu giữ những điều đó ở đây.Không phải để chứng minh rằng
+            tôi biết nhiều. Càng không phải để trở thành người đưa ra lời khuyên
+            đầu tư cho bất kỳ ai.
           </p>
-          <div class="p-4 bg-slate-50 rounded-xl border-l-4 border-slate-800 text-sm italic text-slate-600">
-            Tôi không phải chuyên gia tài chính. Capital Circle cũng không phải một tổ chức tư vấn hay đơn vị cung cấp dịch vụ đầu tư. Đây đơn giản là nơi tôi học, tôi ghi lại, tôi suy nghĩ và chia sẻ lại những gì mình cho rằng có giá trị.
+          <div
+            class="p-4 bg-slate-50 rounded-xl border-l-4 border-slate-800 text-sm italic text-slate-600"
+          >
+            Tôi không phải chuyên gia tài chính. Capital Circle cũng không phải
+            một tổ chức tư vấn hay đơn vị cung cấp dịch vụ đầu tư. Đây đơn giản
+            là nơi tôi học, tôi ghi lại, tôi suy nghĩ và chia sẻ lại những gì
+            mình cho rằng có giá trị.
           </div>
         </div>
 
         <!-- Section 2 -->
-        <div class="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-4">
-          <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2.5">
-            <span class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-sm"><i class="fa-solid fa-graduation-cap"></i></span>
+        <div
+          class="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-4"
+        >
+          <h2
+            class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2.5"
+          >
+            <span
+              class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-sm"
+              ><i class="fa-solid fa-graduation-cap"></i
+            ></span>
             Học tập là một hành trình, không phải một cuộc đua
           </h2>
           <p>
-            Trong đầu tư cũng như trong cuộc sống, chúng ta thường có xu hướng tìm một người giỏi hơn mình để học theo. Điều đó không sai.
+            Trong đầu tư cũng như trong cuộc sống, chúng ta thường có xu hướng
+            tìm một người giỏi hơn mình để học theo. Điều đó không sai.
           </p>
           <p>
-            Nhưng học một người rất giỏi chưa chắc đã có nghĩa là chúng ta sẽ trở nên giỏi giống họ. Bởi mỗi người có một hoàn cảnh khác nhau, một năng lực khác nhau, một mức vốn khác nhau, một khả năng chịu rủi ro khác nhau và đôi khi là một tố chất hoàn toàn khác nhau.
+            Nhưng học một người rất giỏi chưa chắc đã có nghĩa là chúng ta sẽ
+            trở nên giỏi giống họ. Bởi mỗi người có một hoàn cảnh khác nhau, một
+            năng lực khác nhau, một mức vốn khác nhau, một khả năng chịu rủi ro
+            khác nhau và đôi khi là một tố chất hoàn toàn khác nhau.
           </p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs font-semibold">
-            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center gap-2 text-slate-700">
-              <i class="fa-solid fa-chart-line text-blue-600"></i> Người phù hợp với chứng khoán
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs font-semibold"
+          >
+            <div
+              class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center gap-2 text-slate-700"
+            >
+              <i class="fa-solid fa-chart-line text-blue-600"></i> Người phù hợp
+              với chứng khoán
             </div>
-            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center gap-2 text-slate-700">
-              <i class="fa-solid fa-building text-emerald-600"></i> Người hiểu và làm tốt bất động sản
+            <div
+              class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center gap-2 text-slate-700"
+            >
+              <i class="fa-solid fa-building text-emerald-600"></i> Người hiểu
+              và làm tốt bất động sản
             </div>
-            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center gap-2 text-slate-700">
-              <i class="fa-solid fa-store text-purple-600"></i> Người thích kinh doanh
+            <div
+              class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center gap-2 text-slate-700"
+            >
+              <i class="fa-solid fa-store text-purple-600"></i> Người thích kinh
+              doanh
             </div>
-            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center gap-2 text-slate-700">
-              <i class="fa-solid fa-piggy-bank text-amber-600"></i> Người phù hợp với tích lũy chậm & chắc
+            <div
+              class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center gap-2 text-slate-700"
+            >
+              <i class="fa-solid fa-piggy-bank text-amber-600"></i> Người phù
+              hợp với tích lũy chậm & chắc
             </div>
           </div>
           <p class="pt-2 font-medium text-slate-900">
-            Điều quan trọng không phải là tìm được người giỏi nhất để bắt chước, mà là tìm được cách học phù hợp nhất để hiểu chính mình. Vì cuối cùng, người phải cầm vô lăng trên hành trình tài chính của mình vẫn là chính chúng ta.
+            Điều quan trọng không phải là tìm được người giỏi nhất để bắt chước,
+            mà là tìm được cách học phù hợp nhất để hiểu chính mình. Vì cuối
+            cùng, người phải cầm vô lăng trên hành trình tài chính của mình vẫn
+            là chính chúng ta.
           </p>
         </div>
 
         <!-- Section 3 -->
-        <div class="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-4">
-          <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2.5">
-            <span class="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-sm"><i class="fa-solid fa-handshake-slash"></i></span>
+        <div
+          class="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-4"
+        >
+          <h2
+            class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2.5"
+          >
+            <span
+              class="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-sm"
+              ><i class="fa-solid fa-handshake-slash"></i
+            ></span>
             Capital Circle không hứa làm bạn giàu
           </h2>
           <p>
-            Tôi không muốn Capital Circle trở thành một nơi mọi người vào để tìm kiếm những câu trả lời kiểu:
+            Tôi không muốn Capital Circle trở thành một nơi mọi người vào để tìm
+            kiếm những câu trả lời kiểu:
           </p>
           <div class="flex flex-wrap gap-2 text-xs font-mono font-semibold">
-            <span class="px-3 py-1.5 rounded-lg bg-rose-50 text-rose-700 border border-rose-200">&ldquo;Mua gì?&rdquo;</span>
-            <span class="px-3 py-1.5 rounded-lg bg-rose-50 text-rose-700 border border-rose-200">&ldquo;Bán gì?&rdquo;</span>
-            <span class="px-3 py-1.5 rounded-lg bg-rose-50 text-rose-700 border border-rose-200">&ldquo;Coin nào sẽ tăng?&rdquo;</span>
-            <span class="px-3 py-1.5 rounded-lg bg-rose-50 text-rose-700 border border-rose-200">&ldquo;Cổ phiếu nào chắc thắng?&rdquo;</span>
+            <span
+              class="px-3 py-1.5 rounded-lg bg-rose-50 text-rose-700 border border-rose-200"
+              >&ldquo;Mua gì?&rdquo;</span
+            >
+            <span
+              class="px-3 py-1.5 rounded-lg bg-rose-50 text-rose-700 border border-rose-200"
+              >&ldquo;Bán gì?&rdquo;</span
+            >
+            <span
+              class="px-3 py-1.5 rounded-lg bg-rose-50 text-rose-700 border border-rose-200"
+              >&ldquo;Coin nào sẽ tăng?&rdquo;</span
+            >
+            <span
+              class="px-3 py-1.5 rounded-lg bg-rose-50 text-rose-700 border border-rose-200"
+              >&ldquo;Cổ phiếu nào chắc thắng?&rdquo;</span
+            >
           </div>
           <p>
-            Bởi tôi tin rằng, nếu chỉ đi tìm một câu trả lời có sẵn, chúng ta có thể kiếm được một cơ hội. Nhưng nếu học được cách suy nghĩ, chúng ta mới có thể tự tìm ra cơ hội cho chính mình.
+            Bởi tôi tin rằng, nếu chỉ đi tìm một câu trả lời có sẵn, chúng ta có
+            thể kiếm được một cơ hội. Nhưng nếu học được cách suy nghĩ, chúng ta
+            mới có thể tự tìm ra cơ hội cho chính mình.
           </p>
           <p>
-            Capital Circle vì thế sẽ tập trung nhiều hơn vào kiến thức, tư duy, cách nhìn thị trường, cách phân tích tài sản, quản trị rủi ro và cách dòng vốn vận động. Học ở đâu không quan trọng bằng việc bạn thực sự học được gì.
+            Capital Circle vì thế sẽ tập trung nhiều hơn vào kiến thức, tư duy,
+            cách nhìn thị trường, cách phân tích tài sản, quản trị rủi ro và
+            cách dòng vốn vận động. Học ở đâu không quan trọng bằng việc bạn
+            thực sự học được gì.
           </p>
         </div>
 
         <!-- Section 4 -->
-        <div class="bg-amber-50/60 border border-amber-200 rounded-2xl p-6 sm:p-8 space-y-4">
-          <h2 class="text-2xl font-bold text-amber-900 flex items-center gap-2.5">
+        <div
+          class="bg-amber-50/60 border border-amber-200 rounded-2xl p-6 sm:p-8 space-y-4"
+        >
+          <h2
+            class="text-2xl font-bold text-amber-900 flex items-center gap-2.5"
+          >
             <i class="fa-solid fa-shield-halved text-amber-600"></i>
             Và một điều cần nói thật rõ
           </h2>
           <p class="text-amber-900/90">
-            Nếu bạn bước vào Capital Circle để giao lưu, trao đổi, đặt câu hỏi, chia sẻ góc nhìn và cùng nhau học hỏi — tôi rất hoan nghênh.
+            Nếu bạn bước vào Capital Circle để giao lưu, trao đổi, đặt câu hỏi,
+            chia sẻ góc nhìn và cùng nhau học hỏi — tôi rất hoan nghênh.
           </p>
           <p class="font-semibold text-slate-900">
-            Nhưng Capital Circle không phải nơi để bạn trao trách nhiệm về túi tiền của mình cho người khác.
+            Nhưng Capital Circle không phải nơi để bạn trao trách nhiệm về túi
+            tiền của mình cho người khác.
           </p>
-          <ul class="space-y-2 text-sm text-slate-700 list-disc list-inside bg-white/80 p-4 rounded-xl border border-amber-200/80">
+          <ul
+            class="space-y-2 text-sm text-slate-700 list-disc list-inside bg-white/80 p-4 rounded-xl border border-amber-200/80"
+          >
             <li>Tôi không biết hoàn cảnh tài chính của bạn.</li>
             <li>Tôi không biết gia đình bạn cần bao nhiêu tiền.</li>
             <li>Tôi không biết khả năng chịu lỗ của bạn đến đâu.</li>
-            <li>Tôi cũng không biết một quyết định đầu tư của bạn có thể ảnh hưởng thế nào đến cuộc sống của bạn.</li>
+            <li>
+              Tôi cũng không biết một quyết định đầu tư của bạn có thể ảnh hưởng
+              thế nào đến cuộc sống của bạn.
+            </li>
           </ul>
           <p class="font-bold text-slate-900 text-center pt-2 text-base">
-            Hãy chủ động với đồng tiền của mình. Trước khi bỏ tiền vào bất kỳ tài sản nào, hãy tự tìm hiểu, tự đặt câu hỏi, tự đánh giá rủi ro và chỉ quyết định khi bạn hiểu mình đang làm gì.
+            Hãy chủ động với đồng tiền của mình. Trước khi bỏ tiền vào bất kỳ
+            tài sản nào, hãy tự tìm hiểu, tự đặt câu hỏi, tự đánh giá rủi ro và
+            chỉ quyết định khi bạn hiểu mình đang làm gì.
           </p>
         </div>
 
         <!-- Section 5 -->
-        <div class="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-4">
-          <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2.5">
-            <span class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm"><i class="fa-solid fa-users"></i></span>
+        <div
+          class="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-4"
+        >
+          <h2
+            class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2.5"
+          >
+            <span
+              class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm"
+              ><i class="fa-solid fa-users"></i
+            ></span>
             Tôi học, bạn học, chúng ta cùng trưởng thành
           </h2>
           <p>
-            Tôi nghĩ một cộng đồng tốt không phải là nơi có một người luôn đúng và những người còn lại chỉ việc nghe theo. Một cộng đồng tốt là nơi mọi người có thể cùng đặt câu hỏi, cùng kiểm chứng, cùng tranh luận và cùng thay đổi quan điểm khi có thêm dữ liệu.
+            Tôi nghĩ một cộng đồng tốt không phải là nơi có một người luôn đúng
+            và những người còn lại chỉ việc nghe theo. Một cộng đồng tốt là nơi
+            mọi người có thể cùng đặt câu hỏi, cùng kiểm chứng, cùng tranh luận
+            và cùng thay đổi quan điểm khi có thêm dữ liệu.
           </p>
           <p>
-            Có thể hôm nay tôi hiểu một vấn đề theo cách này. Một năm sau, tôi có thể nhận ra mình đã sai. Và nếu điều đó xảy ra, tôi muốn Capital Circle lưu lại cả quá trình đó.
+            Có thể hôm nay tôi hiểu một vấn đề theo cách này. Một năm sau, tôi
+            có thể nhận ra mình đã sai. Và nếu điều đó xảy ra, tôi muốn Capital
+            Circle lưu lại cả quá trình đó.
           </p>
           <p class="font-semibold text-amber-700 italic">
-            Bởi học tập không phải là hành trình chứng minh rằng mình luôn đúng. Mà là hành trình ngày hôm nay hiểu nhiều hơn ngày hôm qua.
+            Bởi học tập không phải là hành trình chứng minh rằng mình luôn đúng.
+            Mà là hành trình ngày hôm nay hiểu nhiều hơn ngày hôm qua.
           </p>
         </div>
 
         <!-- Section 6: Summary Box -->
-        <div class="bg-[#0b101d] text-white rounded-2xl p-6 sm:p-8 space-y-4 shadow-xl border border-slate-800">
-          <h3 class="text-xl font-bold text-amber-400 tracking-wide uppercase border-b border-slate-800 pb-3">CAPITAL CIRCLE</h3>
+        <div
+          class="bg-[#0b101d] text-white rounded-2xl p-6 sm:p-8 space-y-4 shadow-xl border border-slate-800"
+        >
+          <h3
+            class="text-xl font-bold text-amber-400 tracking-wide uppercase border-b border-slate-800 pb-3"
+          >
+            CAPITAL CIRCLE
+          </h3>
           <ul class="space-y-3 text-slate-300 text-sm">
             <li class="flex items-start gap-2.5">
               <i class="fa-solid fa-xmark text-rose-400 mt-1"></i>
@@ -293,28 +510,44 @@
               <i class="fa-solid fa-xmark text-rose-400 mt-1"></i>
               <span>Không nhận trách nhiệm thay bạn với túi tiền của bạn.</span>
             </li>
-            <li class="flex items-start gap-2.5 pt-2 border-t border-slate-800/80 text-emerald-400 font-medium">
+            <li
+              class="flex items-start gap-2.5 pt-2 border-t border-slate-800/80 text-emerald-400 font-medium"
+            >
               <i class="fa-solid fa-check text-emerald-400 mt-1"></i>
-              <span>Chỉ đơn giản là một nơi để học, để suy nghĩ, để trao đổi và để cùng nhau hiểu thế giới của tiền tốt hơn.</span>
+              <span
+                >Chỉ đơn giản là một nơi để học, để suy nghĩ, để trao đổi và để
+                cùng nhau hiểu thế giới của tiền tốt hơn.</span
+              >
             </li>
           </ul>
           <p class="text-xs text-slate-400 italic pt-2">
-            Còn bạn đi bao xa trên hành trình tài chính của mình, đó vẫn là hành trình của chính bạn.
+            Còn bạn đi bao xa trên hành trình tài chính của mình, đó vẫn là hành
+            trình của chính bạn.
           </p>
         </div>
-
       </article>
 
       <!-- Newsletter Box -->
-      <div id="newsletter-section" class="mt-12 bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-4 text-center">
-        <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl mx-auto">
+      <div
+        id="newsletter-section"
+        class="mt-12 bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-sm space-y-4 text-center"
+      >
+        <div
+          class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl mx-auto"
+        >
           <i class="fa-regular fa-envelope"></i>
         </div>
-        <h3 class="text-xl font-bold text-slate-900">Đăng ký nhận bài viết mới</h3>
+        <h3 class="text-xl font-bold text-slate-900">
+          Đăng ký nhận bài viết mới
+        </h3>
         <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto">
-          Tham gia cùng cộng đồng nhà đầu tư tỉnh táo. Nhận góc nhìn và phân tích mới nhất trực tiếp qua email của bạn.
+          Tham gia cùng cộng đồng nhà đầu tư tỉnh táo. Nhận góc nhìn và phân
+          tích mới nhất trực tiếp qua email của bạn.
         </p>
-        <form onsubmit="handleNewsletterSubmit(event)" class="max-w-md mx-auto flex flex-col sm:flex-row gap-2 pt-2">
+        <form
+          onsubmit="handleNewsletterSubmit(event)"
+          class="max-w-md mx-auto flex flex-col sm:flex-row gap-2 pt-2"
+        >
           <input
             type="email"
             id="newsletterEmail"
@@ -336,13 +569,19 @@
     <!-- ==================== FOOTER ==================== -->
     <footer class="bg-[#070c18] border-t border-slate-800 text-slate-400 py-10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-6"
+        >
           <div class="flex items-center space-x-3">
-            <div class="w-9 h-9 rounded-full border border-slate-700 bg-slate-900 flex items-center justify-center text-amber-400 text-sm font-bold">
+            <div
+              class="w-9 h-9 rounded-full border border-slate-700 bg-slate-900 flex items-center justify-center text-amber-400 text-sm font-bold"
+            >
               CC
             </div>
             <div>
-              <div class="text-sm font-extrabold tracking-wider text-white uppercase">
+              <div
+                class="text-sm font-extrabold tracking-wider text-white uppercase"
+              >
                 CAPITAL CIRCLE
               </div>
               <div class="text-[9px] tracking-[0.2em] text-slate-500 uppercase">
@@ -351,22 +590,42 @@
             </div>
           </div>
 
-          <div class="flex flex-wrap justify-center gap-6 text-xs text-slate-400">
-            <a href="./about.html" class="hover:text-white transition">Giới thiệu</a>
-            <a href="#newsletter-section" class="hover:text-white transition">Liên hệ</a>
-            <a href="./about.html" class="hover:text-white transition">Điều khoản</a>
-            <a href="./about.html" class="hover:text-white transition">Chính sách</a>
+          <div
+            class="flex flex-wrap justify-center gap-6 text-xs text-slate-400"
+          >
+            <a href="./about.html" class="hover:text-white transition"
+              >Giới thiệu</a
+            >
+            <a href="#newsletter-section" class="hover:text-white transition"
+              >Liên hệ</a
+            >
+            <a href="./about.html" class="hover:text-white transition"
+              >Điều khoản</a
+            >
+            <a href="./about.html" class="hover:text-white transition"
+              >Chính sách</a
+            >
           </div>
 
           <div class="flex items-center space-x-4 text-sm text-slate-400">
-            <a href="#" class="hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" class="hover:text-white transition"><i class="fa-brands fa-youtube"></i></a>
-            <a href="#" class="hover:text-white transition"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="#" class="hover:text-white transition"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="hover:text-white transition"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a href="#" class="hover:text-white transition"
+              ><i class="fa-brands fa-youtube"></i
+            ></a>
+            <a href="#" class="hover:text-white transition"
+              ><i class="fa-brands fa-tiktok"></i
+            ></a>
+            <a href="#" class="hover:text-white transition"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
           </div>
         </div>
 
-        <div class="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+        <div
+          class="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2"
+        >
           <p>© 2026 Capital Circle. All rights reserved.</p>
           <p class="italic">Đầu tư là một hành trình học hỏi không ngừng.</p>
         </div>
@@ -378,8 +637,12 @@
       id="search-modal"
       class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-start justify-center pt-20 p-4"
     >
-      <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4">
-        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+      <div
+        class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4"
+      >
+        <div
+          class="flex items-center justify-between border-b border-slate-200 pb-3"
+        >
           <div class="flex items-center space-x-2 text-slate-800 font-bold">
             <i class="fa-solid fa-magnifying-glass text-amber-500"></i>
             <span>Tìm kiếm bài viết trên Capital Circle</span>
@@ -398,8 +661,13 @@
           placeholder="Nhập từ khóa tìm kiếm..."
           class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-slate-900 outline-none"
         />
-        <div id="searchResultsContainer" class="max-h-[350px] overflow-y-auto space-y-2 pt-1 text-sm text-slate-600">
-          <p class="text-xs text-slate-400 italic">Nhập từ khóa để bắt đầu tìm kiếm...</p>
+        <div
+          id="searchResultsContainer"
+          class="max-h-[350px] overflow-y-auto space-y-2 pt-1 text-sm text-slate-600"
+        >
+          <p class="text-xs text-slate-400 italic">
+            Nhập từ khóa để bắt đầu tìm kiếm...
+          </p>
         </div>
       </div>
     </div>
@@ -410,7 +678,9 @@
       class="fixed bottom-5 right-5 z-50 hidden bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center space-x-3 border border-slate-700"
     >
       <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
-      <span id="toast-message" class="text-xs font-semibold">Thao tác thành công!</span>
+      <span id="toast-message" class="text-xs font-semibold"
+        >Thao tác thành công!</span
+      >
     </div>
 
     <script src="./js/components/modal.js"></script>

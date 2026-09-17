@@ -39,6 +39,15 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "other",
     },
+    age: {
+      type: Number,
+      min: 1,
+      max: 120,
+    },
+    address: {
+      type: String,
+      trim: true,
+    },
     phoneNumber: {
       type: String,
     },

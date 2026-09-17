@@ -192,12 +192,13 @@
         >
           <span>CAPITAL CIRCLE</span>
           <span>•</span>
-          <span>KHO LƯU TRỮ KIẾN THỨC</span>
+          <span>NƠI PHÂN TÍCH VÀ CHIA SẺ KIẾN THỨC</span>
         </div>
         <h1
+          id="articles-page-title"
           class="font-editorial text-3xl sm:text-4xl font-bold tracking-tight text-white"
         >
-          Tất cả tin tức thị trường
+          Tất cả bài viết về thị trường
         </h1>
         <p class="text-slate-400 text-sm mt-2 max-w-2xl">
           Nơi tổng hợp các bài viết chuyên sâu về tư duy đầu tư dài hạn, phân
@@ -209,6 +210,7 @@
     <!-- SECTION ARTICLES LIST -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full flex-grow">
       <div
+        id="articles-grid"
         class="Articles_Grid_Cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
       >
         <!-- Injected via NewsPage/api.js -->
@@ -318,8 +320,6 @@
       >
     </div>
 
-    <script src="./js/components/modal.js"></script>
-    <script src="./js/NewsPage/api.js"></script>
-    <script src="./js/HomePage/main.js"></script>
+    <script src="./js/ArticlesPage/api.js"></script>
   </body>
 </html>

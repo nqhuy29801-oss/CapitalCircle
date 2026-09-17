@@ -216,7 +216,7 @@ exports.getNewsFromOtherWebsite = CatchAsyncError(async (req, res, next) => {
         : `https://vietstock.vn${slugUrl}`;
 
       // Kiểm tra trùng TRƯỚC khi gọi sang trang chi tiết -> tiết kiệm request không cần thiết
-      const existed = await newsModel.exists({ url: fullSlugUrl });
+      const existed = await newsModel.exists({ postTitle: postTitle });
       if (existed) {
         skippedExisted++;
         continue;
@@ -275,6 +275,44 @@ exports.getNewsFromOtherWebsite = CatchAsyncError(async (req, res, next) => {
   } catch (error) {
     console.error("Lỗi khi lấy tin tức từ website khác:", error.message);
     return next(new ErrorHandler(error.message, 400));
+  }
+});
+
+// Lấy 8 tin thị trường mới nhất từ API TradeZone cho ticker trang chủ.
+exports.getGlobalNews = CatchAsyncError(async (req, res, next) => {
+  try {
+    const { data: responseData } = await axios.get(
+      "https://apitrade.zone9.network/api/news",
+      { timeout: 10000 },
+    );
+
+    const sourceNews = Array.isArray(responseData?.data)
+      ? responseData.data
+      : [];
+
+    const news = sourceNews
+      .filter((item) => item && typeof item.content === "string")
+      .sort(
+        (first, second) =>
+          new Date(second.created_at || 0) - new Date(first.created_at || 0),
+      )
+      .slice(0, 8)
+      .map((item) => ({
+        id: item._id,
+        content: item.content.trim(),
+        createdAt: item.created_at,
+      }));
+
+    return res.status(200).json({
+      success: true,
+      news,
+      updatedAt: new Date().toISOString(),
+    });
+  } catch (error) {
+    console.error("Lỗi khi lấy tin tức toàn cầu:", error.message);
+    return next(
+      new ErrorHandler("Không thể cập nhật tin tức thị trường.", 502),
+    );
   }
 });
 

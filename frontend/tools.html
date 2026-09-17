@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="vi" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Công cụ - Capital Circle</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./js/config.js"></script>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body
+    class="bg-[#f8fafc] text-slate-800 antialiased min-h-screen flex flex-col"
+  >
+    <header
+      class="bg-[#0b101d] border-b border-slate-800/80 sticky top-0 z-40 shadow-lg"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <a href="./index.html" class="flex items-center space-x-3 group">
+            <div
+              class="w-11 h-11 rounded-full border border-slate-700/80 flex items-center justify-center bg-gradient-to-b from-slate-900 to-slate-950 shadow-inner group-hover:border-amber-400/60 transition"
+            >
+              <svg
+                class="w-7 h-7 text-amber-400"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="9.5" />
+                <path
+                  d="M12 2.5 A9.5 9.5 0 0 1 21.5 12"
+                  stroke="#d4af37"
+                  stroke-width="2"
+                />
+                <line x1="8" y1="16" x2="16" y2="8" />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="3"
+                  stroke="#f1c40f"
+                  stroke-width="1.2"
+                />
+              </svg>
+            </div>
+            <div>
+              <div
+                class="text-base sm:text-lg font-extrabold tracking-wider text-white uppercase leading-none"
+              >
+                CAPITAL CIRCLE
+              </div>
+              <div
+                class="text-[9px] tracking-[0.25em] font-medium text-slate-400 uppercase mt-1"
+              >
+                KIẾN THỨC • TƯ DUY • GIÁ TRỊ DÀI HẠN
+              </div>
+            </div>
+          </a>
+
+          <nav
+            class="hidden lg:flex items-center space-x-7 text-sm font-medium"
+          >
+            <a
+              href="./index.html"
+              class="text-slate-300 hover:text-white transition"
+              >Trang chủ</a
+            >
+            <a
+              href="./articles.html"
+              class="text-slate-300 hover:text-white transition"
+              >Bài viết</a
+            >
+            <a
+              href="./index.html#market-ticker"
+              class="text-slate-300 hover:text-white transition"
+              >Thị trường</a
+            >
+            <a
+              href="./index.html#featured-article"
+              class="text-slate-300 hover:text-white transition"
+              >Kiến thức</a
+            >
+            <a
+              href="./tools.html"
+              class="text-white py-1 relative border-b-2 border-white transition"
+              aria-current="page"
+              >Công cụ</a
+            >
+            <a
+              href="./about.html"
+              class="text-slate-300 hover:text-white transition"
+              >Về Capital Circle</a
+            >
+          </nav>
+
+          <div class="hidden lg:flex items-center space-x-4">
+            <button
+              onclick="openSearchModal()"
+              class="w-9 h-9 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition"
+              title="Tìm kiếm"
+              aria-label="Tìm kiếm"
+            >
+              <i class="fa-solid fa-magnifying-glass text-xs"></i>
+            </button>
+            <a
+              href="./auth.html"
+              class="px-5 py-2 rounded-full bg-slate-900 border border-slate-700 text-white text-xs font-semibold hover:bg-slate-800 transition"
+              >Theo dõi</a
+            >
+          </div>
+
+          <div class="lg:hidden flex items-center space-x-2">
+            <button
+              onclick="openSearchModal()"
+              class="p-2 text-slate-300 hover:text-white"
+              title="Tìm kiếm"
+              aria-label="Tìm kiếm"
+            >
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <button
+              id="mobile-menu-btn"
+              class="p-2 rounded-lg text-slate-300 hover:text-white focus:outline-none"
+              title="Mở menu"
+              aria-label="Mở menu"
+            >
+              <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden bg-[#0e1626] border-b border-slate-800 px-5 pt-3 pb-5 space-y-3"
+      >
+        <a
+          href="./index.html"
+          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
+          >Trang chủ</a
+        >
+        <a
+          href="./articles.html"
+          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
+          >Bài viết</a
+        >
+        <a
+          href="./index.html#market-ticker"
+          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
+          >Thị trường</a
+        >
+        <a
+          href="./index.html#featured-article"
+          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
+          >Kiến thức</a
+        >
+        <a
+          href="./tools.html"
+          class="block py-1 text-sm font-semibold text-white"
+          >Công cụ</a
+        >
+        <a
+          href="./about.html"
+          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
+          >Về Capital Circle</a
+        >
+        <a
+          href="./auth.html"
+          class="block text-center py-2 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs"
+          >Đăng nhập Quản trị</a
+        >
+      </div>
+    </header>
+
+    <main class="flex-1">
+      <section
+        class="relative overflow-hidden bg-[#0b101d] text-white py-16 sm:py-20"
+      >
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-[#0b101d] via-[#111d33] to-[#0b101d]"
+        ></div>
+        <div
+          class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+        >
+          <p
+            class="text-amber-400 text-xs font-bold tracking-[0.25em] uppercase mb-4"
+          >
+            Capital Circle Tools
+          </p>
+          <h1 class="font-editorial text-4xl sm:text-5xl font-bold mb-4">
+            Công cụ dành cho hành trình đầu tư
+          </h1>
+          <p
+            class="max-w-2xl mx-auto text-sm sm:text-base text-slate-300 leading-relaxed"
+          >
+            Khám phá những trợ lý thông minh giúp bạn học hỏi, phân tích và ra
+            quyết định chủ động hơn.
+          </p>
+        </div>
+      </section>
+
+      <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+          <button
+            type="button"
+            onclick="openAIChat()"
+            class="group text-left bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-blue-200 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            <div
+              class="w-14 h-14 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-105 transition-transform"
+            >
+              <i class="fa-solid fa-comments" aria-hidden="true"></i>
+            </div>
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h2 class="text-xl font-bold text-slate-900 mb-2">
+                  Hỏi đáp AI
+                </h2>
+                <p class="text-sm text-slate-500 leading-relaxed">
+                  Tra cứu kiến thức tài chính và nhận gợi ý phân tích nhanh từ
+                  trợ lý AI.
+                </p>
+              </div>
+              <i
+                class="fa-solid fa-arrow-up-right-from-square text-slate-300 group-hover:text-blue-500 transition-colors mt-1"
+                aria-hidden="true"
+              ></i>
+            </div>
+          </button>
+
+          <button
+            type="button"
+            onclick="showToolNotice('Bot Trade')"
+            class="group text-left bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-emerald-200 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+          >
+            <div
+              class="w-14 h-14 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-105 transition-transform"
+            >
+              <i class="fa-solid fa-robot" aria-hidden="true"></i>
+            </div>
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h2 class="text-xl font-bold text-slate-900 mb-2">Bot Trade</h2>
+                <p class="text-sm text-slate-500 leading-relaxed">
+                  Theo dõi chiến lược giao dịch tự động và quản lý tín hiệu trên
+                  một giao diện tập trung.
+                </p>
+              </div>
+              <i
+                class="fa-solid fa-arrow-up-right-from-square text-slate-300 group-hover:text-emerald-500 transition-colors mt-1"
+                aria-hidden="true"
+              ></i>
+            </div>
+          </button>
+        </div>
+
+        <section
+          id="ai-chat-panel"
+          class="hidden mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-200/60"
+          aria-labelledby="ai-chat-title"
+        >
+          <div
+            class="flex items-center justify-between gap-4 border-b border-slate-100 bg-slate-50/80 px-5 py-4 sm:px-6"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 text-blue-600"
+              >
+                <i
+                  class="fa-solid fa-wand-magic-sparkles"
+                  aria-hidden="true"
+                ></i>
+              </div>
+              <div>
+                <h2 id="ai-chat-title" class="font-bold text-slate-900">
+                  Trợ lý C.C AI
+                </h2>
+                <p class="text-xs text-slate-500">Hỗ trợ kiến thức đầu tư</p>
+              </div>
+            </div>
+            <button
+              type="button"
+              onclick="closeAIChat()"
+              class="flex h-9 w-9 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-200 hover:text-slate-700"
+              title="Đóng trợ lý AI"
+              aria-label="Đóng trợ lý AI"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+
+          <div
+            id="ai-chat-messages"
+            class="flex min-h-[280px] flex-col items-center justify-center px-5 py-10 text-center sm:min-h-[360px]"
+          >
+            <div
+              class="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-2xl text-blue-600"
+            >
+              <i class="fa-solid fa-comments" aria-hidden="true"></i>
+            </div>
+            <h3 class="mb-2 text-lg font-bold text-slate-900">
+              Hỏi đáp cùng C.C AI
+            </h3>
+            <p class="max-w-md text-sm leading-relaxed text-slate-500">
+              Hãy bắt đầu cuộc trò chuyện bằng một câu hỏi về tài chính hoặc đầu
+              tư.
+            </p>
+          </div>
+
+          <form
+            id="ai-chat-form"
+            class="flex items-center gap-2 border-t border-slate-100 bg-slate-50/70 p-3 sm:p-4"
+          >
+            <label for="ai-chat-input" class="sr-only">Nhập câu hỏi</label>
+            <input
+              id="ai-chat-input"
+              type="text"
+              autocomplete="off"
+              placeholder="Hỏi C.C AI bất cứ điều gì..."
+              class="min-w-0 flex-1 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-100"
+            />
+            <button
+              type="submit"
+              class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 sm:w-auto sm:px-5"
+              title="Gửi câu hỏi"
+              aria-label="Gửi câu hỏi"
+            >
+              <span class="hidden sm:inline">Gửi</span>
+              <i
+                class="fa-solid fa-paper-plane sm:hidden"
+                aria-hidden="true"
+              ></i>
+            </button>
+          </form>
+        </section>
+      </section>
+    </main>
+
+    <footer class="bg-[#070c18] border-t border-slate-800 text-slate-400 py-8">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs"
+      >
+        <p>© 2026 Capital Circle. All rights reserved.</p>
+        <a href="./index.html" class="hover:text-white transition"
+          >Về trang chủ</a
+        >
+      </div>
+    </footer>
+
+    <div
+      id="search-modal"
+      class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-start justify-center pt-20 p-4"
+    >
+      <div
+        class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4"
+      >
+        <div
+          class="flex items-center justify-between border-b border-slate-200 pb-3"
+        >
+          <div class="flex items-center space-x-2 text-slate-800 font-bold">
+            <i class="fa-solid fa-magnifying-glass text-amber-500"></i
+            ><span>Tìm kiếm bài viết trên Capital Circle</span>
+          </div>
+          <button
+            onclick="closeSearchModal()"
+            class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition"
+            title="Đóng"
+            aria-label="Đóng tìm kiếm"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <input
+          type="text"
+          id="globalSearchInput"
+          oninput="handleGlobalSearch(event)"
+          placeholder="Nhập từ khóa tìm kiếm..."
+          class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-slate-900 outline-none"
+        />
+        <div
+          id="searchResultsContainer"
+          class="max-h-[350px] overflow-y-auto space-y-2 pt-1 text-sm text-slate-600"
+        >
+          <p class="text-xs text-slate-400 italic">
+            Nhập từ khóa để bắt đầu tìm kiếm...
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="tool-toast"
+      class="fixed bottom-5 right-5 z-50 hidden bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl items-center space-x-3 border border-slate-700"
+      role="status"
+    >
+      <i class="fa-solid fa-circle-info text-amber-400 text-lg"></i>
+      <span id="tool-toast-message" class="text-xs font-semibold"></span>
+    </div>
+
+    <script src="./js/components/modal.js"></script>
+    <script>
+      function showToolNotice(toolName) {
+        const toast = document.getElementById("tool-toast");
+        const message = document.getElementById("tool-toast-message");
+        message.textContent = `${toolName} đang được hoàn thiện. Hãy quay lại sớm nhé!`;
+        toast.classList.remove("hidden");
+        toast.classList.add("flex");
+        window.clearTimeout(window.toolToastTimer);
+        window.toolToastTimer = window.setTimeout(() => {
+          toast.classList.add("hidden");
+          toast.classList.remove("flex");
+        }, 3500);
+      }
+
+      function openAIChat() {
+        const panel = document.getElementById("ai-chat-panel");
+        panel.classList.remove("hidden");
+        panel.scrollIntoView({ behavior: "smooth", block: "center" });
+        window.setTimeout(
+          () => document.getElementById("ai-chat-input").focus(),
+          350,
+        );
+      }
+
+      function closeAIChat() {
+        document.getElementById("ai-chat-panel").classList.add("hidden");
+      }
+
+      const aiChatHistory = [];
+
+      function appendChatMessage(role, text) {
+        const messages = document.getElementById("ai-chat-messages");
+        messages.classList.remove(
+          "items-center",
+          "justify-center",
+          "text-center",
+        );
+        messages.classList.add(
+          "items-stretch",
+          "justify-start",
+          "gap-3",
+          "overflow-y-auto",
+        );
+
+        const wrapper = document.createElement("div");
+        wrapper.className =
+          role === "user" ? "flex justify-end" : "flex justify-start";
+
+        const bubble = document.createElement("div");
+        bubble.className =
+          role === "user"
+            ? "max-w-[85%] rounded-2xl rounded-br-md bg-blue-600 px-4 py-3 text-left text-sm text-white shadow-sm"
+            : "max-w-[85%] whitespace-pre-wrap rounded-2xl rounded-bl-md bg-slate-100 px-4 py-3 text-left text-sm leading-relaxed text-black-600";
+        bubble.textContent = text;
+        wrapper.appendChild(bubble);
+        messages.appendChild(wrapper);
+        messages.scrollTop = messages.scrollHeight;
+        return bubble;
+      }
+
+      document
+        .getElementById("ai-chat-form")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const input = document.getElementById("ai-chat-input");
+          const submitButton = event.currentTarget.querySelector(
+            "button[type=submit]",
+          );
+          const question = input.value.trim();
+          if (!question || submitButton.disabled) return;
+
+          appendChatMessage("user", question);
+          input.value = "";
+          input.disabled = true;
+          submitButton.disabled = true;
+          submitButton.classList.add("opacity-60", "cursor-wait");
+          const loadingBubble = appendChatMessage(
+            "model",
+            "C.C AI đang suy nghĩ...",
+          );
+
+          try {
+            const response = await fetch(`${apiUrl}/tools/ask-ai`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                message: question,
+                history: aiChatHistory,
+              }),
+            });
+            const result = await response.json();
+            loadingBubble.parentElement.remove();
+
+            if (!response.ok || !result.success) {
+              throw new Error(
+                result.message || "Không thể nhận phản hồi từ AI.",
+              );
+            }
+
+            appendChatMessage("model", result.answer);
+            aiChatHistory.push({ role: "user", text: question });
+            aiChatHistory.push({ role: "model", text: result.answer });
+          } catch (error) {
+            loadingBubble.textContent =
+              error.message || "Đã xảy ra lỗi khi kết nối AI.";
+            loadingBubble.classList.remove("bg-slate-100", "text-slate-600");
+            loadingBubble.classList.add("bg-red-50", "text-red-600");
+          } finally {
+            input.disabled = false;
+            submitButton.disabled = false;
+            submitButton.classList.remove("opacity-60", "cursor-wait");
+            input.focus();
+          }
+        });
+
+      document
+        .getElementById("mobile-menu-btn")
+        .addEventListener("click", () => {
+          document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+    </script>
+  </body>
+</html>

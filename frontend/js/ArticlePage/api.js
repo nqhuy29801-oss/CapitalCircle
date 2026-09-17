@@ -5,12 +5,14 @@ const DEFAULT_FALLBACK_ARTICLES = [
     slug: "ky-luat-la-loi-the-lon-nhat-cua-nha-dau-tu-ca-nhan",
     category: "TƯ DUY ĐẦU TƯ",
     postTitle: "Kỷ luật là lợi thế lớn nhất của nhà đầu tư cá nhân",
-    postHeading: "Trong một thế giới đầy biến động, không phải ai dự đoán đúng thị trường mới thành công, mà là người kiên trì với nguyên tắc của mình.",
+    postHeading:
+      "Trong một thế giới đầy biến động, không phải ai dự đoán đúng thị trường mới thành công, mà là người kiên trì với nguyên tắc của mình.",
     postAuthor: "Capital Circle",
     postDate: "07 Tháng 9, 2026",
     readingTime: "8 phút đọc",
     views: 15200,
-    postImage: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1200&q=80",
+    postImage:
+      "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1200&q=80",
     postContent: `
       <h2>Kỷ luật: Vũ khí tối thượng của nhà đầu tư nhỏ lẻ</h2>
       <p>Thị trường tài chính luôn tràn ngập những thông tin gây nhiễu, biến động giá chóng mặt và những lời mời chào làm giàu nhanh chóng. Tuy nhiên, qua hàng thế kỷ phát triển của các thị trường từ chứng khoán, vàng đến crypto, một chân lý vẫn luôn đúng:</p>
@@ -24,18 +26,20 @@ const DEFAULT_FALLBACK_ARTICLES = [
       </ul>
       
       <p>Nhà đầu tư cá nhân có một lợi thế khổng lồ so với các quỹ phòng hộ lớn: <i>chúng ta không phải chịu áp lực báo cáo hiệu suất theo từng quý</i>. Chúng ta hoàn toàn có thể kiên nhẫn chờ đợi bóng tròn lăn đúng vùng giá mục tiêu trước khi tung cú swing quyết định.</p>
-    `
+    `,
   },
   {
     slug: "bitcoin-co-the-dat-150000-usd-trong-nam-2026",
     category: "CRYPTO",
     postTitle: "Bitcoin có thể đạt 150,000 USD trong năm 2026?",
-    postHeading: "Phân tích chu kỳ halving, dòng vốn từ các quỹ ETF giao ngay và tác động của chính sách tiền tệ toàn cầu đến giá trị Bitcoin.",
+    postHeading:
+      "Phân tích chu kỳ halving, dòng vốn từ các quỹ ETF giao ngay và tác động của chính sách tiền tệ toàn cầu đến giá trị Bitcoin.",
     postAuthor: "Ban Phân Tích Capital Circle",
     postDate: "07/09/2026",
     readingTime: "6 phút đọc",
     views: 18450,
-    postImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+    postImage:
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
     postContent: `
       <h2>Triển vọng Bitcoin trong chu kỳ tài chính mới</h2>
       <p>Sau đợt halving gần nhất, nguồn cung Bitcoin mới phát hành mỗi ngày đã giảm một nửa, trong khi nhu cầu hấp thụ từ các định chế tài chính thông qua các quỹ ETF giao ngay tiếp tục duy trì ở mức cao kỷ lục.</p>
@@ -46,18 +50,20 @@ const DEFAULT_FALLBACK_ARTICLES = [
         <li><b>Chính sách nới lỏng tiền tệ:</b> Dự báo Fed tiếp tục cắt giảm lãi suất sẽ thúc đẩy thanh khoản quay trở lại thị trường tài sản rủi ro.</li>
         <li><b>Khung pháp lý minh bạch:</b> Việc hoàn thiện luật pháp tại Mỹ, EU và các trung tâm tài chính châu Á tạo niềm tin vững chắc cho nhà đầu tư tổ chức.</li>
       </ul>
-    `
+    `,
   },
   {
     slug: "nhung-nhom-nganh-dang-chu-y-trong-quy-4-2026",
     category: "CHỨNG KHOÁN",
     postTitle: "Những nhóm ngành đáng chú ý trong quý 4/2026",
-    postHeading: "Đánh giá triển vọng các nhóm cổ phiếu công nghệ, ngân hàng và bán lẻ trong giai đoạn phục hồi mạnh mẽ của nền kinh tế.",
+    postHeading:
+      "Đánh giá triển vọng các nhóm cổ phiếu công nghệ, ngân hàng và bán lẻ trong giai đoạn phục hồi mạnh mẽ của nền kinh tế.",
     postAuthor: "Chuyên gia Minh Tuấn",
     postDate: "06/09/2026",
     readingTime: "7 phút đọc",
     views: 14200,
-    postImage: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80",
+    postImage:
+      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80",
     postContent: `
       <h2>Tâm điểm đầu tư quý 4/2026</h2>
       <p>Quý cuối năm thường là thời điểm các doanh nghiệp đẩy mạnh doanh thu và hoàn thành kế hoạch lợi nhuận năm. Dưới đây là những nhóm ngành sở hữu câu chuyện tăng trưởng rõ ràng nhất:</p>
@@ -66,34 +72,38 @@ const DEFAULT_FALLBACK_ARTICLES = [
         <li><b>Nhóm Công nghệ & Bán dẫn:</b> Hưởng lợi lớn từ làn sóng đầu tư vào trí tuệ nhân tạo và chuyển đổi hạ tầng đám mây.</li>
         <li><b>Nhóm Bán lẻ tiêu dùng:</b> Sức mua nội địa phục hồi nhờ các gói kích cầu và mùa mua sắm cuối năm.</li>
       </ul>
-    `
+    `,
   },
   {
     slug: "gia-vang-se-di-ve-dau-khi-fed-ha-lai-suat",
     category: "VÀNG",
     postTitle: "Giá vàng sẽ đi về đâu khi Fed hạ lãi suất?",
-    postHeading: "Tương quan giữa lợi suất thực tế, sức mạnh đồng USD và xu hướng tích trữ vàng vật chất của các ngân hàng trung ương.",
+    postHeading:
+      "Tương quan giữa lợi suất thực tế, sức mạnh đồng USD và xu hướng tích trữ vàng vật chất của các ngân hàng trung ương.",
     postAuthor: "Capital Circle Research",
     postDate: "05/09/2026",
     readingTime: "5 phút đọc",
     views: 11900,
-    postImage: "https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=800&q=80",
+    postImage:
+      "https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=800&q=80",
     postContent: `
       <h2>Vàng trong chu kỳ cắt giảm lãi suất</h2>
       <p>Lịch sử 50 năm qua cho thấy: mỗi khi Cục Dự trữ Liên bang Mỹ (Fed) bắt đầu chu kỳ nới lỏng tiền tệ, giá vàng thế giới bình quân tăng từ 15% đến 25% trong vòng 12 tháng kế tiếp.</p>
       <blockquote>"Vàng không sinh ra lợi tức hàng năm, nhưng khi lãi suất thực giảm xuống mức âm, chi phí cơ hội nắm giữ vàng gần như bằng không."</blockquote>
-    `
+    `,
   },
   {
     slug: "hanh-trinh-tu-nguoi-moi-den-nha-dau-tu-co-ky-luat",
     category: "TƯ DUY ĐẦU TƯ",
     postTitle: "Hành trình từ người mới đến nhà đầu tư có kỷ luật",
-    postHeading: "Những bài học xương máu giúp bạn xây dựng tư duy quản trị tài chính vững vàng, tránh xa bẫy FOMO và thua lỗ.",
+    postHeading:
+      "Những bài học xương máu giúp bạn xây dựng tư duy quản trị tài chính vững vàng, tránh xa bẫy FOMO và thua lỗ.",
     postAuthor: "Hoàng Nam",
     postDate: "04/09/2026",
     readingTime: "6 phút đọc",
     views: 9800,
-    postImage: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80",
+    postImage:
+      "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80",
     postContent: `
       <h2>Xây dựng hệ thống đầu tư cho riêng bạn</h2>
       <p>Khác biệt giữa một người đánh bạc và một nhà đầu tư thực thụ nằm ở việc họ có một hệ thống quy tắc rõ ràng và tuân thủ nó một cách máy móc, bất chấp cảm xúc cá nhân.</p>
@@ -102,47 +112,88 @@ const DEFAULT_FALLBACK_ARTICLES = [
         <li>Luôn duy trì quỹ dự phòng khẩn cấp tối thiểu 6 tháng chi phí sinh hoạt.</li>
         <li>Chấp nhận cắt lỗ sớm khi luận điểm đầu tư ban đầu không còn đúng.</li>
       </ul>
-    `
+    `,
   },
   {
     slug: "quan-tri-rui-ro-bai-hoc-khong-bao-gio-cu",
     category: "KIẾN THỨC",
     postTitle: "Quản trị rủi ro – bài học không bao giờ cũ",
-    postHeading: "Tại sao bảo toàn vốn luôn là mục tiêu tối thượng trước khi nghĩ đến việc tìm kiếm lợi nhuận trên thị trường?",
+    postHeading:
+      "Tại sao bảo toàn vốn luôn là mục tiêu tối thượng trước khi nghĩ đến việc tìm kiếm lợi nhuận trên thị trường?",
     postAuthor: "Capital Circle",
     postDate: "03/09/2026",
     readingTime: "7 phút đọc",
     views: 13400,
-    postImage: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80",
+    postImage:
+      "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80",
     postContent: `
       <h2>Quy tắc số 1: Đừng để mất tiền</h2>
       <p>Nhà đầu tư huyền thoại Warren Buffett từng đưa ra 2 quy tắc vàng: Quy tắc số 1: Không bao giờ để mất tiền. Quy tắc số 2: Không bao giờ quên quy tắc số 1. Khi bạn mất 50% vốn, bạn cần sinh lời 100% chỉ để hòa vốn ban đầu.</p>
-    `
+    `,
   },
   {
     slug: "dau-tu-khong-chi-la-tien-ma-con-la-chinh-minh",
     category: "CUỘC SỐNG",
     postTitle: "Đầu tư không chỉ là tiền, mà còn là chính mình",
-    postHeading: "Nâng cao năng lực cá nhân, sức khỏe tinh thần và trải nghiệm sống chính là khoản đầu tư mang lại tỷ suất sinh lời vô hạn.",
+    postHeading:
+      "Nâng cao năng lực cá nhân, sức khỏe tinh thần và trải nghiệm sống chính là khoản đầu tư mang lại tỷ suất sinh lời vô hạn.",
     postAuthor: "Đội ngũ Capital Circle",
     postDate: "02/09/2026",
     readingTime: "5 phút đọc",
     views: 16800,
-    postImage: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+    postImage:
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
     postContent: `
       <h2>Khoản đầu tư tốt nhất bạn từng thực hiện</h2>
       <p>Tiền bạc chỉ là công cụ để phục vụ cuộc sống tự do và an yên. Đừng đánh đổi sức khỏe, các mối quan hệ quý giá hay sự bình an nội tâm chỉ vì những biến động xanh đỏ ngắn hạn trên biểu đồ giá.</p>
-    `
-  }
+    `,
+  },
 ];
 
 let currentArticle = null;
 let allNewsList = [];
 
+function normalizeArticle(article) {
+  if (!article) return null;
+
+  return {
+    ...article,
+    slug: article.slug,
+    postTitle: article.title || article.postTitle,
+    postImage: article.image || article.postImage,
+    postHeading: article.heading || article.postHeading,
+    postContent: article.content || article.postContent,
+    postSource: article.source || article.postSource,
+    category: article.category,
+    postAuthor: article.author || article.postAuthor,
+    views: article.viewed ?? article.views,
+    status: article.status,
+  };
+}
+
+function normalizeHandlerArticle(article) {
+  if (!article) return null;
+
+  return {
+    ...article,
+    slug: article.articleSlug || article.slug,
+    postTitle: article.articleTitle || article.title,
+    postHeading: article.articleHeading || article.heading,
+    postContent: article.articleContent || article.content,
+    postSource: article.articleSource || article.source,
+    category: article.articleCategory || article.category,
+    postAuthor: article.articleAuthor || article.author,
+    views: article.articleViews ?? article.viewed,
+    status: article.articleStatus ?? article.status,
+  };
+}
+
 // Get slug from URL params: article.html?slug=...
 function getSlugFromUrl() {
   const params = new URLSearchParams(window.location.search);
-  return params.get("slug") || "ky-luat-la-loi-the-lon-nhat-cua-nha-dau-tu-ca-nhan";
+  return (
+    params.get("slug") || "ky-luat-la-loi-the-lon-nhat-cua-nha-dau-tu-ca-nhan"
+  );
 }
 
 async function loadArticleDetail() {
@@ -150,18 +201,27 @@ async function loadArticleDetail() {
 
   try {
     // 1. Fetch single article
-    const res = await fetch(`${apiUrl}/news/single-news/${slug}`);
-    if (res.ok) {
-      const data = await res.json();
-      currentArticle = data.newsDetail;
+    let res = await fetch(`${apiUrl}/article/${slug}`);
+    let data = [];
+    if (!res.ok) {
+      res = await fetch(`${apiUrl}/news/${slug}`);
+      const { newsDetail } = await res.json();
+      data = newsDetail;
+      console.log("Fetched article data:", data);
     }
+    const { article } = await res.json();
+    data = article;
+    console.log("Fetched article data:", data);
+    currentArticle = normalizeArticle(data);
   } catch (err) {
     console.warn("Lỗi khi tải bài viết từ API, dùng dữ liệu dự phòng:", err);
   }
 
   // Fallback to local dataset if not found via API
   if (!currentArticle) {
-    currentArticle = DEFAULT_FALLBACK_ARTICLES.find((a) => a.slug === slug) || DEFAULT_FALLBACK_ARTICLES[0];
+    currentArticle =
+      DEFAULT_FALLBACK_ARTICLES.find((a) => a.slug === slug) ||
+      DEFAULT_FALLBACK_ARTICLES[0];
   }
 
   renderArticleContent(currentArticle);
@@ -193,12 +253,16 @@ function renderArticleContent(art) {
   // Meta Elements
   const authorElem = document.getElementById("articleAuthor");
   const authorAvatar = document.getElementById("articleAuthorAvatar");
-  const authorInitials = (art.postAuthor || "Capital Circle").slice(0, 2).toUpperCase();
+  const authorInitials = (art.postAuthor || "Capital Circle")
+    .slice(0, 2)
+    .toUpperCase();
   if (authorElem) authorElem.innerText = art.postAuthor || "Capital Circle";
   if (authorAvatar) authorAvatar.innerText = authorInitials;
 
   const dateElem = document.getElementById("articleDate");
-  const displayDate = art.postDate || (art.createdAt ? formatVietnameseDate(art.createdAt) : "07/09/2026");
+  const displayDate =
+    art.postDate ||
+    (art.createdAt ? formatVietnameseDate(art.createdAt) : "07/09/2026");
   if (dateElem) dateElem.innerText = displayDate;
 
   const readTimeElem = document.getElementById("articleReadingTime");
@@ -206,7 +270,9 @@ function renderArticleContent(art) {
 
   const viewsElem = document.getElementById("articleViews");
   if (viewsElem) {
-    const formattedViews = art.views ? Number(art.views).toLocaleString("vi-VN") : "12.5k";
+    const formattedViews = art.views
+      ? Number(art.views).toLocaleString("vi-VN")
+      : "12.5k";
     viewsElem.innerText = `${formattedViews} lượt đọc`;
   }
 
@@ -257,22 +323,33 @@ async function loadRelatedAndSidebarNews(currentSlug, currentCategory) {
     const res = await fetch(`${apiUrl}/news/all-published-news`);
     if (res.ok) {
       const data = await res.json();
-      allNewsList = data.news || [];
+      allNewsList = (data.news || []).map(normalizeArticle);
     }
-  } catch (e) {}
+  } catch (e) {
+    console.log(
+      "Lỗi khi tải danh sách bài viết từ API, dùng dữ liệu dự phòng:",
+      e,
+    );
+  }
 
   if (!allNewsList || allNewsList.length === 0) {
     allNewsList = [...DEFAULT_FALLBACK_ARTICLES];
   }
 
   // Render Related Articles (exclude current article, pick 3)
-  const relatedList = allNewsList.filter((a) => a.slug !== currentSlug).slice(0, 3);
+  const relatedList = allNewsList
+    .filter((a) => a.slug !== currentSlug)
+    .slice(0, 3);
   const relatedContainer = document.getElementById("relatedArticlesGrid");
   if (relatedContainer) {
     relatedContainer.innerHTML = relatedList
       .map((item) => {
         const cat = item.category || "TÀI CHÍNH";
-        const date = item.postDate || (item.createdAt ? formatVietnameseDate(item.createdAt) : "07/09/2026");
+        const date =
+          item.postDate ||
+          (item.createdAt
+            ? formatVietnameseDate(item.createdAt)
+            : "07/09/2026");
         return `
           <a
             href="./article.html?slug=${item.slug}"
@@ -281,7 +358,7 @@ async function loadRelatedAndSidebarNews(currentSlug, currentCategory) {
             <div>
               <div class="relative h-44 overflow-hidden bg-slate-900">
                 <img
-                  src="${item.postImage || 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=600&q=80'}"
+                  src="${item.postImage || "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=600&q=80"}"
                   alt="${item.postTitle}"
                   class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out"
                 />
@@ -317,7 +394,8 @@ async function loadRelatedAndSidebarNews(currentSlug, currentCategory) {
   if (trendingContainer) {
     const trendingItems = allNewsList.slice(0, 5);
     trendingContainer.innerHTML = trendingItems
-      .map((item, idx) => `
+      .map(
+        (item, idx) => `
         <a
           href="./article.html?slug=${item.slug}"
           class="pt-2 flex items-start space-x-3 group cursor-pointer border-b border-slate-100 last:border-0 pb-2.5"
@@ -330,11 +408,12 @@ async function loadRelatedAndSidebarNews(currentSlug, currentCategory) {
               ${item.postTitle}
             </h5>
             <p class="text-[11px] text-slate-400 mt-0.5">
-              ${item.views ? Number(item.views).toLocaleString('vi-VN') + ' lượt đọc' : (12 - idx * 1.5).toFixed(1) + 'k lượt đọc'}
+              ${item.views ? Number(item.views).toLocaleString("vi-VN") + " lượt đọc" : (12 - idx * 1.5).toFixed(1) + "k lượt đọc"}
             </p>
           </div>
         </a>
-      `)
+      `,
+      )
       .join("");
   }
 }
@@ -344,7 +423,8 @@ window.addEventListener("scroll", () => {
   const docElem = document.documentElement;
   const docBody = document.body;
   const scrollTop = docElem.scrollTop || docBody.scrollTop;
-  const scrollHeight = (docElem.scrollHeight || docBody.scrollHeight) - docElem.clientHeight;
+  const scrollHeight =
+    (docElem.scrollHeight || docBody.scrollHeight) - docElem.clientHeight;
   const scrollPercent = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
 
   const bar = document.getElementById("readingProgressBar");
@@ -355,32 +435,47 @@ window.addEventListener("scroll", () => {
 
 // Copy Article Link
 function copyArticleLink() {
-  navigator.clipboard.writeText(window.location.href).then(() => {
-    if (typeof showToast === "function") {
-      showToast("Đã sao chép liên kết bài viết vào clipboard!");
-    } else {
-      alert("Đã sao chép liên kết bài viết!");
-    }
-  }).catch(() => {
-    prompt("Sao chép liên kết:", window.location.href);
-  });
+  navigator.clipboard
+    .writeText(window.location.href)
+    .then(() => {
+      if (typeof showToast === "function") {
+        showToast("Đã sao chép liên kết bài viết vào clipboard!");
+      } else {
+        alert("Capital Circle\n\nĐã sao chép liên kết bài viết!");
+      }
+    })
+    .catch(() => {
+      prompt("Sao chép liên kết:", window.location.href);
+    });
 }
 
 // Share on Social
 function shareOnFacebook() {
   const url = encodeURIComponent(window.location.href);
-  window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank", "width=600,height=400");
+  window.open(
+    `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+    "_blank",
+    "width=600,height=400",
+  );
 }
 
 function shareOnTwitter() {
   const url = encodeURIComponent(window.location.href);
   const title = encodeURIComponent(document.title);
-  window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, "_blank", "width=600,height=400");
+  window.open(
+    `https://twitter.com/intent/tweet?url=${url}&text=${title}`,
+    "_blank",
+    "width=600,height=400",
+  );
 }
 
 function shareOnLinkedIn() {
   const url = encodeURIComponent(window.location.href);
-  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, "_blank", "width=600,height=400");
+  window.open(
+    `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
+    "_blank",
+    "width=600,height=400",
+  );
 }
 
 // Initialize on page load

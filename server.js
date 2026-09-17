@@ -18,11 +18,11 @@ app.use(cookieParser());
 
 app.use(cors());
 
-// Middleware
-app.use(ErrorMiddleware);
-
 // Rest API
 route(app);
+
+// Error middleware must be registered after all routes so route errors return JSON.
+app.use(ErrorMiddleware);
 
 const PORT = process.env.PORT || 5000;
 

@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Capital Circle - Kiến Thức • Tư Duy • Giá Trị Dài Hạn</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -21,6 +22,125 @@
     <script src="./js/config.js"></script>
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
+
+  <!-- Modal Overlay -->
+  <div
+    id="welcome-modal"
+    class="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-950/85 backdrop-blur-md px-4 transition-all duration-300 opacity-0 pointer-events-none"
+  >
+    <!-- Modal Box -->
+    <div
+      class="relative w-full max-w-3xl rounded-2xl bg-[#0e1626] border border-slate-800 p-6 sm:p-8 shadow-2xl text-white transform transition-all duration-300 scale-95 overflow-hidden"
+    >
+      <!-- STEP 1: VIDEO INTRO (Chạy tự động 8s) -->
+      <div
+        id="modal-step-video"
+        class="flex flex-col items-center justify-center"
+      >
+        <div
+          class="relative w-full aspect-video rounded-xl overflow-hidden bg-slate-900 border border-slate-800"
+        >
+          <video
+            id="intro-video"
+            class="w-full h-full object-cover"
+            autoplay
+            muted
+            playsinline
+          >
+            <!-- Thay đường dẫn video 8s của bạn vào đây -->
+            <source src="./assets/video_intro.mp4" type="video/mp4" />
+            Trình duyệt của bạn không hỗ trợ thẻ video.
+          </video>
+        </div>
+
+        <!-- Lựa chọn bỏ qua video nhanh -->
+        <button
+          type="button"
+          id="btn-skip-video"
+          class="mt-4 text-xs text-slate-400 hover:text-white underline transition"
+        >
+          Bỏ qua video ⏩
+        </button>
+      </div>
+
+      <!-- STEP 2: BẢNG THÔNG TIN (Ban đầu ẩn đi) -->
+      <div id="modal-step-info" class="hidden">
+        <!-- Header -->
+        <div class="text-center mb-6">
+          <div
+            class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-indigo-500/10 text-indigo-400 mb-3 text-2xl"
+          >
+            ✨
+          </div>
+          <h3
+            class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-white via-slate-200 to-indigo-300 bg-clip-text text-transparent"
+          >
+            Chào mừng bạn đến với Capital Circle
+          </h3>
+        </div>
+
+        <!-- Message Content -->
+        <div
+          class="space-y-4 text-sm sm:text-base text-slate-300 leading-relaxed font-normal mb-8"
+        >
+          <div class="flex items-start space-y-1">
+            <p>
+              🌱
+              <strong class="text-white font-medium"
+                >Bạn là người mới chưa biết về chúng tôi?</strong
+              ><br />
+              Hãy nhấn vào
+              <span class="text-indigo-400 font-semibold">"Tìm hiểu"</span> để
+              biết về những điều bạn sẽ trải nghiệm ở đây.
+            </p>
+          </div>
+
+          <div class="flex items-start space-y-1">
+            <p>
+              🔍
+              <strong class="text-white font-medium"
+                >Bạn là người đã biết nhưng chưa rõ?</strong
+              ><br />
+              Hãy nhấn vào
+              <span class="text-indigo-400 font-semibold">"Tìm hiểu"</span> để
+              biết thêm thông tin chi tiết.
+            </p>
+          </div>
+
+          <div class="flex items-start space-y-1">
+            <p>
+              🚀
+              <strong class="text-white font-medium"
+                >Bạn đã rõ ràng về trải nghiệm cùng chúng tôi?</strong
+              ><br />
+              Hãy nhấn
+              <span class="text-slate-400 font-semibold">"Đóng"</span> để tiếp
+              tục đồng hành.
+            </p>
+          </div>
+        </div>
+
+        <!-- Actions / Buttons -->
+        <div class="flex flex-col sm:flex-row items-center gap-3">
+          <a
+            href="./about.html"
+            id="btn-modal-learn"
+            class="w-full sm:w-1/2 text-center py-2.5 px-5 rounded-xl font-medium text-white bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-600/25 transition-all duration-200 cursor-pointer active:scale-95"
+          >
+            💡 Tìm hiểu
+          </a>
+          <button
+            type="button"
+            id="btn-modal-close"
+            class="w-full sm:w-1/2 py-2.5 px-5 rounded-xl font-medium text-slate-300 bg-slate-800/80 hover:bg-slate-700 hover:text-white border border-slate-700 transition-all duration-200 active:scale-95"
+          >
+            ✕ Đóng
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <body
     class="bg-[#f8fafc] text-slate-800 antialiased min-h-screen flex flex-col justify-between"
   >
@@ -91,22 +211,51 @@
               >Trang chủ</a
             >
             <a
-              href="#latest-articles"
+              href="./articles.html"
               class="text-slate-300 hover:text-white transition"
               >Bài viết</a
             >
-            <a
-              href="#market-ticker"
-              class="text-slate-300 hover:text-white transition"
-              >Thị trường</a
-            >
+            <div class="relative group py-2">
+              <a
+                href="#market-ticker"
+                class="flex items-center space-x-1 text-slate-300 hover:text-white transition focus:outline-none cursor-pointer"
+              >
+                <span>Thị trường</span>
+              </a>
+
+              <!-- Submenu (Hiện ra ngay khi Hover vào thẻ cha) -->
+              <div
+                class="absolute left-0 top-full w-48 bg-[#0e1626] border border-slate-800 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2"
+              >
+                <a
+                  href="./articles.html?category=Crypto"
+                  class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"
+                  >Crypto</a
+                >
+                <a
+                  href="./articles.html?category=Vang"
+                  class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"
+                  >Vàng</a
+                >
+                <a
+                  href="./articles.html?category=B%E1%BA%A5t%20%C4%91%E1%BB%99ng%20s%E1%BA%A3n"
+                  class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"
+                  >Bất động sản</a
+                >
+                <a
+                  href="./articles.html?category=Ch%E1%BB%A9ng%20kho%C3%A1n"
+                  class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"
+                  >Chứng khoán</a
+                >
+              </div>
+            </div>
             <a
               href="#featured-article"
               class="text-slate-300 hover:text-white transition"
               >Kiến thức</a
             >
             <a
-              href="#quick-tools"
+              href="./tools.html"
               class="text-slate-300 hover:text-white transition"
               >Công cụ</a
             >
@@ -118,7 +267,7 @@
           </nav>
 
           <!-- Right Action Buttons -->
-          <div class="hidden sm:flex items-center space-x-4">
+          <div class="hidden lg:flex items-center space-x-4">
             <!-- Search Button -->
             <button
               onclick="openSearchModal()"
@@ -172,18 +321,63 @@
           class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
           >Bài viết</a
         >
-        <a
-          href="#market-ticker"
-          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
-          >Thị trường</a
-        >
+        <div class="py-1">
+          <button
+            type="button"
+            id="mobile-market-btn"
+            class="flex items-center justify-between w-full text-sm font-medium text-slate-300 hover:text-white transition py-1 focus:outline-none"
+          >
+            <span>Thị trường</span>
+            <svg
+              id="mobile-market-arrow"
+              class="w-4 h-4 transition-transform duration-200"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+
+          <!-- Submenu Mobile -->
+          <div
+            id="mobile-market-submenu"
+            class="hidden pl-4 mt-1 space-y-1 border-l-2 border-slate-800"
+          >
+            <a
+              href="./articles.html?category=Crypto"
+              class="block py-1 text-sm text-slate-400 hover:text-white transition"
+              >Crypto</a
+            >
+            <a
+              href="./articles.html?category=Forex"
+              class="block py-1 text-sm text-slate-400 hover:text-white transition"
+              >Forex</a
+            >
+            <a
+              href="./articles.html?category=B%E1%BA%A5t%20%C4%91%E1%BB%99ng%20s%E1%BA%A3n"
+              class="block py-1 text-sm text-slate-400 hover:text-white transition"
+              >Bất động sản</a
+            >
+            <a
+              href="./articles.html?category=Ch%E1%BB%A9ng%20kho%C3%A1n"
+              class="block py-1 text-sm text-slate-400 hover:text-white transition"
+              >Chứng khoán</a
+            >
+          </div>
+        </div>
         <a
           href="#featured-article"
           class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
           >Kiến thức</a
         >
         <a
-          href="#quick-tools"
+          href="./tools.html"
           class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
           >Công cụ</a
         >
@@ -465,7 +659,7 @@
         >
           <!-- Tabs -->
           <div
-            class="flex items-center space-x-1 sm:space-x-2 overflow-x-auto custom-scrollbar py-0.5"
+            class="opacity-0 flex items-center space-x-1 sm:space-x-2 overflow-x-auto custom-scrollbar py-0.5"
             id="tickerTabs"
           >
             <button
@@ -492,31 +686,31 @@
             >
               Vàng
             </button>
-            <button
+            <!-- <button
               onclick="filterTicker('commodities')"
               class="ticker-tab-btn px-3 py-1 rounded-full text-slate-400 hover:text-white transition"
             >
               Hàng hóa
-            </button>
+            </button> -->
             <button
               onclick="filterTicker('forex')"
               class="ticker-tab-btn px-3 py-1 rounded-full text-slate-400 hover:text-white transition"
             >
               Tỷ giá
             </button>
-            <button
+            <!-- <button
               onclick="filterTicker('rates')"
               class="ticker-tab-btn px-3 py-1 rounded-full text-slate-400 hover:text-white transition"
             >
               Lãi suất
-            </button>
+            </button> -->
           </div>
 
           <!-- Live Timestamp & Indicator -->
           <div
             class="flex items-center space-x-3 text-xs text-slate-400 shrink-0"
           >
-            <span id="tickerLastUpdated">Cập nhật: 08/09/2026 11:25</span>
+            <!-- <span id="tickerLastUpdated">Cập nhật: 08/09/2026 11:25</span> -->
             <span
               class="inline-flex items-center gap-1.5 text-emerald-400 font-medium"
             >
@@ -529,230 +723,12 @@
         </div>
 
         <!-- Ticker Cards Grid (6 assets matching the screenshot) -->
-        <div
-          id="tickerContainer"
-          class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3"
-        >
-          <!-- Card 1: Bitcoin -->
-          <div
-            class="bg-slate-900/80 border border-slate-800 rounded-xl p-3 shadow-sm hover:border-slate-700 transition"
-          >
-            <div class="flex items-center space-x-2">
-              <span
-                class="w-5 h-5 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-[10px] font-bold"
-                >₿</span
-              >
-              <span class="text-xs text-slate-300 font-medium"
-                >Bitcoin (BTC)</span
-              >
-            </div>
-            <div class="mt-1.5 flex items-baseline justify-between">
-              <span class="text-base font-bold text-white"
-                >111,250
-                <span class="text-[10px] text-slate-400 font-normal"
-                  >USD</span
-                ></span
-              >
-            </div>
-            <div class="mt-1 flex items-center justify-between text-xs">
-              <span
-                class="text-emerald-400 font-semibold flex items-center text-[11px]"
-              >
-                <i class="fa-solid fa-caret-up me-1"></i>+2.35%
-              </span>
-              <!-- Sparkline SVG -->
-              <svg
-                class="w-16 h-5 stroke-emerald-400 fill-none"
-                viewBox="0 0 64 20"
-              >
-                <path
-                  d="M0 16 Q 16 14, 28 8 T 48 10 T 64 3"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </div>
-          </div>
-
-          <!-- Card 2: Ethereum -->
-          <div
-            class="bg-slate-900/80 border border-slate-800 rounded-xl p-3 shadow-sm hover:border-slate-700 transition"
-          >
-            <div class="flex items-center space-x-2">
-              <span
-                class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-[10px] font-bold"
-                >Ξ</span
-              >
-              <span class="text-xs text-slate-300 font-medium"
-                >Ethereum (ETH)</span
-              >
-            </div>
-            <div class="mt-1.5 flex items-baseline justify-between">
-              <span class="text-base font-bold text-white"
-                >4,328
-                <span class="text-[10px] text-slate-400 font-normal"
-                  >USD</span
-                ></span
-              >
-            </div>
-            <div class="mt-1 flex items-center justify-between text-xs">
-              <span
-                class="text-emerald-400 font-semibold flex items-center text-[11px]"
-              >
-                <i class="fa-solid fa-caret-up me-1"></i>+3.12%
-              </span>
-              <svg
-                class="w-16 h-5 stroke-emerald-400 fill-none"
-                viewBox="0 0 64 20"
-              >
-                <path
-                  d="M0 17 Q 20 15, 32 9 T 50 11 T 64 2"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </div>
-          </div>
-
-          <!-- Card 3: VN-Index -->
-          <div
-            class="bg-slate-900/80 border border-slate-800 rounded-xl p-3 shadow-sm hover:border-slate-700 transition"
-          >
-            <div class="flex items-center space-x-2">
-              <span
-                class="w-5 h-5 rounded-full bg-red-500/20 text-red-500 flex items-center justify-center text-[10px]"
-                >★</span
-              >
-              <span class="text-xs text-slate-300 font-medium">VN-Index</span>
-            </div>
-            <div class="mt-1.5 flex items-baseline justify-between">
-              <span class="text-base font-bold text-white">1,682.45</span>
-            </div>
-            <div class="mt-1 flex items-center justify-between text-xs">
-              <span
-                class="text-emerald-400 font-semibold flex items-center text-[11px]"
-              >
-                <i class="fa-solid fa-caret-up me-1"></i>+0.84%
-              </span>
-              <svg
-                class="w-16 h-5 stroke-emerald-400 fill-none"
-                viewBox="0 0 64 20"
-              >
-                <path
-                  d="M0 15 Q 18 13, 30 7 T 52 9 T 64 4"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </div>
-          </div>
-
-          <!-- Card 4: HNX-Index -->
-          <div
-            class="bg-slate-900/80 border border-slate-800 rounded-xl p-3 shadow-sm hover:border-slate-700 transition"
-          >
-            <div class="flex items-center space-x-2">
-              <span
-                class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px] font-bold"
-                >H</span
-              >
-              <span class="text-xs text-slate-300 font-medium">HNX-Index</span>
-            </div>
-            <div class="mt-1.5 flex items-baseline justify-between">
-              <span class="text-base font-bold text-white">280.37</span>
-            </div>
-            <div class="mt-1 flex items-center justify-between text-xs">
-              <span
-                class="text-emerald-400 font-semibold flex items-center text-[11px]"
-              >
-                <i class="fa-solid fa-caret-up me-1"></i>+0.62%
-              </span>
-              <svg
-                class="w-16 h-5 stroke-emerald-400 fill-none"
-                viewBox="0 0 64 20"
-              >
-                <path
-                  d="M0 14 Q 22 12, 34 8 T 54 10 T 64 5"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </div>
-          </div>
-
-          <!-- Card 5: Giá vàng (SJC) -->
-          <div
-            class="bg-slate-900/80 border border-slate-800 rounded-xl p-3 shadow-sm hover:border-slate-700 transition"
-          >
-            <div class="flex items-center space-x-2">
-              <span
-                class="w-5 h-5 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-[10px]"
-                ><i class="fa-solid fa-coins"></i
-              ></span>
-              <span class="text-xs text-slate-300 font-medium truncate"
-                >Giá vàng (SJC)</span
-              >
-            </div>
-            <div class="mt-1.5 flex items-baseline justify-between">
-              <span
-                class="text-sm sm:text-base font-bold text-white tracking-tight"
-                >135,800,000
-                <span class="text-[9px] text-slate-400 font-normal"
-                  >VND</span
-                ></span
-              >
-            </div>
-            <div class="mt-1 flex items-center justify-between text-xs">
-              <span
-                class="text-rose-400 font-semibold flex items-center text-[11px]"
-              >
-                <i class="fa-solid fa-caret-down me-1"></i>-0.37%
-              </span>
-              <svg
-                class="w-16 h-5 stroke-rose-400 fill-none"
-                viewBox="0 0 64 20"
-              >
-                <path
-                  d="M0 5 Q 16 8, 30 13 T 48 11 T 64 16"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </div>
-          </div>
-
-          <!-- Card 6: USD/VND -->
-          <div
-            class="bg-slate-900/80 border border-slate-800 rounded-xl p-3 shadow-sm hover:border-slate-700 transition"
-          >
-            <div class="flex items-center space-x-2">
-              <span
-                class="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-[10px] font-bold"
-                >$</span
-              >
-              <span class="text-xs text-slate-300 font-medium">USD/VND</span>
-            </div>
-            <div class="mt-1.5 flex items-baseline justify-between">
-              <span class="text-base font-bold text-white">24,620</span>
-            </div>
-            <div class="mt-1 flex items-center justify-between text-xs">
-              <span
-                class="text-emerald-400 font-semibold flex items-center text-[11px]"
-              >
-                <i class="fa-solid fa-caret-up me-1"></i>+0.05%
-              </span>
-              <svg
-                class="w-16 h-5 stroke-emerald-400 fill-none"
-                viewBox="0 0 64 20"
-              >
-                <path
-                  d="M0 12 Q 20 12, 35 11 T 50 10 T 64 9"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </div>
-          </div>
+        <div id="tickerContainer" class="grid grid-cols-1 md:grid-cols-1 gap-6">
+          <tv-ticker-tape
+            symbols="BINANCE:BTCUSDT,BINANCE:ETHUSDT,BINANCE:SOLUSDT,BINANCE:DOGEUSDT,OANDA:XAUUSD,OANDA:XAGUSD,TVC:USOIL,NASDAQ:NVDA,NASDAQ:META,NASDAQ:AAPL,NASDAQ:TSLA,NASDAQ:AMZN,NASDAQ:MSFT"
+            transparent
+            theme="dark"
+          ></tv-ticker-tape>
         </div>
       </div>
     </section>
@@ -760,210 +736,7 @@
     <!-- ==================== MAIN CONTENT (TWO COLUMNS) ==================== -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full flex-grow">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <!-- ================= LEFT COLUMN (~68%) ================= -->
-        <div class="lg:col-span-8 space-y-10">
-          <!-- 1. BÀI VIẾT NỔI BẬT (FEATURED ARTICLE CARD) -->
-          <section id="featured-article">
-            <a
-              id="featuredArticleCard"
-              href="./article.html?slug=ky-luat-la-loi-the-lon-nhat-cua-nha-dau-tu-ca-nhan"
-              class="block bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md transition overflow-hidden group cursor-pointer"
-            >
-              <!-- Image Container with Pill Badge -->
-              <div
-                class="relative h-64 sm:h-80 md:h-96 w-full overflow-hidden bg-slate-900"
-              >
-                <img
-                  id="featImgHeader"
-                  src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1200&q=80"
-                  alt="Kỷ luật là lợi thế lớn nhất của nhà đầu tư cá nhân"
-                  class="w-full h-full object-cover group-hover:scale-[1.02] transition duration-700 ease-out"
-                />
-                <!-- Dark pill badge 'BÀI VIẾT NỔI BẬT' -->
-                <div class="absolute top-4 left-4 z-10">
-                  <span
-                    class="px-3.5 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-slate-700/60 text-white text-[11px] font-bold tracking-wider uppercase shadow-md"
-                  >
-                    BÀI VIẾT NỔI BẬT
-                  </span>
-                </div>
-              </div>
-
-              <!-- Article Content -->
-              <div class="p-6 sm:p-8 space-y-3.5">
-                <h2
-                  id="featTitleHeader"
-                  class="font-editorial text-2xl sm:text-3xl font-bold text-slate-900 leading-snug group-hover:text-amber-700 transition"
-                >
-                  Kỷ luật là lợi thế lớn nhất của nhà đầu tư cá nhân
-                </h2>
-                <p
-                  id="featExcerptHeader"
-                  class="text-slate-600 text-sm sm:text-base leading-relaxed line-clamp-3 font-normal"
-                >
-                  Trong một thế giới đầy biến động, không phải ai dự đoán đúng
-                  thị trường mới thành công, mà là người kiên trì với nguyên tắc
-                  của mình.
-                </p>
-
-                <!-- Meta Footer -->
-                <div
-                  class="pt-3 flex items-center space-x-3 text-xs text-slate-500 font-medium"
-                >
-                  <div
-                    class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-700 flex items-center justify-center font-bold text-[10px]"
-                  >
-                    C
-                  </div>
-                  <span
-                    id="featAuthorHeader"
-                    class="text-slate-800 font-semibold"
-                    >Capital Circle</span
-                  >
-                  <span>•</span>
-                  <span id="featDateHeader">07 Tháng 9, 2026</span>
-                  <span>•</span>
-                  <span
-                    ><i class="fa-regular fa-clock me-1"></i> 8 phút đọc</span
-                  >
-                </div>
-              </div>
-            </a>
-          </section>
-
-          <!-- 2. BÀI VIẾT MỚI NHẤT (LATEST 6 ARTICLES GRID) -->
-          <section id="latest-articles" class="space-y-5">
-            <!-- Section Header -->
-            <div
-              class="flex items-center justify-between border-b border-slate-200 pb-3"
-            >
-              <h3 class="text-xl sm:text-2xl font-bold text-slate-900">
-                Bài viết mới nhất
-              </h3>
-              <a
-                href="./news.html"
-                class="text-xs font-semibold text-slate-600 hover:text-amber-600 transition flex items-center gap-1"
-              >
-                <span>Xem tất cả</span>
-                <i class="fa-solid fa-arrow-right text-[10px]"></i>
-              </a>
-            </div>
-
-            <!-- 6 Articles Grid (2 Rows x 3 Columns) -->
-            <div
-              id="latestArticlesGrid"
-              class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5"
-            >
-              <!-- Injected dynamically via js/HomePage/api.js with fallback to mock 6 articles -->
-            </div>
-          </section>
-        </div>
-
-        <!-- ================= RIGHT COLUMN (~32% SIDEBAR) ================= -->
-        <aside class="lg:col-span-4 space-y-6">
-          <!-- WIDGET 1: Giới thiệu & hiểu về Capital Circle -->
-          <div
-            id="about-section"
-            class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-4"
-          >
-            <div class="flex items-center justify-between">
-              <div class="flex items-center space-x-2.5">
-                <div
-                  class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center"
-                >
-                  <i class="fa-solid fa-book-open text-sm"></i>
-                </div>
-                <h4 class="font-bold text-sm text-slate-900">
-                  Giới thiệu & hiểu về Capital Circle
-                </h4>
-              </div>
-              <a
-                href="./about.html"
-                class="text-slate-400 hover:text-slate-600 transition text-xs font-semibold flex items-center gap-1"
-              >
-                <span>Đọc thêm</span>
-                <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
-              </a>
-            </div>
-
-            <p class="text-xs text-slate-600 leading-relaxed">
-              Capital Circle là nơi tôi ghi lại hành trình học tập cá nhân, chia
-              sẻ kiến thức và góc nhìn về tài chính, đầu tư. Đây không phải là
-              nền tảng tư vấn tài chính hay lời mời gọi đầu tư.
-            </p>
-
-            <!-- Graphic illustration -->
-            <div class="rounded-xl overflow-hidden h-24 relative shadow-inner">
-              <img
-                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
-                alt="Capital Circle Mountain"
-                class="w-full h-full object-cover"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"
-              ></div>
-            </div>
-
-            <!-- 4 Navigation Buttons -->
-            <div class="grid grid-cols-2 gap-2 pt-1 text-xs">
-              <a
-                href="#latest-articles"
-                class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-100 hover:border-slate-300 hover:bg-slate-50 transition text-slate-700 font-medium"
-              >
-                <i class="fa-solid fa-graduation-cap text-amber-600"></i>
-                <span class="text-[11px]">Kiến thức đầu tư</span>
-              </a>
-              <a
-                href="#market-ticker"
-                class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-100 hover:border-slate-300 hover:bg-slate-50 transition text-slate-700 font-medium"
-              >
-                <i class="fa-solid fa-chart-line text-blue-600"></i>
-                <span class="text-[11px]">Phân tích thị trường</span>
-              </a>
-              <a
-                href="#featured-article"
-                class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-100 hover:border-slate-300 hover:bg-slate-50 transition text-slate-700 font-medium"
-              >
-                <i class="fa-regular fa-comment-dots text-purple-600"></i>
-                <span class="text-[11px]">Câu chuyện thực tế</span>
-              </a>
-              <a
-                href="#quick-tools"
-                class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-100 hover:border-slate-300 hover:bg-slate-50 transition text-slate-700 font-medium"
-              >
-                <i class="fa-solid fa-screwdriver-wrench text-emerald-600"></i>
-                <span class="text-[11px]">Công cụ hữu ích</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- WIDGET 2: Cộng đồng nhà đầu tư tỉnh táo -->
-          <div
-            class="bg-[#0e1626] text-white rounded-2xl p-6 relative overflow-hidden shadow-sm space-y-4"
-          >
-            <div class="relative z-10 space-y-3">
-              <h4 class="text-lg font-bold leading-snug">
-                Cùng nhau xây dựng<br />cộng đồng nhà đầu tư tỉnh táo
-              </h4>
-              <div>
-                <a
-                  href="#newsletter-widget"
-                  class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white text-slate-950 font-bold text-xs hover:bg-slate-100 transition shadow"
-                >
-                  <span>Tham gia ngay</span>
-                  <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- Community Avatar Graphic in Background -->
-            <div
-              class="absolute right-3 -bottom-1 opacity-20 text-6xl text-slate-400 pointer-events-none"
-            >
-              <i class="fa-solid fa-users"></i>
-            </div>
-          </div>
-
+        <aside class="lg:col-span-4 lg:order-2 space-y-6">
           <!-- WIDGET 3: Bài viết được quan tâm (Trending) -->
           <div
             class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-4"
@@ -972,10 +745,13 @@
               class="font-bold text-base text-slate-900 flex items-center space-x-2"
             >
               <span class="text-rose-500">🔥</span>
-              <span>Bài viết được quan tâm</span>
+              <span>Bài viết được quan tâm của chúng tôi</span>
             </h4>
 
-            <div class="divide-y divide-slate-100 space-y-2">
+            <div
+              id="mostViewedArticles"
+              class="divide-y divide-slate-100 space-y-2"
+            >
               <!-- Item 1 -->
               <a
                 href="./article.html?slug=10-nguyen-tac-dau-tu-cua-warren-buffett"
@@ -1079,11 +855,113 @@
               </a>
             </div>
           </div>
+          <!-- WIDGET 1: Giới thiệu & hiểu về Capital Circle -->
+          <div
+            id="about-section"
+            class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-4"
+          >
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2.5">
+                <div
+                  class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center"
+                >
+                  <i class="fa-solid fa-book-open text-sm"></i>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900">
+                  Giới thiệu & hiểu về Capital Circle
+                </h4>
+              </div>
+              <a
+                href="./about.html"
+                class="text-slate-400 hover:text-slate-600 transition text-xs font-semibold flex items-center gap-1"
+              >
+                <span>Đọc thêm</span>
+                <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+              </a>
+            </div>
+
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Capital Circle là nơi tôi ghi lại hành trình học tập cá nhân, chia
+              sẻ kiến thức và góc nhìn về tài chính, đầu tư. Đây không phải là
+              nền tảng tư vấn tài chính hay lời mời gọi đầu tư.
+            </p>
+
+            <!-- Graphic illustration -->
+            <div class="rounded-xl overflow-hidden h-24 relative shadow-inner">
+              <img
+                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+                alt="Capital Circle Mountain"
+                class="w-full h-full object-cover"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"
+              ></div>
+            </div>
+
+            <!-- 4 Navigation Buttons -->
+            <div class="grid grid-cols-2 gap-2 pt-1 text-xs">
+              <a
+                href="#latest-articles"
+                class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-100 hover:border-slate-300 hover:bg-slate-50 transition text-slate-700 font-medium"
+              >
+                <i class="fa-solid fa-graduation-cap text-amber-600"></i>
+                <span class="text-[11px]">Kiến thức đầu tư</span>
+              </a>
+              <a
+                href="#market-ticker"
+                class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-100 hover:border-slate-300 hover:bg-slate-50 transition text-slate-700 font-medium"
+              >
+                <i class="fa-solid fa-chart-line text-blue-600"></i>
+                <span class="text-[11px]">Phân tích thị trường</span>
+              </a>
+              <a
+                href="#featured-article"
+                class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-100 hover:border-slate-300 hover:bg-slate-50 transition text-slate-700 font-medium"
+              >
+                <i class="fa-regular fa-comment-dots text-purple-600"></i>
+                <span class="text-[11px]">Câu chuyện thực tế</span>
+              </a>
+              <a
+                href="./tools.html"
+                class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-100 hover:border-slate-300 hover:bg-slate-50 transition text-slate-700 font-medium"
+              >
+                <i class="fa-solid fa-screwdriver-wrench text-emerald-600"></i>
+                <span class="text-[11px]">Công cụ hữu ích</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- WIDGET 2: Cộng đồng nhà đầu tư tỉnh táo -->
+          <div
+            class="bg-[#0e1626] text-white rounded-2xl p-6 relative overflow-hidden shadow-sm space-y-4"
+          >
+            <div class="relative z-10 space-y-3">
+              <h4 class="text-lg font-bold leading-snug">
+                Cùng nhau xây dựng<br />cộng đồng nhà đầu tư tỉnh táo
+              </h4>
+              <div>
+                <a
+                  href="#newsletter-widget"
+                  class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white text-slate-950 font-bold text-xs hover:bg-slate-100 transition shadow"
+                >
+                  <span>Tham gia ngay</span>
+                  <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Community Avatar Graphic in Background -->
+            <div
+              class="absolute right-3 -bottom-1 opacity-20 text-6xl text-slate-400 pointer-events-none"
+            >
+              <i class="fa-solid fa-users"></i>
+            </div>
+          </div>
 
           <!-- WIDGET 4: Nhận bài viết mới qua email (Newsletter) -->
           <div
             id="newsletter-widget"
-            class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-3.5"
+            class="hidden bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-3.5"
           >
             <div class="flex items-center space-x-2.5">
               <div
@@ -1122,6 +1000,136 @@
             </form>
           </div>
         </aside>
+        <!-- ================= LEFT COLUMN (~68%) ================= -->
+        <div class="lg:col-span-8 lg:order-1 space-y-10">
+          <!-- 1. BÀI VIẾT NỔI BẬT (FEATURED ARTICLE CARD) -->
+          <section id="featured-article">
+            <a
+              id="featuredArticleCard"
+              href="./article.html?slug=ky-luat-la-loi-the-lon-nhat-cua-nha-dau-tu-ca-nhan"
+              class="block bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md transition overflow-hidden group cursor-pointer"
+            >
+              <!-- Image Container with Pill Badge -->
+              <div
+                class="relative h-64 sm:h-80 md:h-96 w-full overflow-hidden bg-slate-900"
+              >
+                <img
+                  id="featImgHeader"
+                  src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1200&q=80"
+                  alt="Kỷ luật là lợi thế lớn nhất của nhà đầu tư cá nhân"
+                  class="w-full h-full object-cover group-hover:scale-[1.02] transition duration-700 ease-out"
+                />
+                <!-- Dark pill badge 'BÀI VIẾT NỔI BẬT' -->
+                <div class="absolute top-4 left-4 z-10">
+                  <span
+                    class="px-3.5 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-slate-700/60 text-white text-[11px] font-bold tracking-wider uppercase shadow-md"
+                  >
+                    BÀI VIẾT NỔI BẬT
+                  </span>
+                </div>
+              </div>
+
+              <!-- Article Content -->
+              <div class="p-6 sm:p-8 space-y-3.5">
+                <h2
+                  id="featTitleHeader"
+                  class="font-editorial text-2xl sm:text-3xl font-bold text-slate-900 leading-snug group-hover:text-amber-700 transition"
+                >
+                  Kỷ luật là lợi thế lớn nhất của nhà đầu tư cá nhân
+                </h2>
+                <p
+                  id="featExcerptHeader"
+                  class="text-slate-600 text-sm sm:text-base leading-relaxed line-clamp-3 font-normal"
+                >
+                  Trong một thế giới đầy biến động, không phải ai dự đoán đúng
+                  thị trường mới thành công, mà là người kiên trì với nguyên tắc
+                  của mình.
+                </p>
+
+                <!-- Meta Footer -->
+                <div
+                  class="pt-3 flex items-center space-x-3 text-xs text-slate-500 font-medium"
+                >
+                  <div
+                    class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-700 flex items-center justify-center font-bold text-[10px]"
+                  >
+                    C
+                  </div>
+                  <span
+                    id="featAuthorHeader"
+                    class="text-slate-800 font-semibold"
+                    >Capital Circle</span
+                  >
+                  <span>•</span>
+                  <span id="featDateHeader">07 Tháng 9, 2026</span>
+                  <span>•</span>
+                  <span
+                    ><i class="fa-regular fa-clock me-1"></i> 8 phút đọc</span
+                  >
+                </div>
+              </div>
+            </a>
+          </section>
+
+          <!-- 2. BÀI VIẾT MỚI NHẤT (LATEST 6 ARTICLES GRID) -->
+          <section id="latest-articles" class="space-y-5">
+            <div
+              id="global-news-feed"
+              class="rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-sm"
+            >
+              <div class="flex items-center justify-between gap-4 mb-4">
+                <div class="flex items-center gap-2">
+                  <span
+                    class="h-2.5 w-2.5 rounded-full bg-emerald-400 pulse-green"
+                    aria-hidden="true"
+                  ></span>
+                  <h3
+                    class="text-sm sm:text-base font-extrabold tracking-[0.16em] text-slate-800 uppercase"
+                  >
+                    Tin tức thị trường
+                  </h3>
+                </div>
+                <span
+                  id="global-news-updated"
+                  class="text-[11px] italic text-slate-400"
+                  >Đang cập nhật...</span
+                >
+              </div>
+              <div id="global-news-list" class="space-y-2.5" aria-live="polite">
+                <div
+                  class="h-16 animate-pulse rounded-xl bg-slate-100"
+                  aria-label="Đang tải tin tức"
+                ></div>
+              </div>
+            </div>
+
+            <!-- Section Header -->
+            <div
+              class="flex items-center justify-between border-b border-slate-200 pb-3"
+            >
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900">
+                Tin tức mới nhất
+              </h3>
+              <a
+                href="./news.html"
+                class="text-xs font-semibold text-slate-600 hover:text-amber-600 transition flex items-center gap-1"
+              >
+                <span>Xem tất cả</span>
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </a>
+            </div>
+
+            <!-- 6 Articles Grid (2 Rows x 3 Columns) -->
+            <div
+              id="latestArticlesGrid"
+              class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5"
+            >
+              <!-- Injected dynamically via js/HomePage/api.js with fallback to mock 6 articles -->
+            </div>
+          </section>
+        </div>
+
+        <!-- ================= RIGHT COLUMN (~32% SIDEBAR) ================= -->
       </div>
     </main>
 
@@ -1179,36 +1187,6 @@
             </div>
             <span class="text-xs font-semibold text-slate-700"
               >Quy đổi tiền tệ</span
-            >
-          </div>
-
-          <!-- Tool 4 -->
-          <div
-            onclick="showToolNotice('Lãi suất Fed')"
-            class="bg-white rounded-xl border border-slate-200/90 p-4 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md hover:border-slate-300 transition cursor-pointer group"
-          >
-            <div
-              class="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-lg mb-2 group-hover:scale-110 transition"
-            >
-              <i class="fa-solid fa-chart-simple"></i>
-            </div>
-            <span class="text-xs font-semibold text-slate-700"
-              >Lãi suất Fed</span
-            >
-          </div>
-
-          <!-- Tool 5 -->
-          <div
-            onclick="showToolNotice('Sàng lọc cổ phiếu')"
-            class="bg-white rounded-xl border border-slate-200/90 p-4 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md hover:border-slate-300 transition cursor-pointer group"
-          >
-            <div
-              class="w-10 h-10 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-lg mb-2 group-hover:scale-110 transition"
-            >
-              <i class="fa-solid fa-filter"></i>
-            </div>
-            <span class="text-xs font-semibold text-slate-700"
-              >Sàng lọc cổ phiếu</span
             >
           </div>
 
@@ -1399,6 +1377,10 @@
     </div>
 
     <!-- Scripts -->
+    <script
+      type="module"
+      src="https://widgets.tradingview-widget.com/w/vi_VN/tv-ticker-tape.js"
+    ></script>
     <script src="./js/components/modal.js"></script>
     <script src="./js/HomePage/api.js"></script>
     <script src="./js/HomePage/main.js"></script>

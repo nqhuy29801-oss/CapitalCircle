@@ -31,7 +31,7 @@ async function getDataNewsPage() {
               <div class="relative h-48 overflow-hidden bg-slate-900">
                 <img
                   src="${item.postImage || defaultImg}"
-                  alt="${item.postTitle || ''}"
+                  alt="${item.postTitle || ""}"
                   onerror="this.src='${defaultImg}'"
                   class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out"
                 />

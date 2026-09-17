@@ -1,4 +1,4 @@
-// System Accounts & Roles Definition
+﻿// System Accounts & Roles Definition
 // ROLES: 'ADMIN' (Quản lý), 'DEPUTY' (Phó quản lý), 'AUTHOR' (Viết bài)
 let systemUsers = [
   // {
@@ -59,7 +59,9 @@ window.addEventListener("DOMContentLoaded", () => {
 // USER ROLE UTILITIES & CONTROLS
 function getCurrentUser() {
   const store = getAuthStore();
-  return store && store.user ? store.user : { fullName: "Admin", role: "admin" };
+  return store && store.user
+    ? store.user
+    : { fullName: "Admin", role: "admin" };
 }
 
 function renderUser() {
@@ -121,11 +123,17 @@ function switchAdminTab(tab) {
     "registrationsTabContent",
   );
   const usersTabContent = document.getElementById("usersTabContent");
+  const editorialArticlesTabContent = document.getElementById(
+    "editorialArticlesTabContent",
+  );
 
   const tabArticlesBtn = document.getElementById("tabArticlesBtn");
   const tabBannersBtn = document.getElementById("tabBannersBtn");
   const tabRegistrationsBtn = document.getElementById("tabRegistrationsBtn");
   const tabUsersBtn = document.getElementById("tabUsersBtn");
+  const tabEditorialArticlesBtn = document.getElementById(
+    "tabEditorialArticlesBtn",
+  );
   const mainActionButtonText = document.getElementById("mainActionButtonText");
 
   // Hide all tab contents first
@@ -133,7 +141,8 @@ function switchAdminTab(tab) {
   if (bannersTabContent) bannersTabContent.classList.add("hidden");
   if (registrationsTabContent) registrationsTabContent.classList.add("hidden");
   if (usersTabContent) usersTabContent.classList.add("hidden");
-
+  if (editorialArticlesTabContent)
+    editorialArticlesTabContent.classList.add("hidden");
   const activeClass =
     "px-4 py-2 rounded-md text-sm font-semibold transition-all shadow-sm bg-slate-900 text-white";
   const inactiveClass =
@@ -143,24 +152,34 @@ function switchAdminTab(tab) {
   if (tabBannersBtn) tabBannersBtn.className = inactiveClass;
   if (tabRegistrationsBtn) tabRegistrationsBtn.className = inactiveClass;
   if (tabUsersBtn) tabUsersBtn.className = inactiveClass;
+  if (tabEditorialArticlesBtn)
+    tabEditorialArticlesBtn.className = inactiveClass;
 
   if (tab === "articles") {
     if (articlesTabContent) articlesTabContent.classList.remove("hidden");
     if (tabArticlesBtn) tabArticlesBtn.className = activeClass;
-    if (mainActionButtonText) mainActionButtonText.innerText = " Bài viết mới";
+    if (mainActionButtonText) mainActionButtonText.innerText = " Thêm tin tức";
+  } else if (tab === "editorialArticles") {
+    if (editorialArticlesTabContent)
+      editorialArticlesTabContent.classList.remove("hidden");
+    if (tabEditorialArticlesBtn)
+      tabEditorialArticlesBtn.className = activeClass;
+    if (mainActionButtonText) mainActionButtonText.innerText = "Thêm bài viết";
   } else if (tab === "banners") {
     if (bannersTabContent) bannersTabContent.classList.remove("hidden");
     if (tabBannersBtn) tabBannersBtn.className = activeClass;
-    if (mainActionButtonText) mainActionButtonText.innerText = " Thêm banner mới";
+    if (mainActionButtonText) mainActionButtonText.innerText = " Thêm banner";
     getBannersData();
   } else if (tab === "registrations") {
-    if (registrationsTabContent) registrationsTabContent.classList.remove("hidden");
+    if (registrationsTabContent)
+      registrationsTabContent.classList.remove("hidden");
     if (tabRegistrationsBtn) tabRegistrationsBtn.className = activeClass;
-    if (mainActionButtonText) mainActionButtonText.innerText = " Đăng ký học mới";
+    if (mainActionButtonText) mainActionButtonText.innerText = " Đăng ký học";
   } else if (tab === "users") {
     if (usersTabContent) usersTabContent.classList.remove("hidden");
     if (tabUsersBtn) tabUsersBtn.className = activeClass;
-    if (mainActionButtonText) mainActionButtonText.innerText = " Thêm tài khoản mới";
+    if (mainActionButtonText)
+      mainActionButtonText.innerText = " Thêm tài khoản";
   }
   renderAll();
 }
@@ -182,6 +201,8 @@ function handleMainActionClick() {
       return;
     }
     openCreateModal("users");
+  } else if (currentTab === "editorialArticles") {
+    openCreateModal("editorialArticles");
   }
 }
 
@@ -273,11 +294,14 @@ async function renderArticlesTable() {
       tbody.appendChild(tr);
     });
   } catch (error) {
+    if (error.message.includes("401") || error.message.includes("403")) {
+      showToast("Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.", "error");
+      window.location.href = "./auth.html";
+    }
     console.error("Error rendering articles table:", error);
   }
 }
-
-// Progress...
+// Done
 async function renderRegistrationsTable() {
   const tbody = document.getElementById("registrationsTableBody");
   tbody.innerHTML = "";
@@ -456,53 +480,11 @@ async function renderUsersTable() {
   }
 }
 
-function renderPublicArticles() {
-  const grid = document.getElementById("publicArticlesGrid");
-  grid.innerHTML = "";
-
-  const publishedArts = articles.filter((a) => a.published);
-
-  if (publishedArts.length === 0) {
-    grid.innerHTML = `<div class="col-span-full text-center py-10 text-slate-400">Chưa có bài viết xuất bản.</div>`;
-    return;
-  }
-
-  publishedArts.forEach((art) => {
-    const card = document.createElement("div");
-    card.className =
-      "bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col";
-    card.innerHTML = `
-                    <div class="h-48 bg-slate-200 overflow-hidden relative">
-                        <img src="${art.imageUrl || "https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=600&q=80"}" alt="${art.title}" class="w-full h-full object-cover">
-                        <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-sm text-gold-300 text-xs font-bold px-2.5 py-1 rounded">
-                            ${art.category}
-                        </span>
-                    </div>
-                    <div class="p-5 flex-grow flex flex-col justify-between space-y-3">
-                        <div>
-                            <div class="text-xs text-slate-400 font-medium mb-1">${art.date} — Bởi ${art.author}</div>
-                            <h3 class="font-serif-heading font-bold text-lg text-slate-900 line-clamp-2 hover:text-gold-accent cursor-pointer" onclick="viewArticleDetail('${art.id}')">
-                                ${art.title}
-                            </h3>
-                            <p class="text-slate-600 text-xs line-clamp-3 mt-2 leading-relaxed">
-                                ${art.summary || art.content}
-                            </p>
-                        </div>
-                        <button onclick="viewArticleDetail('${art.id}')" class="text-xs font-bold text-gold-accent hover:underline flex items-center gap-1 pt-2">
-                            Đọc tiếp <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                        </button>
-                    </div>
-                `;
-    grid.appendChild(card);
-  });
-}
-
 function renderAll() {
   renderArticlesTable();
   renderRegistrationsTable();
   renderUsersTable();
   getBannersData();
-  //renderPublicArticles();
 }
 
 function updateImagePreview(source) {
@@ -559,8 +541,9 @@ function openCreateModal(type) {
   if (type === "articles") {
     document.getElementById("articleForm").reset();
     document.getElementById("artId").value = "";
-    document.getElementById("artAuthor").value = getCurrentUser().fullName || "Admin";
-    document.getElementById("articleModalTitle").innerText = "Bài viết mới";
+    document.getElementById("artAuthor").value =
+      getCurrentUser().fullName || "Admin";
+    document.getElementById("articleModalTitle").innerText = "Tin tức mới";
     document.getElementById("artPublished").checked = true; // Default to published
     updateImagePreview("");
     switchArticleEditorTab("write");
@@ -568,16 +551,24 @@ function openCreateModal(type) {
   } else if (type === "registrations") {
     document.getElementById("registrationForm").reset();
     document.getElementById("regId").value = "";
-    document.getElementById("regModalTitle").innerText = "Thêm đăng ký học mới";
+    document.getElementById("regModalTitle").innerText = "Đăng ký học mới";
     document.getElementById("registrationModal").classList.remove("hidden");
     document.getElementById("regStatus").value = "experience"; // Default status
     document.getElementById("regStatus").disabled = false; // Default status
   } else if (type === "users") {
     document.getElementById("userForm").reset();
     document.getElementById("userId").value = "";
-    document.getElementById("userModalTitle").innerText =
-      "Thêm tài khoản & Phân quyền";
+    document.getElementById("userModalTitle").innerText = "Tài khoản mới";
     document.getElementById("userModal").classList.remove("hidden");
+  } else if (type === "editorialArticles") {
+    document.getElementById("editorialArticleForm").reset();
+    document.getElementById("editorialArtId").value = "";
+    document.getElementById("editorialArticleModalTitle").innerText =
+      "Bài viết mới";
+    document.getElementById("editorialArtPublished").checked = true; // Default to published
+    updateImagePreview("");
+    switchArticleEditorTab("write");
+    document.getElementById("editorialArticleModal").classList.remove("hidden");
   }
 }
 
@@ -638,11 +629,17 @@ function switchArticleEditorTab(tab) {
   const writeArea = document.getElementById("artWriteContainer");
   const previewArea = document.getElementById("artPreviewContainer");
   const toolbar = document.getElementById("artHtmlToolbar");
-  const content = document.getElementById("artContent") ? document.getElementById("artContent").value : "";
+  const content = document.getElementById("artContent")
+    ? document.getElementById("artContent").value
+    : "";
 
   if (tab === "preview") {
-    if (btnWrite) btnWrite.className = "px-3 py-1 rounded-md text-slate-500 hover:text-slate-800 transition";
-    if (btnPreview) btnPreview.className = "px-3 py-1 rounded-md bg-white text-slate-900 shadow-sm transition";
+    if (btnWrite)
+      btnWrite.className =
+        "px-3 py-1 rounded-md text-slate-500 hover:text-slate-800 transition";
+    if (btnPreview)
+      btnPreview.className =
+        "px-3 py-1 rounded-md bg-white text-slate-900 shadow-sm transition";
     if (writeArea) writeArea.classList.add("hidden");
     if (toolbar) toolbar.classList.add("opacity-50", "pointer-events-none");
     if (previewArea) {
@@ -650,8 +647,12 @@ function switchArticleEditorTab(tab) {
       previewArea.innerHTML = renderNewsHtmlContent(content);
     }
   } else {
-    if (btnWrite) btnWrite.className = "px-3 py-1 rounded-md bg-white text-slate-900 shadow-sm transition";
-    if (btnPreview) btnPreview.className = "px-3 py-1 rounded-md text-slate-500 hover:text-slate-800 transition";
+    if (btnWrite)
+      btnWrite.className =
+        "px-3 py-1 rounded-md bg-white text-slate-900 shadow-sm transition";
+    if (btnPreview)
+      btnPreview.className =
+        "px-3 py-1 rounded-md text-slate-500 hover:text-slate-800 transition";
     if (previewArea) previewArea.classList.add("hidden");
     if (toolbar) toolbar.classList.remove("opacity-50", "pointer-events-none");
     if (writeArea) writeArea.classList.remove("hidden");
@@ -666,13 +667,21 @@ function switchViewArticleTab(tab) {
   const sourceWrapper = document.getElementById("viewArtSourceWrapper");
 
   if (tab === "source") {
-    if (btnRendered) btnRendered.className = "px-3 py-1 rounded-md text-slate-500 hover:text-slate-800 transition";
-    if (btnSource) btnSource.className = "px-3 py-1 rounded-md bg-white text-slate-900 shadow-sm transition";
+    if (btnRendered)
+      btnRendered.className =
+        "px-3 py-1 rounded-md text-slate-500 hover:text-slate-800 transition";
+    if (btnSource)
+      btnSource.className =
+        "px-3 py-1 rounded-md bg-white text-slate-900 shadow-sm transition";
     if (bodyEl) bodyEl.classList.add("hidden");
     if (sourceWrapper) sourceWrapper.classList.remove("hidden");
   } else {
-    if (btnRendered) btnRendered.className = "px-3 py-1 rounded-md bg-white text-slate-900 shadow-sm transition";
-    if (btnSource) btnSource.className = "px-3 py-1 rounded-md text-slate-500 hover:text-slate-800 transition";
+    if (btnRendered)
+      btnRendered.className =
+        "px-3 py-1 rounded-md bg-white text-slate-900 shadow-sm transition";
+    if (btnSource)
+      btnSource.className =
+        "px-3 py-1 rounded-md text-slate-500 hover:text-slate-800 transition";
     if (sourceWrapper) sourceWrapper.classList.add("hidden");
     if (bodyEl) bodyEl.classList.remove("hidden");
   }
@@ -706,7 +715,8 @@ async function openEditArticleModal(slug, author) {
     updateImagePreview(newsDetail.postImage);
     document.getElementById("artSummary").value = newsDetail.postHeading || "";
     document.getElementById("artContent").value = newsDetail.postContent || "";
-    document.getElementById("artPublished").checked = newsDetail.status !== false;
+    document.getElementById("artPublished").checked =
+      newsDetail.status !== false;
 
     switchArticleEditorTab("write");
 
@@ -739,7 +749,10 @@ async function saveArticle(e) {
   const title = document.getElementById("artTitle").value.trim();
   const category =
     document.getElementById("artCategory").value.trim() || "Tài sản số";
-  const author = document.getElementById("artAuthor").value.trim() || user.fullName || "Admin";
+  const author =
+    document.getElementById("artAuthor").value.trim() ||
+    user.fullName ||
+    "Admin";
   const imageInput = document.getElementById("artImage");
   const imageFile = imageInput && imageInput.files ? imageInput.files[0] : null;
   const summary = document.getElementById("artSummary").value.trim();
@@ -796,7 +809,10 @@ async function saveArticle(e) {
       renderAll();
     } catch (error) {
       console.error("Error editing article:", error);
-      showToast(error.message || "Đã xảy ra lỗi khi chỉnh sửa bài viết!", "error");
+      showToast(
+        error.message || "Đã xảy ra lỗi khi chỉnh sửa bài viết!",
+        "error",
+      );
       return;
     }
   } else {
@@ -884,7 +900,8 @@ async function viewArticleDetail(slug) {
     // Reset về tab hiển thị giao diện HTML
     switchViewArticleTab("rendered");
 
-    document.getElementById("viewArtTitle").innerText = newsDetail.postTitle || "";
+    document.getElementById("viewArtTitle").innerText =
+      newsDetail.postTitle || "";
     document.getElementById("viewArtCategory").innerText =
       newsDetail.category || "Tài sản số";
 
@@ -910,7 +927,8 @@ async function viewArticleDetail(slug) {
     const displayDate =
       newsDetail.postDate ||
       (newsDetail.createdAt ? formatVietnameseDate(newsDetail.createdAt) : "");
-    document.getElementById("viewArtDate").innerText = `Ngày đăng: ${displayDate}`;
+    document.getElementById("viewArtDate").innerText =
+      `Ngày đăng: ${displayDate}`;
 
     const viewsEl = document.getElementById("viewArtViews");
     if (viewsEl) {
@@ -944,7 +962,8 @@ async function viewArticleDetail(slug) {
     // Xem mã nguồn HTML thô
     const rawSource = document.getElementById("viewArtRawSource");
     if (rawSource) {
-      rawSource.innerText = newsDetail.postContent || "<!-- Chưa có nội dung HTML -->";
+      rawSource.innerText =
+        newsDetail.postContent || "<!-- Chưa có nội dung HTML -->";
     }
 
     // Link nguồn gốc bài viết
@@ -975,7 +994,7 @@ async function viewArticleDetail(slug) {
         actionContainer.innerHTML = `
           ${viewOnWebBtn}
           <button
-            onclick="closeViewArticleModal(); openEditArticleModal('${newsDetail.slug}', '${newsDetail.postAuthor || ''}')"
+            onclick="closeViewArticleModal(); openEditArticleModal('${newsDetail.slug}', '${newsDetail.postAuthor || ""}')"
             class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold rounded-lg text-sm transition shadow-sm flex items-center gap-1.5"
           >
             <i class="fa-solid fa-pen-to-square text-xs"></i> Chỉnh sửa bài viết
@@ -1430,7 +1449,8 @@ function renderBannersTable() {
 
   bannersList.forEach((b) => {
     const tr = document.createElement("tr");
-    tr.className = "hover:bg-slate-50/80 transition-colors border-b border-slate-100";
+    tr.className =
+      "hover:bg-slate-50/80 transition-colors border-b border-slate-100";
 
     const statusBadge = b.isActive
       ? `<button onclick="toggleBannerActive('${b._id}')" title="Nhấp để ẩn khỏi trang chủ" class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-bold rounded-full transition cursor-pointer border border-emerald-200/60">
@@ -1459,15 +1479,15 @@ function renderBannersTable() {
         <div class="font-bold text-slate-900 text-sm leading-snug cursor-pointer hover:text-amber-600 transition truncate" onclick="openBannerModal('${b._id}')" title="${cleanTitle}">
           ${cleanTitle}
         </div>
-        ${cleanSubtitle ? `<div class="text-xs text-slate-500 truncate mt-0.5" title="${cleanSubtitle}">${cleanSubtitle}</div>` : ''}
+        ${cleanSubtitle ? `<div class="text-xs text-slate-500 truncate mt-0.5" title="${cleanSubtitle}">${cleanSubtitle}</div>` : ""}
       </td>
       <td class="py-4 px-6 text-xs text-slate-600">
         <div class="font-medium text-slate-800">${b.buttonText || "N/A"}</div>
         <div class="text-[11px] text-slate-400 truncate max-w-[160px] font-mono mt-0.5" title="${b.buttonLink}">${b.buttonLink || "#"}</div>
       </td>
       <td class="py-4 px-6">
-        <div class="font-script text-base leading-tight ${b.scriptColor || 'text-slate-800'} whitespace-pre-line select-none">
-          ${b.scriptText ? b.scriptText.replace(/\\n/g, ' ') : 'N/A'}
+        <div class="font-script text-base leading-tight ${b.scriptColor || "text-slate-800"} whitespace-pre-line select-none">
+          ${b.scriptText ? b.scriptText.replace(/\\n/g, " ") : "N/A"}
         </div>
       </td>
       <td class="py-4 px-6">
@@ -1501,7 +1521,7 @@ function openBannerModal(id = null) {
 
   if (id) {
     const banner = bannersList.find(
-      (b) => b._id === id || b.id === id || String(b._id) === String(id)
+      (b) => b._id === id || b.id === id || String(b._id) === String(id),
     );
     if (!banner) {
       console.warn("Banner not found in bannersList for ID:", id, bannersList);
@@ -1514,12 +1534,18 @@ function openBannerModal(id = null) {
     document.getElementById("bannerFormTitle").value = banner.title || "";
     document.getElementById("bannerFormSubtitle").value = banner.subtitle || "";
     document.getElementById("bannerFormImageUrl").value = banner.imageUrl || "";
-    document.getElementById("bannerFormButtonText").value = banner.buttonText || "";
-    document.getElementById("bannerFormButtonLink").value = banner.buttonLink || "";
-    document.getElementById("bannerFormScriptText").value = banner.scriptText || "";
-    document.getElementById("bannerFormScriptColor").value = banner.scriptColor || "text-slate-200/90";
-    document.getElementById("bannerFormOrder").value = banner.order !== undefined ? banner.order : 1;
-    document.getElementById("bannerFormIsActive").checked = banner.isActive !== false;
+    document.getElementById("bannerFormButtonText").value =
+      banner.buttonText || "";
+    document.getElementById("bannerFormButtonLink").value =
+      banner.buttonLink || "";
+    document.getElementById("bannerFormScriptText").value =
+      banner.scriptText || "";
+    document.getElementById("bannerFormScriptColor").value =
+      banner.scriptColor || "text-slate-200/90";
+    document.getElementById("bannerFormOrder").value =
+      banner.order !== undefined ? banner.order : 1;
+    document.getElementById("bannerFormIsActive").checked =
+      banner.isActive !== false;
 
     previewBannerImage(banner.imageUrl);
   } else {
@@ -1580,9 +1606,15 @@ async function handleBannerFormSubmit(e) {
   const title = document.getElementById("bannerFormTitle").value.trim();
   const subtitle = document.getElementById("bannerFormSubtitle").value.trim();
   const imageUrl = document.getElementById("bannerFormImageUrl").value.trim();
-  const buttonText = document.getElementById("bannerFormButtonText").value.trim();
-  const buttonLink = document.getElementById("bannerFormButtonLink").value.trim();
-  const scriptText = document.getElementById("bannerFormScriptText").value.trim();
+  const buttonText = document
+    .getElementById("bannerFormButtonText")
+    .value.trim();
+  const buttonLink = document
+    .getElementById("bannerFormButtonLink")
+    .value.trim();
+  const scriptText = document
+    .getElementById("bannerFormScriptText")
+    .value.trim();
   const scriptColor = document.getElementById("bannerFormScriptColor").value;
   const order = Number(document.getElementById("bannerFormOrder").value) || 0;
   const isActive = document.getElementById("bannerFormIsActive").checked;
@@ -1687,7 +1719,7 @@ function deleteBanner(id) {
         console.error("Error deleting banner:", err);
         showToast(err.message || "Lỗi khi xoá banner!", "error");
       }
-    }
+    },
   );
 }
 

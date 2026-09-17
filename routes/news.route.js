@@ -9,29 +9,24 @@ const {
   editNews,
   deleteNews,
   deleteAllNews,
+  getGlobalNews,
 } = require("../controllers/news.controller");
 
 const route = express.Router();
 
 route.get("/other-website-news", getNewsFromOtherWebsite);
+route.get("/global-news", getGlobalNews);
 
 route.get("/all-news", isAuthenticated, getAllNewsNoPagination);
 route.get("/all-published-news", getAllPublishedNewsNoPagination);
 
-route.get("/single-news/:slug", getSingleNews);
+route.get("/:slug", getSingleNews);
 
 route.post(
   "/update-news",
   isAuthenticated,
   authorizeRoles("admin", "deputy"),
   uploadNews,
-);
-
-route.put(
-  "/edit-news",
-  isAuthenticated,
-  authorizeRoles("admin", "deputy"),
-  editNews,
 );
 
 route.put(

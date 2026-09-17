@@ -7,11 +7,11 @@ const {
   loginUser,
   logoutUser,
   registrationUser,
+  registrationPublic,
   registrationCourse,
   updateAccessToken,
   updatePassword,
   resetPassword,
-  updateProfilePicture,
   UpdateUserInfo,
 } = require("../controllers/user.controller");
 const { authorizeRoles, isAuthenticated } = require("../middleware/auth");
@@ -19,6 +19,7 @@ const { authorizeRoles, isAuthenticated } = require("../middleware/auth");
 const router = express.Router();
 
 router.post("/registration-course", registrationCourse);
+router.post("/registration-public", registrationPublic);
 
 router.post(
   "/registration-user",

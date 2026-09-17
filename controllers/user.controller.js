@@ -96,6 +96,57 @@ exports.registrationCourse = CatchAsyncError(async (req, res, next) => {
   }
 });
 
+// Registration user by public form: generate and email a temporary password.
+exports.registrationPublic = CatchAsyncError(async (req, res, next) => {
+  try {
+    const { fullName, email, age, gender, address } = req.body;
+    if (!fullName || !email || !age || !gender || !address) {
+      return next(new ErrorHandler("Vui lòng điền đầy đủ thông tin", 400));
+    }
+
+    const isEmailExist = await userModel.findOne({ email });
+    if (isEmailExist) {
+      return next(new ErrorHandler("Email đã được đăng ký trước đó", 400));
+    }
+
+    const temporaryPassword = generateRandomString(10);
+    const user = {
+      fullName,
+      email,
+      password: temporaryPassword,
+      role: "guest",
+    };
+    const data = {
+      user: { name: fullName, email, password: temporaryPassword },
+    };
+
+    await sendMail({
+      email,
+      subject: "Thông tin tài khoản Capital Circle",
+      template: "accountInfor.ejs",
+      data,
+    });
+
+    await userModel.create({
+      fullName,
+      email,
+      password: temporaryPassword,
+      age,
+      gender,
+      address,
+      role: "guest",
+    });
+
+    await redis.del("guests");
+    res.status(201).json({
+      success: true,
+      message: `Mật khẩu tạm thời đã được gửi vào email ${email}.`,
+    });
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 400));
+  }
+});
+
 // Registration user by admin - done
 exports.registrationUser = CatchAsyncError(async (req, res, next) => {
   try {

@@ -3,9 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BlueInvest - Investment Club & Admin Dashboard</title>
+    <title>Capital Circle - Quản Trị</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/mammoth@1.8.0/mammoth.browser.min.js"></script>
     <!-- Font Awesome Icons -->
     <link
       rel="stylesheet"
@@ -62,6 +64,45 @@
       }
       .font-serif-heading {
         font-family: "Playfair Display", serif;
+      }
+      .admin-nav-item {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.7rem 0.75rem;
+        border-radius: 0.5rem;
+        color: #475569;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-align: left;
+        transition:
+          background-color 0.2s,
+          color 0.2s;
+      }
+      .admin-nav-item:hover {
+        background: #f1f5f9;
+        color: #0f172a;
+      }
+      .admin-nav-item.active {
+        background: #0f172a;
+        color: #fff;
+      }
+      #adminSidebar.collapsed {
+        width: 4.25rem;
+      }
+      #adminSidebar.collapsed .admin-nav-item {
+        justify-content: center;
+        padding-inline: 0.7rem;
+      }
+      #artComposeEditor:empty::before {
+        content: attr(data-placeholder);
+        color: #94a3b8;
+        pointer-events: none;
+      }
+      #artComposeEditor img {
+        max-width: 100%;
+        height: auto;
       }
       /* Custom modal backdrop blur and animation */
       .modal-backdrop {
@@ -128,9 +169,18 @@
             <span
               class="text-xl font-bold text-slate-500 px-2 flex items-center gap-1"
             >
-              <i class="fa-solid fa-user-gear text-slate-400"></i> <p id="currUser"></p>
+              <i class="fa-solid fa-user-gear text-slate-400"></i>
+              <p id="currUser"></p>
             </span>
           </div>
+          <button
+            id="changePasswordBtn"
+            type="button"
+            onclick="openChangePasswordModal()"
+            class="px-4 py-2 border border-slate-300 hover:bg-slate-50 text-slate-700 rounded text-sm font-medium transition-colors"
+          >
+            Đổi mật khẩu
+          </button>
           <button
             id="logoutBtn"
             onclick="handleLogout()"
@@ -180,15 +230,107 @@
       </div>
     </div>
 
+    <!-- CHANGE PASSWORD MODAL -->
+    <div
+      id="changePasswordModal"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden"
+    >
+      <div
+        class="bg-white rounded-2xl shadow-2xl w-full max-w-md border border-slate-100"
+      >
+        <div
+          class="px-6 py-5 border-b border-slate-100 flex items-center justify-between"
+        >
+          <h3 class="text-2xl font-serif-heading font-bold text-slate-900">
+            Đổi mật khẩu
+          </h3>
+          <button
+            type="button"
+            onclick="closeChangePasswordModal()"
+            class="text-slate-400 hover:text-slate-700 p-1 text-xl font-bold"
+            aria-label="Đóng"
+          >
+            &times;
+          </button>
+        </div>
+        <form
+          id="changePasswordForm"
+          onsubmit="changePassword(event)"
+          class="p-6 space-y-4"
+        >
+          <div>
+            <label
+              for="currentPassword"
+              class="block text-sm font-semibold text-slate-800 mb-1.5"
+            >
+              Mật khẩu hiện tại
+            </label>
+            <input
+              type="password"
+              id="currentPassword"
+              required
+              autocomplete="current-password"
+              class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-gold-accent/50 outline-none"
+            />
+          </div>
+          <div>
+            <label
+              for="newPassword"
+              class="block text-sm font-semibold text-slate-800 mb-1.5"
+            >
+              Mật khẩu mới
+            </label>
+            <input
+              type="password"
+              id="newPassword"
+              required
+              minlength="6"
+              autocomplete="new-password"
+              class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-gold-accent/50 outline-none"
+            />
+          </div>
+          <div>
+            <label
+              for="confirmNewPassword"
+              class="block text-sm font-semibold text-slate-800 mb-1.5"
+            >
+              Xác nhận mật khẩu mới
+            </label>
+            <input
+              type="password"
+              id="confirmNewPassword"
+              required
+              minlength="6"
+              autocomplete="new-password"
+              class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-gold-accent/50 outline-none"
+            />
+          </div>
+          <div class="flex justify-end gap-3 pt-2">
+            <button
+              type="button"
+              onclick="closeChangePasswordModal()"
+              class="px-5 py-2 border border-slate-300 text-slate-700 font-semibold rounded-lg text-sm hover:bg-slate-50"
+            >
+              Huỷ
+            </button>
+            <button
+              id="changePasswordSubmitBtn"
+              type="submit"
+              class="px-6 py-2 bg-gold-accent hover:bg-gold-dark text-white font-semibold rounded-lg text-sm shadow-md"
+            >
+              Cập nhật
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <!-- MAIN CONTENT CONTAINER -->
     <main class="flex-grow">
       <!-- ==================================================================== -->
       <!-- SECTION 1: ADMIN DASHBOARD VIEW -->
       <!-- ==================================================================== -->
-      <section
-        id="adminView"
-        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10"
-      >
+      <section id="adminView" class="mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <!-- Admin Title Header -->
         <div
           class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4"
@@ -213,44 +355,8 @@
             </h2>
           </div>
 
-          <!-- Navigation Tabs & Primary Action Button -->
+          <!-- Primary Action Button -->
           <div class="flex flex-wrap items-center gap-3">
-            <!-- Tab Switching Pills -->
-            <div id="tabSwitchingDashboard"
-              class="bg-slate-200 p-1 rounded-lg flex items-center hidden space-x-1"
-            >
-              <button
-                id="tabArticlesBtn"
-                onclick="switchAdminTab('articles')"
-                class="px-4 py-2 rounded-md text-sm font-semibold transition-all shadow-sm bg-slate-900 text-white"
-              >
-                Bài viết
-              </button>
-              <button
-                id="tabBannersBtn"
-                onclick="switchAdminTab('banners')"
-                class="px-4 py-2 rounded-md text-sm font-semibold text-slate-700 hover:text-slate-900 transition-all flex items-center gap-1.5"
-              >
-                <i class="fa-solid fa-images text-xs"></i>
-                Banner Slideshow
-              </button>
-              <button
-                id="tabRegistrationsBtn"
-                onclick="switchAdminTab('registrations')"
-                class="px-4 py-2 rounded-md text-sm font-semibold text-slate-700 hover:text-slate-900 transition-all"
-              >
-                Đăng ký học
-              </button>
-              <button
-                id="tabUsersBtn"
-                onclick="switchAdminTab('users')"
-                class="px-4 py-2 rounded-md text-sm font-semibold text-slate-700 hover:text-slate-900 transition-all flex items-center gap-1.5 hidden"
-              >
-                <i class="fa-solid fa-users-gear text-xs"></i>
-                Tài khoản & Phân quyền
-              </button>
-            </div>
-
             <!-- Dynamic Action Button (+ Bài viết mới / + Đăng ký học / + Tài khoản mới) -->
             <button
               id="mainActionButton"
@@ -263,108 +369,183 @@
           </div>
         </div>
 
-        <!-- Quick Stats Bar -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
-          <div
-            class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between"
+        <div class="flex items-start gap-6">
+          <aside
+            id="adminSidebar"
+            class="w-64 shrink-0 rounded-xl border border-slate-200 bg-white p-3 shadow-sm transition-all duration-200"
           >
-            <div>
-              <p class="text-xs text-slate-500 font-medium">Tổng số bài viết</p>
-              <h4
-                id="statTotalArticles"
-                class="text-2xl font-bold text-slate-900 mt-1"
+            <div class="mb-3 flex items-center justify-between px-2">
+              <span
+                class="sidebar-label text-xs font-bold uppercase tracking-wider text-slate-400"
+                >Điều hướng</span
               >
-                0
-              </h4>
-            </div>
-            <div
-              class="w-12 h-12 bg-amber-50 rounded-lg flex items-center justify-center text-gold-accent font-bold text-lg"
-            >
-              <i class="fa-regular fa-newspaper"></i>
-            </div>
-          </div>
-
-          <div
-            class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between"
-          >
-            <div>
-              <p class="text-xs text-slate-500 font-medium">Banner Slideshow</p>
-              <h4
-                id="statTotalBanners"
-                class="text-2xl font-bold text-slate-900 mt-1"
+              <button
+                type="button"
+                onclick="toggleAdminSidebar()"
+                class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-900"
+                title="Thu gọn menu"
+                aria-label="Thu gọn menu"
               >
-                4
-              </h4>
+                <i class="fa-solid fa-bars"></i>
+              </button>
             </div>
-            <div
-              class="w-12 h-12 bg-amber-50 rounded-lg flex items-center justify-center text-amber-500 font-bold text-lg"
-            >
-              <i class="fa-solid fa-images"></i>
-            </div>
-          </div>
-
-          <div
-            class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between"
-          >
-            <div>
-              <p class="text-xs text-slate-500 font-medium">Đăng ký học mới</p>
-              <h4
-                id="statTotalRegistrations"
-                class="text-2xl font-bold text-slate-900 mt-1"
+            <nav id="tabSwitchingDashboard" class="space-y-1">
+              <button
+                id="tabArticlesBtn"
+                onclick="switchAdminTab('articles')"
+                class="admin-nav-item active"
               >
-                0
-              </h4>
-            </div>
-            <div
-              class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600 font-bold text-lg"
-            >
-              <i class="fa-solid fa-user-graduate"></i>
-            </div>
-          </div>
-
-          <div
-            class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between"
-          >
-            <div>
-              <p class="text-xs text-slate-500 font-medium">
-                Thành viên hệ thống
-              </p>
-              <h4
-                id="statTotalUsers"
-                class="text-2xl font-bold text-slate-900 mt-1"
+                <i class="fa-regular fa-newspaper"></i
+                ><span class="sidebar-label">Tin tức</span>
+              </button>
+              <button
+                id="tabEditorialArticlesBtn"
+                onclick="switchAdminTab('editorialArticles')"
+                class="admin-nav-item"
               >
-                0
-              </h4>
-            </div>
-            <div
-              class="w-12 h-12 bg-purple-50 rounded-lg flex items-center justify-center text-purple-600 font-bold text-lg"
-            >
-              <i class="fa-solid fa-users-viewfinder"></i>
-            </div>
-          </div>
-
-          <div
-            class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between"
-          >
-            <div>
-              <p class="text-xs text-slate-500 font-medium">Quyền hiện tại</p>
-              <h4
-                id="statCurrentRoleName"
-                class="text-base font-bold text-slate-900 mt-1 truncate max-w-[140px]"
+                <i class="fa-solid fa-pen-nib"></i
+                ><span class="sidebar-label">Quản trị bài viết</span>
+              </button>
+              <button
+                id="tabBannersBtn"
+                onclick="switchAdminTab('banners')"
+                class="admin-nav-item"
               >
-                Quản lý
-              </h4>
-            </div>
-            <div
-              class="w-12 h-12 bg-emerald-50 rounded-lg flex items-center justify-center text-emerald-600 font-bold text-lg"
-            >
-              <i class="fa-solid fa-shield-halved"></i>
-            </div>
-          </div>
-        </div>
+                <i class="fa-solid fa-images"></i
+                ><span class="sidebar-label">Banner Slideshow</span>
+              </button>
+              <button
+                id="tabRegistrationsBtn"
+                onclick="switchAdminTab('registrations')"
+                class="admin-nav-item"
+              >
+                <i class="fa-solid fa-user-graduate"></i
+                ><span class="sidebar-label">Đăng ký học</span>
+              </button>
+              <button
+                id="tabUsersBtn"
+                onclick="switchAdminTab('users')"
+                class="admin-nav-item hidden"
+              >
+                <i class="fa-solid fa-users-gear"></i
+                ><span class="sidebar-label">Tài khoản & Phân quyền</span>
+              </button>
+            </nav>
+          </aside>
 
-        <!-- Search & Filters Container -->
-        <!-- <div
+          <div class="min-w-0 flex-1">
+            <!-- Quick Stats Bar -->
+            <div
+              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8"
+            >
+              <div
+                class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between"
+              >
+                <div>
+                  <p class="text-xs text-slate-500 font-medium">
+                    Tổng số bài viết
+                  </p>
+                  <h4
+                    id="statTotalArticles"
+                    class="text-2xl font-bold text-slate-900 mt-1"
+                  >
+                    0
+                  </h4>
+                </div>
+                <div
+                  class="w-12 h-12 bg-amber-50 rounded-lg flex items-center justify-center text-gold-accent font-bold text-lg"
+                >
+                  <i class="fa-regular fa-newspaper"></i>
+                </div>
+              </div>
+
+              <div
+                class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between"
+              >
+                <div>
+                  <p class="text-xs text-slate-500 font-medium">
+                    Banner Slideshow
+                  </p>
+                  <h4
+                    id="statTotalBanners"
+                    class="text-2xl font-bold text-slate-900 mt-1"
+                  >
+                    4
+                  </h4>
+                </div>
+                <div
+                  class="w-12 h-12 bg-amber-50 rounded-lg flex items-center justify-center text-amber-500 font-bold text-lg"
+                >
+                  <i class="fa-solid fa-images"></i>
+                </div>
+              </div>
+
+              <div
+                class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between"
+              >
+                <div>
+                  <p class="text-xs text-slate-500 font-medium">
+                    Đăng ký học mới
+                  </p>
+                  <h4
+                    id="statTotalRegistrations"
+                    class="text-2xl font-bold text-slate-900 mt-1"
+                  >
+                    0
+                  </h4>
+                </div>
+                <div
+                  class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600 font-bold text-lg"
+                >
+                  <i class="fa-solid fa-user-graduate"></i>
+                </div>
+              </div>
+
+              <div
+                class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between"
+              >
+                <div>
+                  <p class="text-xs text-slate-500 font-medium">
+                    Thành viên hệ thống
+                  </p>
+                  <h4
+                    id="statTotalUsers"
+                    class="text-2xl font-bold text-slate-900 mt-1"
+                  >
+                    0
+                  </h4>
+                </div>
+                <div
+                  class="w-12 h-12 bg-purple-50 rounded-lg flex items-center justify-center text-purple-600 font-bold text-lg"
+                >
+                  <i class="fa-solid fa-users-viewfinder"></i>
+                </div>
+              </div>
+
+              <div
+                class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between"
+              >
+                <div>
+                  <p class="text-xs text-slate-500 font-medium">
+                    Quyền hiện tại
+                  </p>
+                  <h4
+                    id="statCurrentRoleName"
+                    class="text-base font-bold text-slate-900 mt-1 truncate max-w-[140px]"
+                  >
+                    Quản lý
+                  </h4>
+                </div>
+                <div
+                  class="w-12 h-12 bg-emerald-50 rounded-lg flex items-center justify-center text-emerald-600 font-bold text-lg"
+                >
+                  <i class="fa-solid fa-shield-halved"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Search & Filters Container -->
+            <!-- <div
           class="bg-white p-4 rounded-t-xl border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
           <div class="relative w-full sm:w-80">
@@ -397,192 +578,247 @@
           </div>
         </div> -->
 
-        <!-- TAB CONTENT 1: BÀI VIẾT TABLE -->
-        <div
-          id="articlesTabContent"
-          class="bg-white border-x border-b border-slate-200 rounded-b-xl shadow-sm overflow-hidden"
-        >
-          <div
-            class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50"
-          >
-            <h3 class="font-serif-heading font-bold text-lg text-slate-900">
-              Danh sách bài viết
-            </h3>
-            <span
-              id="articleCountBadge"
-              class="text-xs font-semibold text-slate-500 bg-slate-200 px-2.5 py-1 rounded-full"
-              >0 bài viết</span
+            <!-- TAB CONTENT 1: BÀI VIẾT TABLE -->
+            <div
+              id="articlesTabContent"
+              class="bg-white border-x border-b border-slate-200 rounded-b-xl shadow-sm overflow-hidden"
             >
-          </div>
-
-          <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse">
-              <thead>
-                <tr
-                  class="bg-slate-50 border-b border-slate-200 text-xs font-semibold uppercase tracking-wider text-slate-500"
-                >
-                  <th class="py-3.5 px-6">Tiêu đề</th>
-                  <th class="py-3.5 px-6">Danh mục</th>
-                  <th class="py-3.5 px-6">Tác giả</th>
-                  <th class="py-3.5 px-6">Ngày</th>
-                  <th class="py-3.5 px-6">Trạng thái</th>
-                  <th class="py-3.5 px-6 text-right">Thao tác</th>
-                </tr>
-              </thead>
-              <tbody
-                id="articlesTableBody"
-                class="divide-y divide-slate-100 text-sm text-slate-700"
+              <div
+                class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50"
               >
-                <!-- Injected dynamically via JS -->
-              </tbody>
-            </table>
-          </div>
-        </div>
+                <h3 class="font-serif-heading font-bold text-lg text-slate-900">
+                  Danh sách bài viết
+                </h3>
+                <span
+                  id="articleCountBadge"
+                  class="text-xs font-semibold text-slate-500 bg-slate-200 px-2.5 py-1 rounded-full"
+                  >0 bài viết</span
+                >
+              </div>
 
-        <!-- TAB CONTENT 2: ĐĂNG KÝ HỌC TABLE -->
-        <div
-          id="registrationsTabContent"
-          class="bg-white border-x border-b border-slate-200 rounded-b-xl shadow-sm overflow-hidden hidden"
-        >
-          <div
-            class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50"
-          >
-            <div class="flex items-center space-x-2">
-              <h3 class="font-serif-heading font-bold text-lg text-slate-900">
-                Thông tin đăng ký học
-              </h3>
+              <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                  <thead>
+                    <tr
+                      class="bg-slate-50 border-b border-slate-200 text-xs font-semibold uppercase tracking-wider text-slate-500"
+                    >
+                      <th class="py-3.5 px-6">Tiêu đề</th>
+                      <th class="py-3.5 px-6">Danh mục</th>
+                      <th class="py-3.5 px-6">Tác giả</th>
+                      <th class="py-3.5 px-6">Ngày</th>
+                      <th class="py-3.5 px-6">Trạng thái</th>
+                      <th class="py-3.5 px-6 text-right">Thao tác</th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    id="articlesTableBody"
+                    class="divide-y divide-slate-100 text-sm text-slate-700"
+                  >
+                    <!-- Injected dynamically via JS -->
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <span
-              id="regCountBadge"
-              class="text-xs font-semibold text-slate-500 bg-slate-200 px-2.5 py-1 rounded-full"
-              >0 học viên</span
+
+            <!-- TAB CONTENT: QUẢN TRỊ BÀI VIẾT -->
+            <div
+              id="editorialArticlesTabContent"
+              class="hidden overflow-hidden rounded-b-xl border-x border-b border-slate-200 bg-white shadow-sm"
             >
-          </div>
-
-          <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse">
-              <thead>
-                <tr
-                  class="bg-slate-50 border-b border-slate-200 text-xs font-semibold uppercase tracking-wider text-slate-500"
-                >
-                  <th class="py-3.5 px-6">Họ và tên</th>
-                  <th class="py-3.5 px-6">Email</th>
-                  <th class="py-3.5 px-6">Số điện thoại</th>
-                  <th class="py-3.5 px-6">Mã đăng ký</th>
-                  <th class="py-3.5 px-6">Ngày đăng ký</th>
-                  <th class="py-3.5 px-6">Trạng thái</th>
-                  <th class="py-3.5 px-6 text-right">Thao tác</th>
-                </tr>
-              </thead>
-              <tbody
-                id="registrationsTableBody"
-                class="divide-y divide-slate-100 text-sm text-slate-700"
+              <div
+                class="flex items-center justify-between border-b border-slate-100 bg-slate-50/50 px-6 py-4"
               >
-                <!-- Injected dynamically via JS -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- TAB CONTENT 3: TÀI KHOẢN & PHÂN QUYỀN TABLE -->
-        <div
-          id="usersTabContent"
-          class="bg-white border-x border-b border-slate-200 rounded-b-xl shadow-sm overflow-hidden hidden"
-        >
-          <div
-            class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50"
-          >
-            <div>
-              <h3 class="font-serif-heading font-bold text-lg text-slate-900">
-                Theo dõi tài khoản & Phân quyền
-              </h3>
+                <div>
+                  <h3
+                    class="font-serif-heading text-lg font-bold text-slate-900"
+                  >
+                    Quản trị bài viết
+                  </h3>
+                  <p class="mt-0.5 text-xs text-slate-500">
+                    Quản lý nội dung hiển thị tại trang Bài viết.
+                  </p>
+                </div>
+                <span
+                  id="editorialArticleCountBadge"
+                  class="rounded-full bg-slate-200 px-2.5 py-1 text-xs font-semibold text-slate-500"
+                  >0 bài viết</span
+                >
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full border-collapse text-left">
+                  <thead>
+                    <tr
+                      class="border-b border-slate-200 bg-slate-50 text-xs font-semibold uppercase tracking-wider text-slate-500"
+                    >
+                      <th class="px-6 py-3.5">Tiêu đề</th>
+                      <th class="px-6 py-3.5">Danh mục</th>
+                      <th class="px-6 py-3.5">Tác giả</th>
+                      <th class="px-6 py-3.5">Lượt xem</th>
+                      <th class="px-6 py-3.5">Trạng thái</th>
+                      <th class="px-6 py-3.5 text-right">Thao tác</th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    id="editorialArticlesTableBody"
+                    class="divide-y divide-slate-100 text-sm text-slate-700"
+                  ></tbody>
+                </table>
+              </div>
             </div>
-            <span
-              id="userCountBadge"
-              class="text-xs font-semibold text-slate-500 bg-slate-200 px-2.5 py-1 rounded-full"
-              >0 tài khoản</span
+
+            <!-- TAB CONTENT 2: ĐĂNG KÝ HỌC TABLE -->
+            <div
+              id="registrationsTabContent"
+              class="bg-white border-x border-b border-slate-200 rounded-b-xl shadow-sm overflow-hidden hidden"
             >
-          </div>
-
-          <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse">
-              <thead>
-                <tr
-                  class="bg-slate-50 border-b border-slate-200 text-xs font-semibold uppercase tracking-wider text-slate-500"
+              <div
+                class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50"
+              >
+                <div class="flex items-center space-x-2">
+                  <h3
+                    class="font-serif-heading font-bold text-lg text-slate-900"
+                  >
+                    Thông tin đăng ký học
+                  </h3>
+                </div>
+                <span
+                  id="regCountBadge"
+                  class="text-xs font-semibold text-slate-500 bg-slate-200 px-2.5 py-1 rounded-full"
+                  >0 học viên</span
                 >
-                  <th class="py-3.5 px-6">Thành viên</th>
-                  <th class="py-3.5 px-6">Email</th>
-                  <th class="py-3.5 px-6">Vai trò / Phân quyền</th>
-                  <th class="py-3.5 px-6">Mô tả quyền hạn</th>
-                  <th class="py-3.5 px-6">Trạng thái</th>
-                  <th class="py-3.5 px-6 text-right hidden">Thao tác</th>
-                </tr>
-              </thead>
-              <tbody
-                id="usersTableBody"
-                class="divide-y divide-slate-100 text-sm text-slate-700"
-              >
-                <!-- Injected dynamically via JS -->
-              </tbody>
-            </table>
-          </div>
-        </div>
+              </div>
 
-        <!-- TAB CONTENT 4: QUẢN LÝ BANNER SLIDESHOW -->
-        <div
-          id="bannersTabContent"
-          class="bg-white border-x border-b border-slate-200 rounded-b-xl shadow-sm overflow-hidden hidden"
-        >
-          <div
-            class="px-6 py-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50/50"
-          >
-            <div>
-              <h3 class="font-serif-heading font-bold text-lg text-slate-900 flex items-center gap-2">
-                <i class="fa-solid fa-images text-amber-500"></i>
-                Danh sách Banner Slideshow Trang Chủ
-              </h3>
-              <p class="text-xs text-slate-500 mt-0.5">
-                Quản lý các slide ảnh nền, tiêu đề, nút bấm và thứ tự trình chiếu trên trang chủ.
-              </p>
+              <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                  <thead>
+                    <tr
+                      class="bg-slate-50 border-b border-slate-200 text-xs font-semibold uppercase tracking-wider text-slate-500"
+                    >
+                      <th class="py-3.5 px-6">Họ và tên</th>
+                      <th class="py-3.5 px-6">Email</th>
+                      <th class="py-3.5 px-6">Số điện thoại</th>
+                      <th class="py-3.5 px-6">Mã đăng ký</th>
+                      <th class="py-3.5 px-6">Ngày đăng ký</th>
+                      <th class="py-3.5 px-6">Trạng thái</th>
+                      <th class="py-3.5 px-6 text-right">Thao tác</th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    id="registrationsTableBody"
+                    class="divide-y divide-slate-100 text-sm text-slate-700"
+                  >
+                    <!-- Injected dynamically via JS -->
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <div class="flex items-center gap-2.5">
-              <span
-                id="bannerCountBadge"
-                class="text-xs font-semibold text-slate-500 bg-slate-200 px-2.5 py-1 rounded-full"
-                >0 banner</span
-              >
-              <button
-                onclick="openBannerModal()"
-                class="px-3.5 py-1.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-lg text-xs transition shadow-sm flex items-center gap-1.5"
-              >
-                <i class="fa-solid fa-plus"></i> Thêm banner mới
-              </button>
-            </div>
-          </div>
 
-          <!-- Banners Table -->
-          <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse">
-              <thead>
-                <tr
-                  class="bg-slate-50 border-b border-slate-200 text-xs font-semibold uppercase tracking-wider text-slate-500"
+            <!-- TAB CONTENT 3: TÀI KHOẢN & PHÂN QUYỀN TABLE -->
+            <div
+              id="usersTabContent"
+              class="bg-white border-x border-b border-slate-200 rounded-b-xl shadow-sm overflow-hidden hidden"
+            >
+              <div
+                class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50"
+              >
+                <div>
+                  <h3
+                    class="font-serif-heading font-bold text-lg text-slate-900"
+                  >
+                    Theo dõi tài khoản & Phân quyền
+                  </h3>
+                </div>
+                <span
+                  id="userCountBadge"
+                  class="text-xs font-semibold text-slate-500 bg-slate-200 px-2.5 py-1 rounded-full"
+                  >0 tài khoản</span
                 >
-                  <th class="py-3.5 px-6">Thứ tự</th>
-                  <th class="py-3.5 px-6">Hình ảnh</th>
-                  <th class="py-3.5 px-6">Tiêu đề & Lời dẫn</th>
-                  <th class="py-3.5 px-6">Nút CTA & Liên kết</th>
-                  <th class="py-3.5 px-6">Chữ nghệ thuật</th>
-                  <th class="py-3.5 px-6">Trạng thái</th>
-                  <th class="py-3.5 px-6 text-right">Thao tác</th>
-                </tr>
-              </thead>
-              <tbody
-                id="bannersTableBody"
-                class="divide-y divide-slate-100 text-sm text-slate-700"
+              </div>
+
+              <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                  <thead>
+                    <tr
+                      class="bg-slate-50 border-b border-slate-200 text-xs font-semibold uppercase tracking-wider text-slate-500"
+                    >
+                      <th class="py-3.5 px-6">Thành viên</th>
+                      <th class="py-3.5 px-6">Email</th>
+                      <th class="py-3.5 px-6">Vai trò / Phân quyền</th>
+                      <th class="py-3.5 px-6">Mô tả quyền hạn</th>
+                      <th class="py-3.5 px-6">Trạng thái</th>
+                      <th class="py-3.5 px-6 text-right hidden">Thao tác</th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    id="usersTableBody"
+                    class="divide-y divide-slate-100 text-sm text-slate-700"
+                  >
+                    <!-- Injected dynamically via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- TAB CONTENT 4: QUẢN LÝ BANNER SLIDESHOW -->
+            <div
+              id="bannersTabContent"
+              class="bg-white border-x border-b border-slate-200 rounded-b-xl shadow-sm overflow-hidden hidden"
+            >
+              <div
+                class="px-6 py-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50/50"
               >
-                <!-- Injected dynamically via JS -->
-              </tbody>
-            </table>
+                <div>
+                  <h3
+                    class="font-serif-heading font-bold text-lg text-slate-900 flex items-center gap-2"
+                  >
+                    <i class="fa-solid fa-images text-amber-500"></i>
+                    Danh sách Banner Slideshow Trang Chủ
+                  </h3>
+                  <p class="text-xs text-slate-500 mt-0.5">
+                    Quản lý các slide ảnh nền, tiêu đề, nút bấm và thứ tự trình
+                    chiếu trên trang chủ.
+                  </p>
+                </div>
+                <div class="flex items-center gap-2.5">
+                  <span
+                    id="bannerCountBadge"
+                    class="text-xs font-semibold text-slate-500 bg-slate-200 px-2.5 py-1 rounded-full"
+                    >0 banner</span
+                  >
+                  <button
+                    onclick="openBannerModal()"
+                    class="px-3.5 py-1.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-lg text-xs transition shadow-sm flex items-center gap-1.5"
+                  >
+                    <i class="fa-solid fa-plus"></i> Thêm banner mới
+                  </button>
+                </div>
+              </div>
+
+              <!-- Banners Table -->
+              <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                  <thead>
+                    <tr
+                      class="bg-slate-50 border-b border-slate-200 text-xs font-semibold uppercase tracking-wider text-slate-500"
+                    >
+                      <th class="py-3.5 px-6">Thứ tự</th>
+                      <th class="py-3.5 px-6">Hình ảnh</th>
+                      <th class="py-3.5 px-6">Tiêu đề & Lời dẫn</th>
+                      <th class="py-3.5 px-6">Nút CTA & Liên kết</th>
+                      <th class="py-3.5 px-6">Chữ nghệ thuật</th>
+                      <th class="py-3.5 px-6">Trạng thái</th>
+                      <th class="py-3.5 px-6 text-right">Thao tác</th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    id="bannersTableBody"
+                    class="divide-y divide-slate-100 text-sm text-slate-700"
+                  >
+                    <!-- Injected dynamically via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -671,12 +907,15 @@
               <label class="block text-sm font-semibold text-slate-800 mb-1.5"
                 >Hình ảnh (URL)</label
               >
-                <!-- Thumbnail vuông bo góc -->
-              <div id="previewContainer" class="hidden mb-2 relative w-24 h-24 rounded-lg border border-slate-200 overflow-hidden shadow-sm">
-                <img 
-                  id="artImgPreview" 
-                  src="" 
-                  alt="Preview" 
+              <!-- Thumbnail vuông bo góc -->
+              <div
+                id="previewContainer"
+                class="hidden mb-2 relative w-24 h-24 rounded-lg border border-slate-200 overflow-hidden shadow-sm"
+              >
+                <img
+                  id="artImgPreview"
+                  src=""
+                  alt="Preview"
                   class="w-full h-full object-cover"
                 />
               </div>
@@ -684,7 +923,7 @@
                 type="file"
                 accept="image/*"
                 id="artImage"
-		            onchange="updateImagePreview(event)"
+                onchange="updateImagePreview(event)"
                 class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-gold-accent/50 focus:border-gold-accent outline-none"
               />
             </div>
@@ -707,14 +946,28 @@
                   >Nội dung bài viết (HTML) *</label
                 >
                 <!-- Editor Mode Tabs -->
-                <div class="flex items-center bg-slate-100 p-0.5 rounded-lg text-xs font-semibold text-slate-600">
+                <div
+                  class="flex items-center bg-slate-100 p-0.5 rounded-lg text-xs font-semibold text-slate-600"
+                >
+                  <button
+                    type="button"
+                    id="tabEditorCompose"
+                    onclick="switchArticleEditorTab('compose')"
+                    class="px-3 py-1 rounded-md text-slate-500 hover:text-slate-800 transition"
+                  >
+                    <i
+                      class="fa-solid fa-pen-to-square me-1 text-emerald-600"
+                    ></i>
+                    Soạn nội dung
+                  </button>
                   <button
                     type="button"
                     id="tabEditorWrite"
                     onclick="switchArticleEditorTab('write')"
                     class="px-3 py-1 rounded-md bg-white text-slate-900 shadow-sm transition"
                   >
-                    <i class="fa-solid fa-code me-1 text-amber-500"></i> Soạn HTML
+                    <i class="fa-solid fa-code me-1 text-amber-500"></i> Soạn
+                    HTML
                   </button>
                   <button
                     type="button"
@@ -722,33 +975,135 @@
                     onclick="switchArticleEditorTab('preview')"
                     class="px-3 py-1 rounded-md text-slate-500 hover:text-slate-800 transition"
                   >
-                    <i class="fa-regular fa-eye me-1 text-blue-500"></i> Xem trước
+                    <i class="fa-regular fa-eye me-1 text-blue-500"></i> Xem
+                    trước
                   </button>
                 </div>
               </div>
 
               <!-- HTML Format Toolbar -->
-              <div id="artHtmlToolbar" class="flex flex-wrap items-center gap-1 p-2 bg-slate-50 border border-b-0 border-slate-300 rounded-t-lg text-xs text-slate-700">
-                <button type="button" onclick="insertHtmlTag('<b>', '</b>', 'văn bản in đậm')" title="In đậm" class="px-2 py-1 hover:bg-slate-200 rounded font-bold transition">B</button>
-                <button type="button" onclick="insertHtmlTag('<i>', '</i>', 'văn bản in nghiêng')" title="In nghiêng" class="px-2 py-1 hover:bg-slate-200 rounded italic font-serif transition">I</button>
-                <button type="button" onclick="insertHtmlTag('<h2>', '</h2>', 'Tiêu đề lớn')" title="Tiêu đề H2" class="px-2 py-1 hover:bg-slate-200 rounded font-bold transition">H2</button>
-                <button type="button" onclick="insertHtmlTag('<h3>', '</h3>', 'Tiêu đề vừa')" title="Tiêu đề H3" class="px-2 py-1 hover:bg-slate-200 rounded font-bold transition">H3</button>
-                <button type="button" onclick="insertHtmlTag('<p>', '</p>', 'Nội dung đoạn văn')" title="Đoạn văn &lt;p&gt;" class="px-2 py-1 hover:bg-slate-200 rounded font-serif font-bold transition">&para;</button>
+              <div
+                id="artHtmlToolbar"
+                class="flex flex-wrap items-center gap-1 p-2 bg-slate-50 border border-b-0 border-slate-300 rounded-t-lg text-xs text-slate-700"
+              >
+                <button
+                  type="button"
+                  onclick="insertHtmlTag('<b>', '</b>', 'văn bản in đậm')"
+                  title="In đậm"
+                  class="px-2 py-1 hover:bg-slate-200 rounded font-bold transition"
+                >
+                  B
+                </button>
+                <button
+                  type="button"
+                  onclick="insertHtmlTag('<i>', '</i>', 'văn bản in nghiêng')"
+                  title="In nghiêng"
+                  class="px-2 py-1 hover:bg-slate-200 rounded italic font-serif transition"
+                >
+                  I
+                </button>
+                <button
+                  type="button"
+                  onclick="insertHtmlTag('<h2>', '</h2>', 'Tiêu đề lớn')"
+                  title="Tiêu đề H2"
+                  class="px-2 py-1 hover:bg-slate-200 rounded font-bold transition"
+                >
+                  H2
+                </button>
+                <button
+                  type="button"
+                  onclick="insertHtmlTag('<h3>', '</h3>', 'Tiêu đề vừa')"
+                  title="Tiêu đề H3"
+                  class="px-2 py-1 hover:bg-slate-200 rounded font-bold transition"
+                >
+                  H3
+                </button>
+                <button
+                  type="button"
+                  onclick="insertHtmlTag('<p>', '</p>', 'Nội dung đoạn văn')"
+                  title="Đoạn văn &lt;p&gt;"
+                  class="px-2 py-1 hover:bg-slate-200 rounded font-serif font-bold transition"
+                >
+                  &para;
+                </button>
                 <div class="h-4 w-px bg-slate-300 mx-1"></div>
-                <button type="button" onclick="insertLinkPrompt()" title="Chèn liên kết" class="px-2 py-1 hover:bg-slate-200 rounded transition"><i class="fa-solid fa-link"></i> Link</button>
-                <button type="button" onclick="insertImagePrompt()" title="Chèn ảnh HTML" class="px-2 py-1 hover:bg-slate-200 rounded transition"><i class="fa-regular fa-image"></i> Ảnh</button>
-                <button type="button" onclick="insertHtmlTag('<ul>\n  <li>', '</li>\n  <li>Mục 2</li>\n</ul>', 'Mục 1')" title="Danh sách" class="px-2 py-1 hover:bg-slate-200 rounded transition"><i class="fa-solid fa-list-ul"></i></button>
-                <button type="button" onclick="insertHtmlTag('<blockquote>\n', '\n</blockquote>', 'Trích dẫn quan trọng...')" title="Khối trích dẫn" class="px-2 py-1 hover:bg-slate-200 rounded transition"><i class="fa-solid fa-quote-left"></i></button>
-                <button type="button" onclick="insertHtmlTag('<br/>\n', '', '')" title="Xuống dòng" class="px-2 py-1 hover:bg-slate-200 rounded transition font-mono text-[11px]">&lt;br&gt;</button>
+                <button
+                  type="button"
+                  onclick="insertLinkPrompt()"
+                  title="Chèn liên kết"
+                  class="px-2 py-1 hover:bg-slate-200 rounded transition"
+                >
+                  <i class="fa-solid fa-link"></i> Link
+                </button>
+                <button
+                  type="button"
+                  onclick="openComposeImagePicker()"
+                  title="Chèn ảnh từ máy tính"
+                  class="px-2 py-1 hover:bg-slate-200 rounded transition"
+                >
+                  <i class="fa-regular fa-image"></i> Ảnh từ máy
+                </button>
+                <input
+                  type="file"
+                  id="composeImagePicker"
+                  accept="image/*"
+                  class="hidden"
+                  onchange="insertComposeImage(event)"
+                />
+                <button
+                  type="button"
+                  onclick="
+                    insertHtmlTag(
+                      '<ul>\n  <li>',
+                      '</li>\n  <li>Mục 2</li>\n</ul>',
+                      'Mục 1',
+                    )
+                  "
+                  title="Danh sách"
+                  class="px-2 py-1 hover:bg-slate-200 rounded transition"
+                >
+                  <i class="fa-solid fa-list-ul"></i>
+                </button>
+                <button
+                  type="button"
+                  onclick="
+                    insertHtmlTag(
+                      '<blockquote>\n',
+                      '\n</blockquote>',
+                      'Trích dẫn quan trọng...',
+                    )
+                  "
+                  title="Khối trích dẫn"
+                  class="px-2 py-1 hover:bg-slate-200 rounded transition"
+                >
+                  <i class="fa-solid fa-quote-left"></i>
+                </button>
+                <button
+                  type="button"
+                  onclick="insertHtmlTag('<br/>\n', '', '')"
+                  title="Xuống dòng"
+                  class="px-2 py-1 hover:bg-slate-200 rounded transition font-mono text-[11px]"
+                >
+                  &lt;br&gt;
+                </button>
               </div>
 
               <!-- Write Area -->
+              <div id="artComposeContainer" class="hidden">
+                <div
+                  id="artComposeEditor"
+                  contenteditable="true"
+                  role="textbox"
+                  aria-multiline="true"
+                  class="min-h-[220px] w-full rounded-b-lg border border-slate-300 bg-white px-3.5 py-3 text-sm leading-7 outline-none focus:ring-2 focus:ring-gold-accent/50"
+                  data-placeholder="Soạn nội dung bài viết tại đây..."
+                ></div>
+              </div>
               <div id="artWriteContainer">
                 <textarea
                   id="artContent"
                   rows="8"
-                  required
-                  placeholder="Viết nội dung bài viết dạng HTML (hỗ trợ &lt;p&gt;, &lt;h2&gt;, &lt;b&gt;, &lt;img&gt;, &lt;a&gt;...)"
+                  placeholder="Viết nội dung dạng HTML (hỗ trợ &lt;p&gt;, &lt;h2&gt;, &lt;b&gt;, &lt;img&gt;, &lt;a&gt;...)"
                   class="w-full px-3.5 py-2.5 border border-slate-300 rounded-b-lg text-sm font-mono focus:ring-2 focus:ring-gold-accent/50 focus:border-gold-accent outline-none resize-y"
                 ></textarea>
               </div>
@@ -790,6 +1145,369 @@
           <button
             type="button"
             onclick="document.getElementById('articleForm').requestSubmit()"
+            class="px-6 py-2 bg-gold-accent hover:bg-gold-dark text-white font-semibold rounded-lg text-sm transition-colors shadow-md"
+          >
+            Lưu
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 1B: QUẢN TRỊ BÀI VIẾT BIÊN TẬP -->
+    <div
+      id="editorialArticleModal"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden transition-all duration-300"
+    >
+      <div
+        class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden border border-slate-100"
+      >
+        <div
+          class="px-6 py-5 border-b border-slate-100 flex items-center justify-between"
+        >
+          <h3
+            id="editorialArticleModalTitle"
+            class="text-2xl font-serif-heading font-bold text-slate-900"
+          >
+            Bài viết mới
+          </h3>
+          <button
+            type="button"
+            onclick="closeEditorialArticleModal()"
+            class="text-slate-400 hover:text-slate-700 p-1 rounded-lg transition-colors text-xl font-bold"
+            aria-label="Đóng"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div class="p-6 overflow-y-auto flex-grow">
+          <form
+            id="editorialArticleForm"
+            onsubmit="saveEditorialArticle(event)"
+            class="space-y-4"
+          >
+            <input type="hidden" id="editorialArtId" />
+            <div>
+              <label
+                for="editorialArtTitle"
+                class="block text-sm font-semibold text-slate-800 mb-1.5"
+                >Tiêu đề *</label
+              >
+              <input
+                id="editorialArtTitle"
+                type="text"
+                required
+                placeholder="Nhập tiêu đề bài viết..."
+                class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-gold-accent/50 focus:border-gold-accent outline-none"
+              />
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label
+                  for="editorialArtCategory"
+                  class="block text-sm font-semibold text-slate-800 mb-1.5"
+                  >Danh mục</label
+                >
+                <input
+                  id="editorialArtCategory"
+                  type="text"
+                  placeholder="Kiến thức đầu tư"
+                  class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-gold-accent/50 focus:border-gold-accent outline-none"
+                />
+              </div>
+              <div>
+                <label
+                  for="editorialArtAuthor"
+                  class="block text-sm font-semibold text-slate-800 mb-1.5"
+                  >Tác giả</label
+                >
+                <input
+                  id="editorialArtAuthor"
+                  type="text"
+                  placeholder="Tên tác giả..."
+                  class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-gold-accent/50 focus:border-gold-accent outline-none"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-slate-800 mb-1.5"
+                >Hình ảnh (URL)</label
+              >
+              <div
+                id="editorialPreviewContainer"
+                class="hidden mb-2 relative w-24 h-24 rounded-lg border border-slate-200 overflow-hidden shadow-sm"
+              >
+                <img
+                  id="editorialArtImgPreview"
+                  src=""
+                  alt="Preview"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <input
+                type="file"
+                accept="image/*"
+                id="editorialArtImage"
+                onchange="updateEditorialImagePreview(event)"
+                class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-gold-accent/50 focus:border-gold-accent outline-none"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-slate-800 mb-1.5"
+                >Mô tả ngắn</label
+              >
+              <textarea
+                id="editorialArtSummary"
+                rows="3"
+                placeholder="Tóm tắt nội dung bài viết..."
+                class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-gold-accent/50 focus:border-gold-accent outline-none resize-y"
+              ></textarea>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <label class="block text-sm font-semibold text-slate-800"
+                  >Nội dung bài viết (HTML) *</label
+                >
+                <div
+                  class="flex items-center gap-1 rounded-lg bg-slate-100 p-1 text-xs font-semibold"
+                >
+                  <button
+                    type="button"
+                    id="editorialTabWrite"
+                    onclick="switchEditorialArticleEditorTab('write')"
+                    class="rounded-md bg-white px-3 py-1.5 text-slate-900 shadow-sm"
+                  >
+                    Soạn nội dung
+                  </button>
+                  <button
+                    type="button"
+                    id="editorialTabHtml"
+                    onclick="switchEditorialArticleEditorTab('html')"
+                    class="rounded-md px-3 py-1.5 text-slate-500 hover:text-slate-800"
+                  >
+                    <i class="fa-solid fa-code me-1 text-amber-500"></i> Soạn
+                    HTML
+                  </button>
+                  <button
+                    type="button"
+                    id="editorialTabWord"
+                    onclick="switchEditorialArticleEditorTab('word')"
+                    class="rounded-md px-3 py-1.5 text-slate-500 hover:text-slate-800"
+                  >
+                    Thêm file Word
+                  </button>
+                  <button
+                    type="button"
+                    id="editorialTabPreview"
+                    onclick="switchEditorialArticleEditorTab('preview')"
+                    class="rounded-md px-3 py-1.5 text-slate-500 hover:text-slate-800"
+                  >
+                    <i class="fa-regular fa-eye me-1 text-blue-500"></i> Xem
+                    trước
+                  </button>
+                </div>
+              </div>
+
+              <div
+                id="editorialHtmlToolbar"
+                class="flex flex-wrap items-center gap-1 p-2 bg-slate-50 border border-b-0 border-slate-300 rounded-t-lg text-xs text-slate-700"
+              >
+                <button
+                  type="button"
+                  onclick="
+                    insertEditorialHtmlTag('<b>', '</b>', 'văn bản in đậm')
+                  "
+                  title="In đậm"
+                  class="px-2 py-1 hover:bg-slate-200 rounded font-bold transition"
+                >
+                  B
+                </button>
+                <button
+                  type="button"
+                  onclick="
+                    insertEditorialHtmlTag('<i>', '</i>', 'văn bản in nghiêng')
+                  "
+                  title="In nghiêng"
+                  class="px-2 py-1 hover:bg-slate-200 rounded italic font-serif transition"
+                >
+                  I
+                </button>
+                <button
+                  type="button"
+                  onclick="
+                    insertEditorialHtmlTag('<h2>', '</h2>', 'Tiêu đề lớn')
+                  "
+                  title="Tiêu đề H2"
+                  class="px-2 py-1 hover:bg-slate-200 rounded font-bold transition"
+                >
+                  H2
+                </button>
+                <button
+                  type="button"
+                  onclick="
+                    insertEditorialHtmlTag('<h3>', '</h3>', 'Tiêu đề vừa')
+                  "
+                  title="Tiêu đề H3"
+                  class="px-2 py-1 hover:bg-slate-200 rounded font-bold transition"
+                >
+                  H3
+                </button>
+                <button
+                  type="button"
+                  onclick="
+                    insertEditorialHtmlTag('<p>', '</p>', 'Nội dung đoạn văn')
+                  "
+                  title="Đoạn văn"
+                  class="px-2 py-1 hover:bg-slate-200 rounded font-serif font-bold transition"
+                >
+                  &para;
+                </button>
+                <div class="h-4 w-px bg-slate-300 mx-1"></div>
+                <button
+                  type="button"
+                  onclick="insertEditorialLinkPrompt()"
+                  title="Chèn liên kết"
+                  class="px-2 py-1 hover:bg-slate-200 rounded transition"
+                >
+                  <i class="fa-solid fa-link"></i> Link
+                </button>
+                <button
+                  type="button"
+                  onclick="openComposeImagePicker()"
+                  title="Chèn ảnh từ máy tính"
+                  class="px-2 py-1 hover:bg-slate-200 rounded transition"
+                >
+                  <i class="fa-regular fa-image"></i> Ảnh từ máy
+                </button>
+                <input
+                  type="file"
+                  id="composeImagePicker"
+                  accept="image/*"
+                  class="hidden"
+                  onchange="insertComposeImage(event)"
+                />
+                <button
+                  type="button"
+                  onclick="insertEditorialHtmlTag('<br/>', '', '')"
+                  title="Xuống dòng"
+                  class="px-2 py-1 hover:bg-slate-200 rounded transition font-mono text-[11px]"
+                >
+                  &lt;br&gt;
+                </button>
+              </div>
+
+              <div id="editorialWritePanel">
+                <textarea
+                  id="editorialArtContent"
+                  rows="12"
+                  required
+                  placeholder="Viết nội dung bài viết..."
+                  class="w-full px-3.5 py-2.5 border border-slate-300 rounded-b-lg text-sm leading-7 focus:ring-2 focus:ring-gold-accent/50 focus:border-gold-accent outline-none resize-y"
+                ></textarea>
+              </div>
+
+              <div
+                id="editorialPreviewPanel"
+                class="hidden w-full p-4 border border-slate-300 rounded-b-lg bg-white min-h-[220px] max-h-[400px] overflow-y-auto rich-news-content"
+              ></div>
+
+              <div id="editorialWordPanel" class="hidden space-y-3">
+                <label
+                  for="editorialWordFile"
+                  class="flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 px-5 py-8 text-center hover:border-amber-400 hover:bg-amber-50/40 transition"
+                >
+                  <i
+                    class="fa-solid fa-file-word mb-2 text-3xl text-blue-600"
+                  ></i>
+                  <span class="text-sm font-semibold text-slate-700"
+                    >Chọn file Word (.docx)</span
+                  >
+                  <span class="mt-1 text-xs text-slate-400"
+                    >Tiêu đề và nội dung sẽ được tự động đọc</span
+                  >
+                  <input
+                    id="editorialWordFile"
+                    type="file"
+                    accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    class="hidden"
+                    onchange="handleEditorialWordFile(event)"
+                  />
+                </label>
+                <p
+                  id="editorialWordFileName"
+                  class="hidden text-xs font-medium text-slate-500"
+                ></p>
+                <div>
+                  <label
+                    for="editorialWordTitle"
+                    class="block text-xs font-semibold text-slate-700 mb-1"
+                    >Tiêu đề lấy từ file</label
+                  >
+                  <input
+                    id="editorialWordTitle"
+                    type="text"
+                    readonly
+                    class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700 outline-none"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="editorialWordContent"
+                    class="block text-xs font-semibold text-slate-700 mb-1"
+                    >Nội dung đã đọc</label
+                  >
+                  <textarea
+                    id="editorialWordContent"
+                    rows="8"
+                    readonly
+                    class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs leading-6 text-slate-600 outline-none"
+                  ></textarea>
+                </div>
+                <button
+                  type="button"
+                  onclick="formatEditorialWordContent()"
+                  class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-xs font-bold text-white transition hover:bg-blue-700"
+                >
+                  <i class="fa-solid fa-wand-magic-sparkles"></i> Chuẩn hóa nội
+                  dung bằng AI
+                </button>
+                <p id="editorialWordStatus" class="text-xs text-slate-500"></p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 pt-1">
+              <input
+                type="checkbox"
+                id="editorialArtPublished"
+                class="w-4 h-4 text-gold-accent border-slate-300 rounded focus:ring-gold-accent"
+              />
+              <label
+                for="editorialArtPublished"
+                class="text-sm font-medium text-slate-800 cursor-pointer"
+                >Xuất bản</label
+              >
+            </div>
+          </form>
+        </div>
+
+        <div
+          class="px-6 py-4 border-t border-slate-100 flex items-center justify-end gap-3 bg-white"
+        >
+          <button
+            type="button"
+            onclick="closeEditorialArticleModal()"
+            class="px-5 py-2 border border-slate-300 text-slate-700 font-semibold rounded-lg text-sm hover:bg-slate-50 transition-colors"
+          >
+            Huỷ
+          </button>
+          <button
+            type="button"
+            onclick="
+              document.getElementById('editorialArticleForm').requestSubmit()
+            "
             class="px-6 py-2 bg-gold-accent hover:bg-gold-dark text-white font-semibold rounded-lg text-sm transition-colors shadow-md"
           >
             Lưu
@@ -920,7 +1638,7 @@
     <!-- MODAL 3: THÊM / SỬA TÀI KHOẢN & PHÂN QUYỀN -->
     <div
       id="userModal"
-      class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop  transition-all duration-300 hidden"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop transition-all duration-300 hidden"
     >
       <div
         class="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] flex flex-col overflow-hidden border border-slate-100"
@@ -993,9 +1711,7 @@
                 <option value="DEPUTY">
                   Phó quản lý (Deputy Manager) — Quản lý bài & Học viên
                 </option>
-                <option value="AUTHOR">
-                  Khách (GUEST)
-                </option>
+                <option value="AUTHOR">Khách (GUEST)</option>
               </select>
             </div>
             <div>
@@ -1085,17 +1801,30 @@
             class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500 pb-3 border-b border-slate-100"
           >
             <div class="flex items-center space-x-3">
-              <span id="viewArtAuthor" class="font-medium text-slate-700">Tác giả: Admin</span>
+              <span id="viewArtAuthor" class="font-medium text-slate-700"
+                >Tác giả: Admin</span
+              >
               <span>•</span>
               <span id="viewArtDate">Ngày: 10/7/2026</span>
             </div>
             <div class="flex items-center space-x-3">
-              <span id="viewArtViews"><i class="fa-regular fa-eye me-1 text-slate-400"></i> 0 lượt xem</span>
+              <span id="viewArtViews"
+                ><i class="fa-regular fa-eye me-1 text-slate-400"></i> 0 lượt
+                xem</span
+              >
             </div>
           </div>
 
-          <div id="viewArtImageWrapper" class="hidden rounded-xl overflow-hidden shadow-sm border border-slate-200">
-            <img id="viewArtImage" class="w-full h-64 object-cover" src="" alt="Thumbnail" />
+          <div
+            id="viewArtImageWrapper"
+            class="hidden rounded-xl overflow-hidden shadow-sm border border-slate-200"
+          >
+            <img
+              id="viewArtImage"
+              class="w-full h-64 object-cover"
+              src=""
+              alt="Thumbnail"
+            />
           </div>
 
           <div
@@ -1108,10 +1837,15 @@
           <!-- HTML Content Section with Display/Source tabs -->
           <div class="pt-2 border-t border-slate-100">
             <div class="flex items-center justify-between mb-3">
-              <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
-                <i class="fa-solid fa-code text-amber-500"></i> Nội dung bài viết (HTML)
+              <h4
+                class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5"
+              >
+                <i class="fa-solid fa-code text-amber-500"></i> Nội dung bài
+                viết (HTML)
               </h4>
-              <div class="flex items-center bg-slate-100 p-0.5 rounded-lg text-xs font-semibold text-slate-600">
+              <div
+                class="flex items-center bg-slate-100 p-0.5 rounded-lg text-xs font-semibold text-slate-600"
+              >
                 <button
                   type="button"
                   id="tabViewRendered"
@@ -1126,7 +1860,8 @@
                   onclick="switchViewArticleTab('source')"
                   class="px-3 py-1 rounded-md text-slate-500 hover:text-slate-800 transition"
                 >
-                  <i class="fa-solid fa-code me-1 text-amber-500"></i> Mã nguồn HTML
+                  <i class="fa-solid fa-code me-1 text-amber-500"></i> Mã nguồn
+                  HTML
                 </button>
               </div>
             </div>
@@ -1148,8 +1883,17 @@
             </div>
           </div>
 
-          <div id="viewArtSourceUrl" class="text-xs text-slate-400 pt-3 border-t border-slate-100 hidden">
-            Nguồn: <a href="" id="viewArtSourceUrlLink" target="_blank" class="text-blue-500 hover:underline break-all"></a>
+          <div
+            id="viewArtSourceUrl"
+            class="text-xs text-slate-400 pt-3 border-t border-slate-100 hidden"
+          >
+            Nguồn:
+            <a
+              href=""
+              id="viewArtSourceUrlLink"
+              target="_blank"
+              class="text-blue-500 hover:underline break-all"
+            ></a>
           </div>
         </div>
 
@@ -1173,21 +1917,30 @@
     <div
       id="bannerModal"
       class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden"
-      onclick="if(event.target === this) closeBannerModal()"
+      onclick="if (event.target === this) closeBannerModal();"
     >
       <div
         class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[92vh] overflow-y-auto custom-scrollbar p-6 space-y-5 border border-slate-200 relative"
       >
-        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div
+          class="flex items-center justify-between border-b border-slate-100 pb-3"
+        >
           <div class="flex items-center space-x-2.5">
-            <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+            <div
+              class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center"
+            >
               <i class="fa-solid fa-images text-base"></i>
             </div>
             <div>
-              <h3 id="bannerModalTitle" class="text-lg font-bold text-slate-900">
+              <h3
+                id="bannerModalTitle"
+                class="text-lg font-bold text-slate-900"
+              >
                 Thêm Banner Slideshow
               </h3>
-              <p class="text-xs text-slate-500">Thiết lập slide trình chiếu hiển thị trên trang chủ</p>
+              <p class="text-xs text-slate-500">
+                Thiết lập slide trình chiếu hiển thị trên trang chủ
+              </p>
             </div>
           </div>
           <button
@@ -1198,12 +1951,18 @@
           </button>
         </div>
 
-        <form onsubmit="handleBannerFormSubmit(event)" class="space-y-4" id="bannerForm">
+        <form
+          onsubmit="handleBannerFormSubmit(event)"
+          class="space-y-4"
+          id="bannerForm"
+        >
           <input type="hidden" id="bannerFormId" value="" />
 
           <!-- Title -->
           <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">
+            <label
+              class="block text-xs font-bold text-slate-700 uppercase mb-1"
+            >
               Tiêu đề chính <span class="text-red-500">*</span>
             </label>
             <textarea
@@ -1213,12 +1972,16 @@
               placeholder="VD: Đầu tư tốt hơn&#10;mỗi ngày"
               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-slate-900 outline-none"
             ></textarea>
-            <p class="text-[11px] text-slate-400 mt-1">Xuống dòng trong ô nhập để ngắt dòng trên banner.</p>
+            <p class="text-[11px] text-slate-400 mt-1">
+              Xuống dòng trong ô nhập để ngắt dòng trên banner.
+            </p>
           </div>
 
           <!-- Subtitle -->
           <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">
+            <label
+              class="block text-xs font-bold text-slate-700 uppercase mb-1"
+            >
               Lời dẫn / Phụ đề
             </label>
             <textarea
@@ -1231,7 +1994,9 @@
 
           <!-- Image URL & File Upload -->
           <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">
+            <label
+              class="block text-xs font-bold text-slate-700 uppercase mb-1"
+            >
               Hình ảnh nền <span class="text-red-500">*</span>
             </label>
             <div class="space-y-2">
@@ -1256,9 +2021,18 @@
             </div>
 
             <!-- Preview Image -->
-            <div id="bannerImagePreviewContainer" class="mt-3 rounded-xl overflow-hidden h-40 bg-slate-900 relative hidden border border-slate-200">
-              <img id="bannerImagePreview" src="" class="w-full h-full object-cover" />
-              <div class="absolute bottom-2 left-2 px-2.5 py-1 rounded bg-black/60 text-white text-[10px] font-mono backdrop-blur-sm">
+            <div
+              id="bannerImagePreviewContainer"
+              class="mt-3 rounded-xl overflow-hidden h-40 bg-slate-900 relative hidden border border-slate-200"
+            >
+              <img
+                id="bannerImagePreview"
+                src=""
+                class="w-full h-full object-cover"
+              />
+              <div
+                class="absolute bottom-2 left-2 px-2.5 py-1 rounded bg-black/60 text-white text-[10px] font-mono backdrop-blur-sm"
+              >
                 Xem trước ảnh
               </div>
             </div>
@@ -1267,7 +2041,9 @@
           <!-- Button Text & Button Link -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">
+              <label
+                class="block text-xs font-bold text-slate-700 uppercase mb-1"
+              >
                 Chữ nút bấm (CTA)
               </label>
               <input
@@ -1278,7 +2054,9 @@
               />
             </div>
             <div>
-              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">
+              <label
+                class="block text-xs font-bold text-slate-700 uppercase mb-1"
+              >
                 Liên kết nút bấm
               </label>
               <input
@@ -1293,7 +2071,9 @@
           <!-- Script Text & Script Color -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">
+              <label
+                class="block text-xs font-bold text-slate-700 uppercase mb-1"
+              >
                 Chữ nghệ thuật bên phải (Cursive Script)
               </label>
               <textarea
@@ -1304,7 +2084,9 @@
               ></textarea>
             </div>
             <div>
-              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">
+              <label
+                class="block text-xs font-bold text-slate-700 uppercase mb-1"
+              >
                 Màu chữ nghệ thuật
               </label>
               <select
@@ -1313,8 +2095,12 @@
               >
                 <option value="text-slate-200/90">Trắng bạc (Mặc định)</option>
                 <option value="text-amber-300/90">Vàng hổ phách (Amber)</option>
-                <option value="text-sky-300/90">Xanh lam băng (Sky Blue)</option>
-                <option value="text-emerald-300/90">Xanh ngọc bích (Emerald)</option>
+                <option value="text-sky-300/90">
+                  Xanh lam băng (Sky Blue)
+                </option>
+                <option value="text-emerald-300/90">
+                  Xanh ngọc bích (Emerald)
+                </option>
                 <option value="text-rose-300/90">Hồng ngọc (Rose)</option>
               </select>
             </div>
@@ -1323,7 +2109,9 @@
           <!-- Order & Active State -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
             <div>
-              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">
+              <label
+                class="block text-xs font-bold text-slate-700 uppercase mb-1"
+              >
                 Thứ tự hiển thị
               </label>
               <input
@@ -1342,7 +2130,9 @@
                   checked
                   class="w-4 h-4 text-amber-500 rounded focus:ring-amber-400 cursor-pointer"
                 />
-                <span class="text-sm font-semibold text-slate-800">Kích hoạt hiển thị ngay</span>
+                <span class="text-sm font-semibold text-slate-800"
+                  >Kích hoạt hiển thị ngay</span
+                >
               </label>
             </div>
           </div>
@@ -1371,11 +2161,15 @@
 
     <!-- FOOTER SECTION -->
     <footer class="py-6 text-center text-sm text-slate-500">
-      &copy; 2023 BlueNews. All rights reserved.
+      &copy; 2023 Capital Circle. All rights reserved.
     </footer>
 
     <!-- APPLICATION JAVASCRIPT LOGIC -->
     <script src="./js/middleware.js"></script>
     <script src="./js/Admin/main.js"></script>
+    <script src="./js/Admin/handlerArticles.js"></script>
+    <!-- <script src="./js/Admin/registrations.js"></script>
+    <script src="./js/Admin/users.js"></script>
+    <script src="./js/Admin/banners.js"></script> -->
   </body>
 </html>

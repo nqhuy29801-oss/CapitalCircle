@@ -50,20 +50,20 @@ async function handleLogout(link) {
       },
     });
     if (!res.ok) {
-      alert("Đã đăng xuất tài khoản thất bại.");
+      alert("Capital Circle\n\nĐã đăng xuất tài khoản thất bại.");
       window.location.href = "./auth.html";
       throw new Error("Đăng xuất thất bại");
     }
     if (!link) {
       window.location.href = "./auth.html"; // đổi thành trang bạn muốn chuyển tới sau khi đăng xuất
-      alert("Đã đăng xuất tài khoản quản trị.");
+      alert("Capital Circle\n\nĐã đăng xuất tài khoản quản trị.");
       return;
     }
-    alert("Đã đăng xuất tài khoản quản trị.");
+    alert("Capital Circle\n\nĐã đăng xuất tài khoản quản trị.");
   } catch (error) {
     console.error("Error during logout:", error);
     window.location.href = "./auth.html";
-    alert("Đã đăng xuất tài khoản thất bại.");
+    alert("Capital Circle\n\nĐã đăng xuất tài khoản thất bại.");
   } finally {
     clearAuthStore();
   }
@@ -71,7 +71,7 @@ async function handleLogout(link) {
 
 /** Đọc lại toàn bộ thông tin đã lưu, trả về null nếu chưa đăng nhập hoặc dữ liệu hỏng */
 function getAuthStore() {
-  const raw = localStorage.getItem(AUTH_STORAGE_KEY);
+  const raw = sessionStorage.getItem(AUTH_STORAGE_KEY);
   if (!raw) return null;
   try {
     return JSON.parse(raw);
@@ -82,7 +82,7 @@ function getAuthStore() {
 
 /** Xóa toàn bộ thông tin xác thực -- dùng khi logout */
 function clearAuthStore() {
-  localStorage.removeItem(AUTH_STORAGE_KEY);
+  sessionStorage.removeItem(AUTH_STORAGE_KEY);
 }
 
 /** Kiểm tra nhanh đã đăng nhập chưa (dùng để ẩn/hiện nút Đăng nhập/Đăng xuất...) */
