@@ -208,10 +208,11 @@ async function loadArticleDetail() {
       const { newsDetail } = await res.json();
       data = newsDetail;
       console.log("Fetched article data:", data);
+    } else {
+      const { article } = await res.json();
+      data = article;
+      console.log("Fetched article data:", data);
     }
-    const { article } = await res.json();
-    data = article;
-    console.log("Fetched article data:", data);
     currentArticle = normalizeArticle(data);
   } catch (err) {
     console.warn("Lỗi khi tải bài viết từ API, dùng dữ liệu dự phòng:", err);
