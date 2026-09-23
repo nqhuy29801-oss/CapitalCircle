@@ -341,7 +341,7 @@
         </div>
 
         <div id="tool-tab-panels" class="mt-8">
-          // Biểu đồ giá
+          <!-- Biểu đồ giá -->
           <section
             id="price-chart-panel"
             data-tool-panel="price-chart"
@@ -361,13 +361,64 @@
               </div>
             </div>
             <div
-              class="mt-6 flex min-h-52 items-center justify-center rounded-xl border border-dashed border-blue-200 bg-blue-50/40 text-center text-sm text-slate-500"
+              class="mt-6 h-[700px] flex min-h-52 items-center justify-center rounded-xl border border-dashed border-blue-200 bg-blue-50/40 text-center text-sm text-slate-500 overflow-hidden"
             >
-              Khu vực biểu đồ giá đang được chuẩn bị.
+              <!-- TradingView Widget BEGIN -->
+              <div
+                class="tradingview-widget-container"
+                style="height: 100%; width: 100%"
+              >
+                <div
+                  class="tradingview-widget-container__widget"
+                  style="height: calc(100% - 32px); width: 100%"
+                ></div>
+                <div class="tradingview-widget-copyright">
+                  <a
+                    href="https://vn.tradingview.com/symbols/NASDAQ-AAPL/"
+                    rel="noopener nofollow"
+                    target="_blank"
+                  ></a>
+                </div>
+                <script
+                  type="text/javascript"
+                  src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js"
+                  async
+                >
+                    {
+                    "allow_symbol_change": true,
+                    "calendar": false,
+                    "details": false,
+                    "hide_side_toolbar": true,
+                    "hide_top_toolbar": false,
+                    "hide_legend": false,
+                    "hide_volume": false,
+                    "hotlist": false,
+                    "interval": "60",
+                    "locale": "vi_VN",
+                    "save_image": true,
+                    "style": "1",
+                    "symbol": "OANDA:XAUUSD",
+                    "theme": "dark",
+                    "timezone": "Etc/UTC",
+                    "backgroundColor": "#0F0F0F",
+                    "gridColor": "rgba(242, 242, 242, 0.2)",
+                    "watchlist": [],
+                    "withdateranges": false,
+                    "compareSymbols": [],
+                    "support_host": "https://www.tradingview.com",
+                    "studies": [
+                      "STD;Bollinger_Bands",
+                      "STD;Stochastic"
+                    ],
+                    "autosize": true
+                  }
+                </script>
+              </div>
+              <!-- TradingView Widget END -->
             </div>
           </section>
 
-          // Lịch kinh tế
+          <!-- Lịch kinh tế -->
           <section
             id="economic-calendar-panel"
             data-tool-panel="economic-calendar"
@@ -418,7 +469,7 @@
             </div>
           </section>
 
-          // Quy đổi tiền tệ
+          <!-- Quy đổi tiền tệ -->
           <section
             id="currency-converter-panel"
             data-tool-panel="currency-converter"
@@ -449,7 +500,7 @@
             </div>
           </section>
 
-          // So sánh tài sản
+          <!-- So sánh tài sản -->
           <section
             id="asset-comparison-panel"
             data-tool-panel="asset-comparison"
@@ -477,6 +528,7 @@
             </div>
           </section>
 
+          <!-- Bot Trade -->
           <section
             id="trade-bot-panel"
             data-tool-panel="trade-bot"
@@ -502,6 +554,7 @@
             </div>
           </section>
 
+          <!-- Hỏi đáp AI -->
           <section
             id="ai-chat-panel"
             data-tool-panel="ai-chat"
