@@ -789,27 +789,27 @@ function checkLogin() {
 
   if (!logBtn) return;
 
-  // if (!isAuth) {
-  //   logBtn.innerHTML = `
-  //     <a
-  //       href="./auth.html"
-  //       class="px-5 py-2 rounded-full bg-slate-900 border border-slate-700 text-white text-xs font-semibold hover:bg-slate-800 transition"
-  //     >
-  //       Đăng nhập
-  //     </a>
-  //   `;
-  //   if (logBtnMobile) {
-  //     logBtnMobile.innerHTML = `
-  //       <a
-  //         href="./auth.html"
-  //         class="block text-center py-2 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs"
-  //       >
-  //         Đăng nhập Quản trị
-  //       </a>
-  //     `;
-  //   }
-  //   return;
-  // }
+  if (!isAuth) {
+    // logBtn.innerHTML = `
+    //   <a
+    //     href="./auth.html"
+    //     class="px-5 py-2 rounded-full bg-slate-900 border border-slate-700 text-white text-xs font-semibold hover:bg-slate-800 transition"
+    //   >
+    //     Đăng nhập
+    //   </a>
+    // `;
+    // if (logBtnMobile) {
+    //   logBtnMobile.innerHTML = `
+    //     <a
+    //       href="./auth.html"
+    //       class="block text-center py-2 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs"
+    //     >
+    //       Đăng nhập Quản trị
+    //     </a>
+    //   `;
+    // }
+    return;
+  }
 
   logBtn.innerHTML = `
     <a
