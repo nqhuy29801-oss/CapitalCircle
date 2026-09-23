@@ -242,7 +242,7 @@ async function getDataNewsHomePage() {
       }
     }
 
-    gridArticles = gridArticles.slice(0, 6).reverse(); // Reverse to show newest first
+    gridArticles = gridArticles.slice(0, 6); // Reverse to show newest first
 
     const gridContainer = document.getElementById("latestArticlesGrid");
     if (gridContainer) {
