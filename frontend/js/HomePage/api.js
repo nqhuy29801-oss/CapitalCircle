@@ -345,9 +345,6 @@ async function getTopViewedArticles() {
                   >
                     ${article.title}
                   </h5>
-                  <p class="text-[11px] text-slate-400 mt-0.5">
-                    ${article.viewed} lượt đọc
-                  </p>
                 </div>
               </a>`;
         })
