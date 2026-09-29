@@ -43,7 +43,7 @@ function generateRandomString(length = 12) {
 // Registration user by guest - done
 exports.registrationCourse = CatchAsyncError(async (req, res, next) => {
   try {
-    const { fullName, email, phoneNumber } = req.body;
+    const { fullName, email } = req.body;
     const isEmailExist = await userModel.findOne({ email });
     if (isEmailExist) {
       return next(new ErrorHandler("Email already exist", 400));
@@ -52,7 +52,6 @@ exports.registrationCourse = CatchAsyncError(async (req, res, next) => {
     const user = {
       fullName,
       email,
-      phoneNumber,
       role: "guest",
     };
 
@@ -76,7 +75,6 @@ exports.registrationCourse = CatchAsyncError(async (req, res, next) => {
       const newGuest = await userModel.create({
         fullName,
         email,
-        phoneNumber,
         role: "guest",
         status: "experience",
         activationCode,

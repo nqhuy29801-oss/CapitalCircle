@@ -339,13 +339,11 @@ async function getTopViewedArticles() {
                 >
                   ${++count}
                 </span>
-                <div>
                   <h5
                     class="text-xs font-bold text-slate-800 group-hover:text-amber-600 transition leading-snug"
                   >
                     ${article.title}
                   </h5>
-                </div>
               </a>`;
         })
         .join("");

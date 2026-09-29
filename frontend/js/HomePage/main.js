@@ -731,6 +731,7 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     closeSearchModal();
     closeModal("article-modal");
+    closeSupportContactModal();
   }
 });
 
@@ -738,12 +739,16 @@ document.addEventListener("keydown", (e) => {
 async function handleNewsletterSubmit(e) {
   e.preventDefault();
   const input = document.getElementById("newsletterEmail");
+  const inputFullName = document.getElementById("newsletterFullName");
   const btn = document.getElementById("newsletterBtn");
   if (!input) return;
 
   const email = input.value.trim();
-  if (!email) {
-    showToast("Vui lòng nhập địa chỉ email của bạn!");
+  const fullName = inputFullName
+    ? inputFullName.value.trim()
+    : "Bạn đọc Capital Circle";
+  if (!email || !email.includes("@") || !fullName) {
+    showToast("Vui lòng nhập đầy đủ thông tin của bạn!");
     return;
   }
 
@@ -758,9 +763,8 @@ async function handleNewsletterSubmit(e) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        fullName: "Bạn đọc Capital Circle",
+        fullName: fullName,
         email: email,
-        phoneNumber: "0900000000",
       }),
     }).catch(() => {});
 
@@ -781,73 +785,6 @@ function showToolNotice(toolName) {
   showToast(`Đang mở công cụ "${toolName}". Dữ liệu được đồng bộ liên tục!`);
 }
 
-// ==================== 4. AUTH & NAVIGATION LOGIC ====================
-function checkLogin() {
-  const isAuth = typeof getAuthStore === "function" ? getAuthStore() : null;
-  const logBtn = document.getElementById("logBtn");
-  const logBtnMobile = document.getElementById("logBtnMobile");
-
-  if (!logBtn) return;
-
-  if (!isAuth) {
-    // logBtn.innerHTML = `
-    //   <a
-    //     href="./auth.html"
-    //     class="px-5 py-2 rounded-full bg-slate-900 border border-slate-700 text-white text-xs font-semibold hover:bg-slate-800 transition"
-    //   >
-    //     Đăng nhập
-    //   </a>
-    // `;
-    // if (logBtnMobile) {
-    //   logBtnMobile.innerHTML = `
-    //     <a
-    //       href="./auth.html"
-    //       class="block text-center py-2 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs"
-    //     >
-    //       Đăng nhập Quản trị
-    //     </a>
-    //   `;
-    // }
-    return;
-  }
-
-  logBtn.innerHTML = `
-    <a
-      href="./admin.html"
-      class="text-xs mr-3 font-semibold text-amber-400 hover:text-amber-300 transition"
-    >
-      <i class="fa-solid fa-gauge me-1"></i> Quản trị
-    </a>
-    <a
-      href="javascript:void(0)"
-      onclick="handleLogout()"
-      class="px-4 py-1.5 rounded-full bg-rose-600 text-white text-xs font-semibold hover:bg-rose-700 transition"
-    >
-      Đăng xuất
-    </a>
-  `;
-  if (logBtnMobile) {
-    logBtnMobile.innerHTML = `
-      <div class="flex items-center space-x-2">
-        <a
-          href="./admin.html"
-          class="flex-1 text-center py-2 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs"
-        >
-          Trang Quản trị
-        </a>
-        <button
-          onclick="handleLogout()"
-          class="px-4 py-2 rounded-lg bg-rose-600 text-white font-bold text-xs"
-        >
-          Đăng xuất
-        </button>
-      </div>
-    `;
-  }
-}
-
-checkLogin();
-
 // Toast Helper
 function showToast(msg) {
   const toast = document.getElementById("toast");
@@ -859,17 +796,6 @@ function showToast(msg) {
   setTimeout(() => {
     toast.classList.add("hidden");
   }, 3500);
-}
-
-// Mobile Menu Toggle
-const mobileBtn = document.getElementById("mobile-menu-btn");
-if (mobileBtn) {
-  mobileBtn.addEventListener("click", () => {
-    const mobileMenu = document.getElementById("mobile-menu");
-    if (mobileMenu) {
-      mobileMenu.classList.toggle("hidden");
-    }
-  });
 }
 
 // ==================== 5. HERO SLIDESHOW CONTROLLER ====================

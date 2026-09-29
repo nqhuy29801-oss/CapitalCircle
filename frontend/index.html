@@ -140,261 +140,14 @@
       </div>
     </div>
   </div>
+  
 
   <body
     class="bg-[#f8fafc] text-slate-800 antialiased min-h-screen flex flex-col justify-between"
   >
+
     <!-- ==================== HEADER / NAVBAR ==================== -->
-    <header
-      class="bg-[#0b101d] border-b border-slate-800/80 sticky top-0 z-40 shadow-lg"
-    >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-20">
-          <!-- Logo & Brand Name -->
-          <a href="./index.html" class="flex items-center space-x-3 group">
-            <!-- Stylized Circular Monogram SVG -->
-            <div
-              class="w-11 h-11 rounded-full border border-slate-700/80 flex items-center justify-center relative bg-gradient-to-b from-slate-900 to-slate-950 shadow-inner group-hover:border-amber-400/60 transition"
-            >
-              <svg
-                class="w-7 h-7 text-amber-400"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="9.5"
-                  stroke="currentColor"
-                  stroke-opacity="0.9"
-                />
-                <path
-                  d="M12 2.5 A9.5 9.5 0 0 1 21.5 12"
-                  stroke="#d4af37"
-                  stroke-width="2"
-                />
-                <line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" />
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="3"
-                  stroke="#f1c40f"
-                  stroke-width="1.2"
-                />
-              </svg>
-            </div>
-            <div>
-              <div
-                class="text-base sm:text-lg font-extrabold tracking-wider text-white uppercase leading-none flex items-center"
-              >
-                CAPITAL CIRCLE
-              </div>
-              <div
-                class="text-[9px] tracking-[0.25em] font-medium text-slate-400 uppercase mt-1"
-              >
-                KIẾN THỨC • TƯ DUY • GIÁ TRỊ DÀI HẠN
-              </div>
-            </div>
-          </a>
-
-          <!-- Navigation Links Desktop -->
-          <nav
-            class="hidden lg:flex items-center space-x-7 text-sm font-medium"
-          >
-            <a
-              href="./index.html"
-              class="text-white py-1 relative border-b-2 border-white transition"
-              >Trang chủ</a
-            >
-            <a
-              href="./articles.html"
-              class="text-slate-300 hover:text-white transition"
-              >Bài viết</a
-            >
-            <div class="relative group py-2">
-              <a
-                href="#market-ticker"
-                class="flex items-center space-x-1 text-slate-300 hover:text-white transition focus:outline-none cursor-pointer"
-              >
-                <span>Thị trường</span>
-              </a>
-
-              <!-- Submenu (Hiện ra ngay khi Hover vào thẻ cha) -->
-              <div
-                class="absolute left-0 top-full w-48 bg-[#0e1626] border border-slate-800 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2"
-              >
-                <a
-                  href="./articles.html?category=Crypto"
-                  class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"
-                  >Crypto</a
-                >
-                <a
-                  href="./articles.html?category=Vang"
-                  class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"
-                  >Vàng</a
-                >
-                <a
-                  href="./articles.html?category=B%E1%BA%A5t%20%C4%91%E1%BB%99ng%20s%E1%BA%A3n"
-                  class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"
-                  >Bất động sản</a
-                >
-                <a
-                  href="./articles.html?category=Ch%E1%BB%A9ng%20kho%C3%A1n"
-                  class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"
-                  >Chứng khoán</a
-                >
-              </div>
-            </div>
-            <a
-              href="#featured-article"
-              class="text-slate-300 hover:text-white transition"
-              >Kiến thức</a
-            >
-            <a
-              href="./tools.html"
-              class="text-slate-300 hover:text-white transition"
-              >Công cụ</a
-            >
-            <a
-              href="./about.html"
-              class="text-slate-300 hover:text-white transition"
-              >Về Capital Circle</a
-            >
-          </nav>
-
-          <!-- Right Action Buttons -->
-          <div class="hidden lg:flex items-center space-x-4">
-            <!-- Search Button -->
-            <button
-              onclick="openSearchModal()"
-              class="w-9 h-9 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition"
-              title="Tìm kiếm"
-            >
-              <i class="fa-solid fa-magnifying-glass text-xs"></i>
-            </button>
-
-            <!-- Follow / Auth Button -->
-            <div id="logBtn" class="flex items-center">
-              <a
-                href="#newsletter-widget"
-                class="px-5 py-2 rounded-full bg-slate-900 border border-slate-700 text-white text-xs font-semibold hover:bg-slate-800 transition"
-              >
-                Theo dõi
-              </a>
-            </div>
-          </div>
-
-          <!-- Mobile Hamburger Button -->
-          <div class="lg:hidden flex items-center space-x-2">
-            <button
-              onclick="openSearchModal()"
-              class="p-2 text-slate-300 hover:text-white"
-            >
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-            <button
-              id="mobile-menu-btn"
-              class="p-2 rounded-lg text-slate-300 hover:text-white focus:outline-none"
-            >
-              <i class="fa-solid fa-bars text-xl"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mobile Menu Dropdown -->
-      <div
-        id="mobile-menu"
-        class="hidden lg:hidden bg-[#0e1626] border-b border-slate-800 px-5 pt-3 pb-5 space-y-3"
-      >
-        <a
-          href="./index.html"
-          class="block py-1 text-sm font-semibold text-white"
-          >Trang chủ</a
-        >
-        <a
-          href="#latest-articles"
-          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
-          >Bài viết</a
-        >
-        <div class="py-1">
-          <button
-            type="button"
-            id="mobile-market-btn"
-            class="flex items-center justify-between w-full text-sm font-medium text-slate-300 hover:text-white transition py-1 focus:outline-none"
-          >
-            <span>Thị trường</span>
-            <svg
-              id="mobile-market-arrow"
-              class="w-4 h-4 transition-transform duration-200"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              ></path>
-            </svg>
-          </button>
-
-          <!-- Submenu Mobile -->
-          <div
-            id="mobile-market-submenu"
-            class="hidden pl-4 mt-1 space-y-1 border-l-2 border-slate-800"
-          >
-            <a
-              href="./articles.html?category=Crypto"
-              class="block py-1 text-sm text-slate-400 hover:text-white transition"
-              >Crypto</a
-            >
-            <a
-              href="./articles.html?category=Forex"
-              class="block py-1 text-sm text-slate-400 hover:text-white transition"
-              >Forex</a
-            >
-            <a
-              href="./articles.html?category=B%E1%BA%A5t%20%C4%91%E1%BB%99ng%20s%E1%BA%A3n"
-              class="block py-1 text-sm text-slate-400 hover:text-white transition"
-              >Bất động sản</a
-            >
-            <a
-              href="./articles.html?category=Ch%E1%BB%A9ng%20kho%C3%A1n"
-              class="block py-1 text-sm text-slate-400 hover:text-white transition"
-              >Chứng khoán</a
-            >
-          </div>
-        </div>
-        <a
-          href="#featured-article"
-          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
-          >Kiến thức</a
-        >
-        <a
-          href="./tools.html"
-          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
-          >Công cụ</a
-        >
-        <a
-          href="./about.html"
-          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
-          >Về Capital Circle</a
-        >
-        <div id="logBtnMobile" class="pt-2 border-t border-slate-800">
-          <a
-            href="./auth.html"
-            class="block text-center py-2 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs"
-            >Đăng nhập Quản trị</a
-          >
-        </div>
-      </div>
-    </header>
+     <div id="header"></div>
 
     <!-- ==================== HERO SLIDESHOW SECTION ==================== -->
     <section
@@ -957,48 +710,6 @@
               <i class="fa-solid fa-users"></i>
             </div>
           </div>
-
-          <!-- WIDGET 4: Nhận bài viết mới qua email (Newsletter) -->
-          <div
-            id="newsletter-widget"
-            class="hidden bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-3.5"
-          >
-            <div class="flex items-center space-x-2.5">
-              <div
-                class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center"
-              >
-                <i class="fa-regular fa-envelope text-sm"></i>
-              </div>
-              <h4 class="font-bold text-sm text-slate-900">
-                Nhận bài viết mới qua email
-              </h4>
-            </div>
-
-            <p class="text-xs text-slate-600 leading-relaxed">
-              Đăng ký để không bỏ lỡ những phân tích và bài viết mới nhất từ
-              Capital Circle.
-            </p>
-
-            <form
-              onsubmit="handleNewsletterSubmit(event)"
-              class="space-y-2.5 pt-1"
-            >
-              <input
-                type="email"
-                id="newsletterEmail"
-                required
-                placeholder="Nhập email của bạn"
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-slate-900 outline-none transition bg-slate-50/50"
-              />
-              <button
-                type="submit"
-                id="newsletterBtn"
-                class="w-full py-2.5 bg-slate-950 hover:bg-slate-800 text-white font-semibold rounded-xl text-xs transition shadow-sm"
-              >
-                Đăng ký
-              </button>
-            </form>
-          </div>
         </aside>
         <!-- ================= LEFT COLUMN (~68%) ================= -->
         <div class="lg:col-span-8 lg:order-1 space-y-10">
@@ -1146,8 +857,8 @@
           class="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3"
         >
           <!-- Tool 1 -->
-          <div
-            onclick="showToolNotice('Biểu đồ giá')"
+          <a
+            href="./tools.html?tab=price-chart"
             class="bg-white rounded-xl border border-slate-200/90 p-4 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md hover:border-slate-300 transition cursor-pointer group"
           >
             <div
@@ -1158,11 +869,11 @@
             <span class="text-xs font-semibold text-slate-700"
               >Biểu đồ giá</span
             >
-          </div>
+          </a>
 
           <!-- Tool 2 -->
-          <div
-            onclick="showToolNotice('Lịch kinh tế')"
+          <a
+            href="./tools.html?tab=economic-calendar"
             class="bg-white rounded-xl border border-slate-200/90 p-4 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md hover:border-slate-300 transition cursor-pointer group"
           >
             <div
@@ -1173,11 +884,11 @@
             <span class="text-xs font-semibold text-slate-700"
               >Lịch kinh tế</span
             >
-          </div>
+          </a>
 
           <!-- Tool 3 -->
-          <div
-            onclick="showToolNotice('Quy đổi tiền tệ')"
+          <a
+            href="./tools.html?tab=currency-converter"
             class="bg-white rounded-xl border border-slate-200/90 p-4 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md hover:border-slate-300 transition cursor-pointer group"
           >
             <div
@@ -1188,11 +899,11 @@
             <span class="text-xs font-semibold text-slate-700"
               >Quy đổi tiền tệ</span
             >
-          </div>
+          </a>
 
           <!-- Tool 6 -->
-          <div
-            onclick="showToolNotice('So sánh tài sản')"
+          <a
+            href="./tools.html?tab=asset-comparison"
             class="bg-white rounded-xl border border-slate-200/90 p-4 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md hover:border-slate-300 transition cursor-pointer group"
           >
             <div
@@ -1203,7 +914,7 @@
             <span class="text-xs font-semibold text-slate-700"
               >So sánh tài sản</span
             >
-          </div>
+          </a>
         </div>
 
         <!-- Right Inspirational Card (lg:col-span-4) -->
@@ -1234,76 +945,78 @@
       </div>
     </section>
 
-    <!-- ==================== FOOTER ==================== -->
-    <footer class="bg-[#070c18] border-t border-slate-800 text-slate-400 py-10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <!-- Main Footer Row -->
+    <section
+      id="dang-ky-hoc"
+      class="border-y border-slate-200/80 bg-slate-50 py-12 sm:py-16"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
-          class="flex flex-col md:flex-row items-center justify-between gap-6"
+          class="relative overflow-hidden rounded-2xl border border-slate-700/80 bg-[#0e1626] p-6 text-white shadow-xl sm:p-8 lg:p-10"
         >
-          <!-- Left: Brand Logo & Slogan -->
-          <div class="flex items-center space-x-3">
-            <div
-              class="w-9 h-9 rounded-full border border-slate-700 bg-slate-900 flex items-center justify-center text-amber-400 text-sm font-bold"
-            >
-              CC
-            </div>
-            <div>
-              <div
-                class="text-sm font-extrabold tracking-wider text-white uppercase"
-              >
-                CAPITAL CIRCLE
-              </div>
-              <div class="text-[9px] tracking-[0.2em] text-slate-500 uppercase">
-                KIẾN THỨC • TƯ DUY • GIÁ TRỊ DÀI HẠN
-              </div>
-            </div>
-          </div>
-
-          <!-- Middle: Navigation Links -->
           <div
-            class="flex flex-wrap justify-center gap-6 text-xs text-slate-400"
+            class="pointer-events-none absolute inset-y-0 right-0 w-2/5 bg-gradient-to-l from-amber-500/10 to-transparent"
+          ></div>
+          <div
+            class="pointer-events-none absolute -bottom-16 -right-8 text-white opacity-[0.06]"
           >
-            <a href="#about-section" class="hover:text-white transition"
-              >Giới thiệu</a
-            >
-            <a href="#newsletter-widget" class="hover:text-white transition"
-              >Liên hệ</a
-            >
-            <a href="#about-section" class="hover:text-white transition"
-              >Điều khoản</a
-            >
-            <a href="#about-section" class="hover:text-white transition"
-              >Chính sách</a
-            >
+            <i class="fa-solid fa-graduation-cap text-[220px]"></i>
           </div>
 
-          <!-- Right: Social Media Icons -->
-          <div class="flex items-center space-x-4 text-sm text-slate-400">
-            <a href="#" class="hover:text-white transition"
-              ><i class="fa-brands fa-facebook-f"></i
-            ></a>
-            <a href="#" class="hover:text-white transition"
-              ><i class="fa-brands fa-youtube"></i
-            ></a>
-            <a href="#" class="hover:text-white transition"
-              ><i class="fa-brands fa-tiktok"></i
-            ></a>
-            <a href="#" class="hover:text-white transition"
-              ><i class="fa-brands fa-linkedin-in"></i
-            ></a>
-          </div>
-        </div>
+          <div class="relative z-10 max-w-3xl">
+            <span
+              class="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1 text-[10px] font-bold tracking-[0.16em] text-amber-300"
+            >
+              <i class="fa-regular fa-envelope"></i>
+              NHẬN THÔNG BÁO MỚI NHẤT
+            </span>
+            <h2
+              class="max-w-2xl font-editorial text-2xl font-bold leading-tight text-white sm:text-3xl lg:text-4xl"
+            >
+              Đăng ký để không bỏ lỡ những phân tích và bài viết mới nhất từ
+              Capital Circle.
+            </h2>
+            <p
+              class="mt-4 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base"
+            >
+              Nhận những góc nhìn đáng tin cậy về tài chính, đầu tư và thị
+              trường ngay khi bài viết mới được xuất bản.
+            </p>
 
-        <!-- Copyright Note -->
-        <div
-          class="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2"
-        >
-          <p>© 2026 Capital Circle. All rights reserved.</p>
-          <p class="italic">Đầu tư là một hành trình học hỏi không ngừng.</p>
+            <form
+              onsubmit="handleNewsletterSubmit(event)"
+              class="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_auto]"
+            >
+              <input
+                type="text"
+                id="newsletterFullName"
+                required
+                placeholder="Nhập tên của bạn"
+                aria-label="Họ và tên"
+                class="w-full rounded-xl border border-slate-600 bg-slate-950/30 px-4 py-3.5 text-sm text-white placeholder-slate-400 outline-none transition focus:border-amber-400 focus:ring-2 focus:ring-amber-400/30"
+              />
+              <input
+                type="email"
+                id="newsletterEmail"
+                required
+                placeholder="Nhập email của bạn"
+                aria-label="Địa chỉ email"
+                class="w-full rounded-xl border border-slate-600 bg-slate-950/30 px-4 py-3.5 text-sm text-white placeholder-slate-400 outline-none transition focus:border-amber-400 focus:ring-2 focus:ring-amber-400/30"
+              />
+              <button
+                type="submit"
+                id="newsletterBtn"
+                class="inline-flex items-center justify-center gap-2 rounded-xl bg-amber-400 px-6 py-3.5 text-sm font-bold text-slate-950 shadow-lg shadow-amber-500/10 transition hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2 focus:ring-offset-[#0e1626] active:scale-[0.99]"
+              >
+                Đăng ký <i class="fa-solid fa-arrow-right text-xs"></i>
+              </button>
+            </form>
+          </div>
         </div>
       </div>
-    </footer>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <div id="footer"></div>
 
     <!-- ==================== SEARCH MODAL ==================== -->
     <div
@@ -1381,8 +1094,10 @@
       type="module"
       src="https://widgets.tradingview-widget.com/w/vi_VN/tv-ticker-tape.js"
     ></script>
+    <script src="./js/components/Header.js"></script>
+    <script src="./js/components/Footer.js"></script>
     <script src="./js/components/modal.js"></script>
     <script src="./js/HomePage/api.js"></script>
     <script src="./js/HomePage/main.js"></script>
-  </body>
+    
 </html>

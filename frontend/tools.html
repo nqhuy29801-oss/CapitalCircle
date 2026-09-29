@@ -22,168 +22,7 @@
   <body
     class="bg-[#f8fafc] text-slate-800 antialiased min-h-screen flex flex-col"
   >
-    <header
-      class="bg-[#0b101d] border-b border-slate-800/80 sticky top-0 z-40 shadow-lg"
-    >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-20">
-          <a href="./index.html" class="flex items-center space-x-3 group">
-            <div
-              class="w-11 h-11 rounded-full border border-slate-700/80 flex items-center justify-center bg-gradient-to-b from-slate-900 to-slate-950 shadow-inner group-hover:border-amber-400/60 transition"
-            >
-              <svg
-                class="w-7 h-7 text-amber-400"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <circle cx="12" cy="12" r="9.5" />
-                <path
-                  d="M12 2.5 A9.5 9.5 0 0 1 21.5 12"
-                  stroke="#d4af37"
-                  stroke-width="2"
-                />
-                <line x1="8" y1="16" x2="16" y2="8" />
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="3"
-                  stroke="#f1c40f"
-                  stroke-width="1.2"
-                />
-              </svg>
-            </div>
-            <div>
-              <div
-                class="text-base sm:text-lg font-extrabold tracking-wider text-white uppercase leading-none"
-              >
-                CAPITAL CIRCLE
-              </div>
-              <div
-                class="text-[9px] tracking-[0.25em] font-medium text-slate-400 uppercase mt-1"
-              >
-                KIẾN THỨC • TƯ DUY • GIÁ TRỊ DÀI HẠN
-              </div>
-            </div>
-          </a>
-
-          <nav
-            class="hidden lg:flex items-center space-x-7 text-sm font-medium"
-          >
-            <a
-              href="./index.html"
-              class="text-slate-300 hover:text-white transition"
-              >Trang chủ</a
-            >
-            <a
-              href="./articles.html"
-              class="text-slate-300 hover:text-white transition"
-              >Bài viết</a
-            >
-            <a
-              href="./index.html#market-ticker"
-              class="text-slate-300 hover:text-white transition"
-              >Thị trường</a
-            >
-            <a
-              href="./index.html#featured-article"
-              class="text-slate-300 hover:text-white transition"
-              >Kiến thức</a
-            >
-            <a
-              href="./tools.html"
-              class="text-white py-1 relative border-b-2 border-white transition"
-              aria-current="page"
-              >Công cụ</a
-            >
-            <a
-              href="./about.html"
-              class="text-slate-300 hover:text-white transition"
-              >Về Capital Circle</a
-            >
-          </nav>
-
-          <div class="hidden lg:flex items-center space-x-4">
-            <button
-              onclick="openSearchModal()"
-              class="w-9 h-9 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition"
-              title="Tìm kiếm"
-              aria-label="Tìm kiếm"
-            >
-              <i class="fa-solid fa-magnifying-glass text-xs"></i>
-            </button>
-            <a
-              href="./auth.html"
-              class="px-5 py-2 rounded-full bg-slate-900 border border-slate-700 text-white text-xs font-semibold hover:bg-slate-800 transition"
-              >Theo dõi</a
-            >
-          </div>
-
-          <div class="lg:hidden flex items-center space-x-2">
-            <button
-              onclick="openSearchModal()"
-              class="p-2 text-slate-300 hover:text-white"
-              title="Tìm kiếm"
-              aria-label="Tìm kiếm"
-            >
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-            <button
-              id="mobile-menu-btn"
-              class="p-2 rounded-lg text-slate-300 hover:text-white focus:outline-none"
-              title="Mở menu"
-              aria-label="Mở menu"
-            >
-              <i class="fa-solid fa-bars text-xl"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div
-        id="mobile-menu"
-        class="hidden lg:hidden bg-[#0e1626] border-b border-slate-800 px-5 pt-3 pb-5 space-y-3"
-      >
-        <a
-          href="./index.html"
-          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
-          >Trang chủ</a
-        >
-        <a
-          href="./articles.html"
-          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
-          >Bài viết</a
-        >
-        <a
-          href="./index.html#market-ticker"
-          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
-          >Thị trường</a
-        >
-        <a
-          href="./index.html#featured-article"
-          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
-          >Kiến thức</a
-        >
-        <a
-          href="./tools.html"
-          class="block py-1 text-sm font-semibold text-white"
-          >Công cụ</a
-        >
-        <a
-          href="./about.html"
-          class="block py-1 text-sm font-medium text-slate-300 hover:text-white"
-          >Về Capital Circle</a
-        >
-        <a
-          href="./auth.html"
-          class="block text-center py-2 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs"
-          >Đăng nhập Quản trị</a
-        >
-      </div>
-    </header>
+    <div id="header"></div>
 
     <main class="flex-1">
       <section
@@ -438,34 +277,32 @@
               </div>
             </div>
             <div
-              class="mt-6 flex min-h-52 items-center justify-center rounded-xl border border-dashed border-amber-200 bg-amber-50/40 text-center text-sm text-slate-500"
+              class="relative mt-6 w-full h-[600px] flex min-h-52 items-center justify-center overflow-hidden rounded-xl border border-dashed border-amber-200 bg-amber-50/40 text-center text-sm text-slate-500"
             >
+              <div
+                data-iframe-loader
+                class="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-amber-50/90 text-amber-700 transition-opacity duration-300"
+                role="status"
+                aria-live="polite"
+              >
+                <span
+                  class="h-9 w-9 animate-spin rounded-full border-4 border-amber-200 border-t-amber-600"
+                  aria-hidden="true"
+                ></span>
+                <span class="text-sm font-medium"
+                  >Đang tải lịch kinh tế...</span
+                >
+              </div>
               <iframe
                 src="https://sslecal2.investing.com?columns=exc_flags,exc_currency,exc_importance,exc_actual,exc_forecast,exc_previous&features=datepicker,timezone&countries=33,14,4,34,38,32,6,11,51,5,39,72,60,110,43,35,71,22,36,26,12,9,37,25,178,10,17&calType=day&timeZone=27&lang=52"
-                width="650"
-                height="467"
+                class="w-full h-full block opacity-0 transition-opacity duration-300"
+                data-loading-iframe
+                title="Lịch kinh tế Investing.com"
                 frameborder="0"
                 allowtransparency="true"
                 marginwidth="0"
                 marginheight="0"
               ></iframe>
-              <div
-                class="poweredBy"
-                style="font-family: Arial, Helvetica, sans-serif"
-              >
-                <span
-                  style="font-size: 11px; color: #333333; text-decoration: none"
-                  >Lịch Kinh Tế theo Thời Gian Thực được cung cấp bởi
-                  <a
-                    href="https://vn.Investing.com/"
-                    rel="nofollow"
-                    target="_blank"
-                    style="font-size: 11px; color: #06529d; font-weight: bold"
-                    class="underline_link"
-                    >Investing.com Việt Nam</a
-                  ></span
-                >
-              </div>
             </div>
           </section>
 
@@ -701,5 +538,6 @@
     </div>
 
     <script src="./js/ToolsPage/main.js"></script>
+    <script src="./js/components/Header.js"></script>
   </body>
 </html>

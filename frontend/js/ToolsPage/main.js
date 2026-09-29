@@ -34,6 +34,15 @@ function showToolTab(tabName) {
   }
 }
 
+function initializeSelectedToolTab() {
+  const requestedTab = new URLSearchParams(window.location.search).get("tab");
+  const availableTab = document.querySelector(
+    `[data-tool-panel="${requestedTab}"]`,
+  );
+
+  if (availableTab) showToolTab(requestedTab);
+}
+
 // CC AI Chat
 function openAIChat() {
   showToolTab("ai-chat");
@@ -41,6 +50,19 @@ function openAIChat() {
 
 function closeAIChat() {
   document.getElementById("ai-chat-panel").classList.add("hidden");
+}
+
+function initializeIframeLoadingStates() {
+  document.querySelectorAll("[data-loading-iframe]").forEach((iframe) => {
+    const loader = iframe.parentElement.querySelector("[data-iframe-loader]");
+    if (!loader) return;
+
+    iframe.addEventListener("load", () => {
+      iframe.classList.remove("opacity-0");
+      loader.classList.add("opacity-0", "pointer-events-none");
+      window.setTimeout(() => loader.remove(), 300);
+    });
+  });
 }
 
 const aiChatHistory = [];
@@ -121,6 +143,5 @@ document
     }
   });
 
-document.getElementById("mobile-menu-btn").addEventListener("click", () => {
-  document.getElementById("mobile-menu").classList.toggle("hidden");
-});
+initializeIframeLoadingStates();
+initializeSelectedToolTab();

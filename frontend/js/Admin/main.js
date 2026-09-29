@@ -219,7 +219,7 @@ async function renderArticlesTable() {
       },
     });
     if (!res.ok) {
-      throw new Error("Không thể lấy dữ liệu bài viết");
+      throw new Error("Không thể lấy dữ liệu tin tức");
     }
     const { news } = await res.json();
 
@@ -236,14 +236,14 @@ async function renderArticlesTable() {
 
     document.getElementById("statTotalArticles").innerText = news.length;
     document.getElementById("articleCountBadge").innerText =
-      `${filtered.length} bài viết`;
+      `${filtered.length} tin tức`;
 
     if (filtered.length === 0) {
       tbody.innerHTML = `
                     <tr>
                         <td colspan="6" class="text-center py-8 text-slate-400">
                             <i class="fa-regular fa-folder-open text-2xl mb-2 block"></i>
-                            Chưa có bài viết nào phù hợp.
+                            Chưa có tin tức nào phù hợp.
                         </td>
                     </tr>
                 `;
@@ -742,6 +742,28 @@ function fileToBase64(file) {
   });
 }
 
+async function takeDataNews() {
+  try {
+    const res = await authFetch(`${apiUrl}/news/other-website-news`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.message || "Lỗi khi cập nhật bài viết");
+    }
+
+    showToast("Lấy tin tức thành công!", "success");
+    renderArticlesTable();
+  } catch (error) {
+    console.error("Error editing article:", error);
+    showToast(error.message || "Đã xảy ra lỗi khi lấy tin tức!", "error");
+    return;
+  }
+}
 async function saveArticle(e) {
   e.preventDefault();
   const user = getCurrentUser();
