@@ -4,8 +4,11 @@ const newsModel = require("../models/news.model");
 const { redis } = require("../config/redis");
 const axios = require("axios");
 const cheerio = require("cheerio");
-const { convert } = require("html-to-text");
 const { after } = require("node:test");
+const {
+  fetchArticleContent,
+  makeupContentWithGemini,
+} = require("../middleware/makeupContent");
 
 // Tạo slug từ title (không dấu, viết thường, nối bằng dấu -)
 const generateSlug = (title) => {
@@ -42,44 +45,41 @@ const ensureUniqueSlug = async (baseSlug, excludeId = null) => {
 };
 
 // Hàm phụ: lấy nội dung chi tiết từ 1 bài viết, bỏ qua mọi bảng <table> bên trong #vst_detail
-async function fetchArticleContent(url) {
-  const { data: html } = await axios.get(url);
-  const $ = cheerio.load(html);
+// async function fetchArticleContent(url) {
+//   const { data: html } = await axios.get(url);
+//   const $ = cheerio.load(html);
 
-  // clone() để không làm thay đổi DOM gốc, phòng khi cần dùng $ cho việc khác sau này
-  const detailEl = $("#vst_detail");
+//   // clone() để không làm thay đổi DOM gốc, phòng khi cần dùng $ cho việc khác sau này
+//   const detailEl = $("#vst_detail");
 
-  const sourceText = detailEl.find(".pSource > a").attr("href");
-  const dateText = detailEl
-    .find(".pPublishTimeSource")
-    .text()
-    .replace("-", "")
-    .trim();
-  const authorText = detailEl.find(".pAuthor").text();
+//   const sourceText = detailEl.find(".pSource > a").attr("href");
+//   const dateText = detailEl
+//     .find(".pPublishTimeSource")
+//     .text()
+//     .replace("-", "")
+//     .trim();
+//   const authorText = detailEl.find(".pAuthor").text();
 
-  const content = convert(html, {
-    baseElements: { selectors: ["#vst_detail"] },
-    selectors: [
-      { selector: "table", format: "skip" },
-      { selector: ".pTitle", format: "skip" },
-      { selector: "img", format: "skip" },
-      { selector: ".pSource", format: "skip" },
-      { selector: ".pAuthor", format: "skip" },
-      { selector: ".pPublishTimeSource", format: "skip" },
-      { selector: "a", options: { ignoreHref: true } }, // giữ text link, bỏ URL
-    ],
-  });
+//   const content = convert(html, {
+//     baseElements: { selectors: ["#vst_detail"] },
+//     selectors: [
+//       { selector: "table", format: "skip" },
+//       { selector: ".pTitle", format: "skip" },
+//       { selector: "img", format: "skip" },
+//       { selector: ".pSource", format: "skip" },
+//       { selector: ".pAuthor", format: "skip" },
+//       { selector: ".pPublishTimeSource", format: "skip" },
+//       { selector: "a", options: { ignoreHref: true } }, // giữ text link, bỏ URL
+//     ],
+//   });
 
-  // Chuẩn hóa khoảng trắng/xuống dòng thừa cho gọn
-  //const content = detailEl.text().replace(/\s+/g, " ").trim();
-
-  return {
-    postSource: sourceText,
-    postDate: dateText,
-    postContent: content.trim(),
-    postAuthor: authorText,
-  };
-}
+//   return {
+//     postSource: sourceText,
+//     postDate: dateText,
+//     postContent: content.trim(),
+//     postAuthor: authorText,
+//   };
+// }
 
 // Upload (tạo mới) tin tức - Done
 exports.uploadNews = CatchAsyncError(async (req, res, next) => {

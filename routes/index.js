@@ -4,6 +4,7 @@ const articleRoute = require("./article.route");
 const chatMessagesRoute = require("./chatMessages.route");
 const bannerRoute = require("./banner.route");
 const toolsRoute = require("./tools.route");
+const makeupWordRoute = require("./makeupWord.route");
 
 const headerAPI = "/api/v1";
 
@@ -14,4 +15,5 @@ module.exports = function route(app) {
   app.use(`${headerAPI}/chatMessages`, chatMessagesRoute);
   app.use(`${headerAPI}/banner`, bannerRoute);
   app.use(`${headerAPI}/tools`, toolsRoute);
+  app.use(`${headerAPI}/makeup-word`, makeupWordRoute);
 };

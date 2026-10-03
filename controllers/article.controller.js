@@ -3,6 +3,7 @@ const { CatchAsyncError } = require("../middleware/catchAsyncError");
 const ErrorHandler = require("../config/ErrorHandler");
 const articleModel = require("../models/article.model");
 const { redis } = require("../config/redis");
+const cloudinary = require("cloudinary");
 
 const generateArticleSlug = (title) =>
   title
@@ -53,6 +54,14 @@ exports.uploadArticle = CatchAsyncError(async (req, res, next) => {
     if (!title) return next(new ErrorHandler("Thiếu tiêu đề bài viết.", 400));
     if (!content)
       return next(new ErrorHandler("Thiếu nội dung bài viết.", 400));
+    if (image) {
+      const myCloud = await cloudinary.v2.uploader.upload(image, {
+        folder: "article images",
+        resource_type: "auto",
+      });
+
+      image = myCloud.secure_url;
+    }
 
     const article = await articleModel.create({
       title,
@@ -89,6 +98,7 @@ exports.editArticle = CatchAsyncError(async (req, res, next) => {
       heading,
       content,
       source,
+      image,
       subheading,
       category,
       author,
@@ -102,10 +112,19 @@ exports.editArticle = CatchAsyncError(async (req, res, next) => {
         articleId,
       );
     }
+    if (image) {
+      const myCloud = await cloudinary.v2.uploader.upload(image, {
+        folder: "article images",
+        resource_type: "auto",
+      });
+
+      image = myCloud.secure_url;
+    }
     for (const [field, value] of Object.entries({
       heading,
       content,
       source,
+      image,
       subheading,
       category,
       author,
@@ -139,6 +158,7 @@ exports.getAllArticlesNoPagination = CatchAsyncError(async (req, res, next) => {
   }
 });
 
+// Make Up content với Gemini AI (Google GenAI) để chuẩn hóa HTML, loại bỏ rác, giữ lại semantic HTML, hình ảnh, chú thích, liên kết, v.v.
 exports.formatArticleContent = CatchAsyncError(async (req, res, next) => {
   const title = typeof req.body.title === "string" ? req.body.title.trim() : "";
   const content =
@@ -164,7 +184,7 @@ exports.formatArticleContent = CatchAsyncError(async (req, res, next) => {
             ],
           },
         ],
-        generationConfig: { temperature: 0.2, maxOutputTokens: 8192 },
+        generationConfig: { temperature: 0.2 },
       },
       { timeout: 30000 },
     );
@@ -206,6 +226,8 @@ exports.formatArticleContent = CatchAsyncError(async (req, res, next) => {
     });
   }
 });
+
+// Make Up Word content với Gemini AI (Google GenAI) để chuẩn hóa HTML, loại bỏ rác, giữ lại semantic HTML, hình ảnh, chú thích, liên kết, v.v.
 
 exports.getAllPublishedArticlesNoPagination = CatchAsyncError(
   async (req, res, next) => {

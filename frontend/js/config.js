@@ -116,8 +116,28 @@ function renderNewsHtmlContent(content) {
   if (hasHtml) {
     return content;
   }
+  // return content
+  //   .split(/\n{2,}/)
+  //   .map((p) => `<p class="mb-3">${p.replace(/\n/g, "<br/>")}</p>`)
+  //   .join("");
+
   return content
-    .split(/\n{2,}/)
-    .map((p) => `<p class="mb-3">${p.replace(/\n/g, "<br/>")}</p>`)
+    .split(/\n+/)
+    .map((p) => p.trim())
+    .filter((p) => p.length > 0)
+    .map((p, index) => {
+      // 1. Nếu là đoạn đầu tiên (Sapo): Tạo kiểu chữ nổi bật hơn
+      if (index === 0) {
+        return `<p class="mb-6 text-slate-900 text-lg sm:text-xl font-semibold leading-relaxed tracking-wide border-l-4 border-indigo-600 pl-4 py-1 bg-slate-50 rounded-r-lg">${p}</p>`;
+      }
+
+      // 2. Nếu là câu trích dẫn trong dấu ngoặc kép
+      // if (p.startsWith('"') || p.startsWith('“')) {
+      //   return `<blockquote class="my-6 pl-5 pr-4 py-3 border-l-4 border-amber-500 italic text-slate-800 bg-amber-50/60 rounded-r-xl font-medium text-base sm:text-lg leading-relaxed shadow-sm">${p}</blockquote>`;
+      // }
+
+      // 3. Các đoạn văn bản thông thường (Đậm nét, không bị mờ, căn chỉnh lề & khoảng cách chuẩn đọc báo)
+      return `<p class="mb-5 text-slate-900 text-base sm:text-lg leading-relaxed sm:leading-8 font-normal tracking-normal text-justify sm:text-left">${p}</p>`;
+    })
     .join("");
 }

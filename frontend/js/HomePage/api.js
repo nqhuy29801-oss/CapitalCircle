@@ -373,9 +373,9 @@ async function getLatestArticles() {
         .slice(0, 1)
         .map((article) => {
           return `
-          <a
+          <a 
               id="featuredArticleCard"
-              href="window.location.href='./article.html?slug=${article.slug}'"
+              href="./article.html?slug=${article.slug}"
               class="block bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md transition overflow-hidden group cursor-pointer"
             >
               <!-- Image Container with Pill Badge -->

@@ -67,7 +67,6 @@ exports.askAI = CatchAsyncError(async (req, res, next) => {
         contents,
         generationConfig: {
           temperature: 0.6,
-          maxOutputTokens: 800,
         },
       },
       {
@@ -77,20 +76,32 @@ exports.askAI = CatchAsyncError(async (req, res, next) => {
       },
     );
 
-    const answer = response.data?.candidates?.[0]?.content?.parts
+    const candidate = response.data?.candidates?.[0];
+    const finishReason = candidate?.finishReason;
+
+    const answer = candidate?.content?.parts
       ?.map((part) => part.text || "")
       .join("")
       .trim();
 
     if (!answer) {
-      return next(
-        new ErrorHandler("Gemini không trả về nội dung trả lời.", 502),
-      );
+      const reasonMessage =
+        finishReason === "SAFETY" || finishReason === "RECITATION"
+          ? "Câu hỏi hoặc nội dung trả lời vi phạm chính sách an toàn của Gemini."
+          : "Gemini không trả về nội dung trả lời.";
+      console.error("Gemini finishReason:", finishReason);
+      return next(new ErrorHandler(reasonMessage, 502));
+    }
+
+    if (finishReason === "MAX_TOKENS") {
+      // Vẫn trả câu trả lời (dù cụt) nhưng cảnh báo rõ để debug / hiển thị cho user biết
+      console.warn("Gemini answer bị cắt do chạm maxOutputTokens.");
     }
 
     return res.status(200).json({
       success: true,
       answer,
+      truncated: finishReason === "MAX_TOKENS", // frontend có thể hiện "..." hoặc nút "Xem thêm"
     });
   } catch (error) {
     const providerMessage = error.response?.data?.error?.message;
