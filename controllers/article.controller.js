@@ -45,12 +45,12 @@ exports.uploadArticle = CatchAsyncError(async (req, res, next) => {
       content,
       source,
       subheading,
-      image,
       category,
       author,
       status,
       url,
     } = req.body;
+     let { image } = req.body;
     if (!title) return next(new ErrorHandler("Thiếu tiêu đề bài viết.", 400));
     if (!content)
       return next(new ErrorHandler("Thiếu nội dung bài viết.", 400));
@@ -98,13 +98,13 @@ exports.editArticle = CatchAsyncError(async (req, res, next) => {
       heading,
       content,
       source,
-      image,
       subheading,
       category,
       author,
       status,
       url,
     } = req.body;
+    let { image } = req.body;
     if (title && title !== article.title) {
       article.title = title;
       article.slug = await ensureUniqueArticleSlug(

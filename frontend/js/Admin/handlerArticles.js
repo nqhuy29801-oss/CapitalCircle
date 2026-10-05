@@ -425,6 +425,7 @@ async function formatEditorialWordContent() {
 
 async function saveEditorialArticle(event) {
   event.preventDefault();
+  document.getElementById("editorialArtSaveBtn").disabled = true;
   const id = document.getElementById("editorialArtId").value;
   const imageFile = document.getElementById("editorialArtImage").files[0] || "";
   let fileImageBase64 = "";
@@ -487,6 +488,7 @@ async function saveEditorialArticle(event) {
     console.error("Lỗi lưu bài viết editorial:", error);
     showToast(error.message || "Không thể lưu bài viết.", "error");
   }
+  document.getElementById("editorialArtSaveBtn").disabled = false;
 }
 
 async function openEditEditorialArticleModal(slug) {

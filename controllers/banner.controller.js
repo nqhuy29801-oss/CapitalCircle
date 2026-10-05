@@ -118,7 +118,6 @@ exports.createBanner = CatchAsyncError(async (req, res, next) => {
   const {
     title,
     subtitle,
-    imageUrl,
     buttonText,
     buttonLink,
     scriptText,
@@ -126,10 +125,19 @@ exports.createBanner = CatchAsyncError(async (req, res, next) => {
     order,
     isActive,
   } = req.body;
-
+  let { imageUrl } = req.body;
   if (!title || !imageUrl) {
     return next(new ErrorHandler("Vui lòng nhập đầy đủ tiêu đề và hình ảnh cho banner", 400));
   }
+
+  if (imageUrl) {
+      const myCloud = await cloudinary.v2.uploader.upload(image, {
+        folder: "article images",
+        resource_type: "auto",
+      });
+
+      image = myCloud.secure_url;
+    }
 
   const newBanner = await Banner.create({
     title,
@@ -168,7 +176,6 @@ exports.updateBanner = CatchAsyncError(async (req, res, next) => {
   const {
     title,
     subtitle,
-    imageUrl,
     buttonText,
     buttonLink,
     scriptText,
@@ -176,10 +183,17 @@ exports.updateBanner = CatchAsyncError(async (req, res, next) => {
     order,
     isActive,
   } = req.body;
-
+  let { imageUrl } = req.body;
   if (title !== undefined) banner.title = title;
   if (subtitle !== undefined) banner.subtitle = subtitle;
-  if (imageUrl !== undefined && imageUrl) banner.imageUrl = imageUrl;
+  if (imageUrl) {
+      const myCloud = await cloudinary.v2.uploader.upload(image, {
+        folder: "article images",
+        resource_type: "auto",
+      });
+
+      image = myCloud.secure_url;
+    }
   if (buttonText !== undefined) banner.buttonText = buttonText;
   if (buttonLink !== undefined) banner.buttonLink = buttonLink;
   if (scriptText !== undefined) banner.scriptText = scriptText;
