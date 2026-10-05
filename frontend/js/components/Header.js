@@ -338,7 +338,7 @@ function SupportContactModal() {
 
       <div class="mt-6 grid grid-cols-2 gap-3">
         <a
-          href="https://zalo.me/0947199462"
+          href="https://zalo.me/0382813789"
           target="_blank"
           rel="noopener noreferrer"
           class="flex flex-col items-center gap-2 rounded-xl border border-sky-100 bg-sky-50 px-4 py-5 text-sky-700 transition hover:border-sky-300 hover:bg-sky-100"
@@ -350,7 +350,7 @@ function SupportContactModal() {
           <span class="text-sm font-bold">ZALO</span>
         </a>
         <a
-          href="https://t.me/jayquang255"
+          href="https://t.me/capitalcircletony"
           target="_blank"
           rel="noopener noreferrer"
           class="flex flex-col items-center gap-2 rounded-xl border border-blue-100 bg-blue-50 px-4 py-5 text-blue-700 transition hover:border-blue-300 hover:bg-blue-100"
