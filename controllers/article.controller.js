@@ -105,6 +105,9 @@ exports.editArticle = CatchAsyncError(async (req, res, next) => {
       url,
     } = req.body;
     let { image } = req.body;
+    if (image && image.startsWith(`${req.protocol}://${req.get("host")}`) && !image.startsWith("data:")) {
+      return next(new ErrorHandler("Giá trị ảnh không hợp lệ.", 400));
+    }
     if (title && title !== article.title) {
       article.title = title;
       article.slug = await ensureUniqueArticleSlug(
@@ -112,13 +115,21 @@ exports.editArticle = CatchAsyncError(async (req, res, next) => {
         articleId,
       );
     }
-    if (image) {
+    if (image && image.startsWith("data:")) {
+      const oldImageUrl = article.image;
       const myCloud = await cloudinary.v2.uploader.upload(image, {
         folder: "article images",
         resource_type: "auto",
       });
-
       image = myCloud.secure_url;
+
+      // Xoá ảnh cũ trên Cloudinary nếu có, tránh tích rác
+      if (oldImageUrl) {
+        const publicId = oldImageUrl.split("/").pop().split(".")[0];
+        cloudinary.v2.uploader.destroy(`article images/${publicId}`).catch((err) =>
+          console.warn("Không xoá được ảnh cũ trên Cloudinary:", err.message)
+        );
+      }
     }
     for (const [field, value] of Object.entries({
       heading,

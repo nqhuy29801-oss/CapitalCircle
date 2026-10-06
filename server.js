@@ -7,7 +7,20 @@ const { ErrorMiddleware } = require("./middleware/error");
 require("dotenv").config();
 const { app, server } = require("./config/socket");
 const path = require("path");
+const mongoose = require('mongoose');
 
+// async function dropStaleImageIndex() {
+//   await mongoose.connect(process.env.DB_URL);
+//   try {
+//     await mongoose.connection.db.collection('articles').dropIndex('image_1');
+//     console.log('Đã xoá index image_1 thành công.');
+//   } catch (err) {
+//     console.error('Lỗi khi xoá index:', err.message);
+//   } finally {
+//     await mongoose.disconnect();
+//   }
+// }
+// dropStaleImageIndex();
 app.use(express.static(path.join(__dirname, "frontend")));
 
 // Body parser
